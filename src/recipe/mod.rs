@@ -36,6 +36,10 @@ impl Recipe {
     pub fn recipe_type(&self) -> RecipeType {
         self.recipe_type
     }
+
+    pub fn cost(&self) -> f64 {
+        self.cost
+    }
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
