@@ -1,0 +1,23 @@
+use super::*;
+use serde_yaml::from_str;
+
+#[test]
+fn should_parse_recipe_yaml() {
+    let string = r#"
+      type: assembler
+      cost: 5
+      results:
+        - science-pack-1: 1
+      ingredients:
+        - copper-plate: 1
+        - iron-geer-wheel: 1
+    "#;
+    
+    let recipe: Recipe = from_str(string).unwrap();
+
+    assert_eq!(recipe.recipe_type, "assembler");
+    assert_eq!(recipe.recipe_type, "assembler");
+    assert_eq!(*recipe.results[0].get("science-pack-1").unwrap(), 1);
+    assert_eq!(*recipe.ingredients[0].get("copper-plate").unwrap(), 1);
+    assert_eq!(*recipe.ingredients[1].get("iron-geer-wheel").unwrap(), 1);
+}

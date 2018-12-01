@@ -1,0 +1,14 @@
+-
+  type: furnace
+  cost: 3.5
+  results:
+    - copper-plate: 1
+  ingredients:
+    - copper-ore: 1
+-
+  type: furnace
+  cost: 0.5
+  results:
+    - iron-plate: 1
+  ingredients:
+    - iron-ore: 1
