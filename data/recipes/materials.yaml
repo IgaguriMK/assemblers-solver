@@ -13,3 +13,10 @@
   ingredients:
     iron-plate: 1
     copper-cable: 3
+-
+  type: assembler
+  cost: 0.5
+  results:
+    copper-cable: 2
+  ingredients:
+    copper-plate: 1

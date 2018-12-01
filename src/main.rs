@@ -4,34 +4,50 @@ extern crate serde_yaml;
 #[macro_use]
 extern crate serde_derive;
 
+use std::collections::HashSet;
 use std::fs;
 use std::io::BufReader;
 
 use recipe::{Recipe, RecipeType, RecipeSet};
-use target::Target;
+use target::{Target, TargetSettings};
 
 mod recipe;
 mod target;
 
 fn main() {
-    let solver = Solver{recipe_set: load_recipes()};
+    let mut args = std::env::args();
+    let target_settings_file_name: String;
+    if let Some(name) = args.nth(1) {
+        target_settings_file_name = name;
+    } else {
+        eprintln!("Need target setting file.");
+        std::process::exit(1);
+    }
 
-    solver.solve(
-        Target{
-            name: "science-pack-2".to_string(),
-            throughput: 20.0,
-        }
-    );
+    let target_settings = load_target_settings(&target_settings_file_name);
+    let solver = Solver::new(load_recipes(), target_settings);
+
+    solver.solve();
 }
 
 
 #[derive(Debug)]
 struct Solver {
-    recipe_set: RecipeSet
+    target: Target,
+    recipe_set: RecipeSet,
+    sources: HashSet<String>,
 }
 
 impl Solver {
-    pub fn solve(&self, target: Target) {
+    pub fn new(recipe_set: RecipeSet, target_settings: TargetSettings) -> Solver {
+        Solver{
+            target: target_settings.target,
+            recipe_set,
+            sources: target_settings.sources.iter().map(|rs| rs.to_string()).collect(),
+        }
+    }
+
+    pub fn solve(&self) {
         struct SolveItem {
             t: Target,
             tier: u64,
@@ -39,15 +55,22 @@ impl Solver {
 
         let mut stack: Vec<SolveItem> = vec![
             SolveItem{
-                t: target,
+                t: self.target.clone(),
                 tier: 0
             }
         ];
         
         while let Some(i) = stack.pop() {
             let t = i.t;
+            if self.sources.get(&t.name).is_some() {
+                indent(i.tier);
+                println!("source of {}: {:.2} item/s", t.name, t.throughput);
+                continue;
+            }
+
             let recipes = self.recipe_set.find_recipes(&t.name);
-            if recipes.len() == 0 {
+            if self.sources.get(&t.name).is_some() || recipes.len() == 0 {
+                eprintln!("WARNING: recipe for '{}' is not exist.", t.name);
                 indent(i.tier);
                 println!("source of {}: {:.2} item/s", t.name, t.throughput);
                 continue;
@@ -122,6 +145,12 @@ impl Processer {
     pub fn speed(&self) -> f64 {
         self.speed
     }
+}
+
+fn load_target_settings(file_name: &str) -> TargetSettings {
+    let file = fs::File::open(file_name).expect("failed open file");
+    let reader = BufReader::new(file);
+    serde_yaml::from_reader(reader).expect("can't parse target settings")
 }
 
 fn load_recipes() -> RecipeSet {
