@@ -54,8 +54,9 @@ impl Solver {
 
             indent(t.tier);
             println!(
-                "{}: {} {:.2} units, {:.2} craft/s",
+                "{} ({:.2}/s): {} {:.2} units, {:.2} craft/s",
                 t.name,
+                t.throughput,
                 processer.name(),
                 unit_count,
                 craft_throughput
