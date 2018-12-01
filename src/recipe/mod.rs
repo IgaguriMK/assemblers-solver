@@ -7,12 +7,15 @@ mod tests;
 #[serde(deny_unknown_fields)]
 pub struct Recipe {
     #[serde(rename = "type")]
-    recipe_type: String,
+    recipe_type: RecipeType,
     cost: f64,
     results: Vec<HashMap<String, i64>>,
     ingredients: Vec<HashMap<String, i64>>,
 }
 
-impl Recipe {
-
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[serde()]
+pub enum RecipeType {
+    #[serde(rename = "assembler")]
+    Assembler,
 }

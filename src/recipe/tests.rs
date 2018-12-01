@@ -15,8 +15,8 @@ fn should_parse_recipe_yaml() {
     
     let recipe: Recipe = from_str(string).unwrap();
 
-    assert_eq!(recipe.recipe_type, "assembler");
-    assert_eq!(recipe.recipe_type, "assembler");
+    assert_eq!(recipe.recipe_type, RecipeType::Assembler);
+    assert_eq!(recipe.cost, 5.0);
     assert_eq!(*recipe.results[0].get("science-pack-1").unwrap(), 1);
     assert_eq!(*recipe.ingredients[0].get("copper-plate").unwrap(), 1);
     assert_eq!(*recipe.ingredients[1].get("iron-geer-wheel").unwrap(), 1);
