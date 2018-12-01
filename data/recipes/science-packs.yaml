@@ -14,3 +14,13 @@
   ingredients:
     transport-belt: 1
     inserter: 1
+-
+  type: assembler
+  cost: 12
+  results:
+    science-pack-3: 1
+  ingredients:
+    advanced-circuit: 1
+    engine-unit: 1
+    electric-mining-drill: 1
+

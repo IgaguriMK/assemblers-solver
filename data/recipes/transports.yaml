@@ -15,3 +15,10 @@
     iron-plate: 1
     iron-gear-wheel: 1
     electronic-circuit: 1
+- 
+  type: assembler
+  cost: 0.5
+  results:
+    pipe: 1
+  ingredients:
+    iron-plate: 1

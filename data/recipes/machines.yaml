@@ -1,0 +1,9 @@
+- 
+  type: assembler
+  cost: 2
+  results:
+    electric-mining-drill: 1
+  ingredients:
+    iron-plate: 10
+    iron-gear-wheel: 5
+    electronic-circuit: 3

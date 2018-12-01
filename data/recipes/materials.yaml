@@ -20,3 +20,21 @@
     copper-cable: 2
   ingredients:
     copper-plate: 1
+- 
+  type: assembler
+  cost: 6
+  results:
+    advanced-circuit: 1
+  ingredients:
+    plastic-bar: 2
+    copper-cable: 4
+    electronic-circuit: 2
+-
+  type: assembler
+  cost: 10
+  results:
+    engine-unit: 1
+  ingredients:
+    steel: 1
+    iron-gear-wheel: 1
+    pipe: 2
