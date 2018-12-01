@@ -8,21 +8,22 @@ use std::fs;
 use std::io::BufReader;
 
 use recipe::{Recipe, RecipeType, RecipeSet};
+use target::Target;
 
 mod recipe;
+mod target;
 
 fn main() {
     let solver = Solver{recipe_set: load_recipes()};
 
-    solver.solve("science-pack-1", 20.0);
+    solver.solve(
+        Target{
+            name: "science-pack-2".to_string(),
+            throughput: 20.0,
+        }
+    );
 }
 
-#[derive(Debug, Default)]
-struct Target {
-    pub name: String,
-    pub throughput: f64,
-    pub tier: u64,
-}
 
 #[derive(Debug)]
 struct Solver {
@@ -30,19 +31,24 @@ struct Solver {
 }
 
 impl Solver {
-    pub fn solve(&self, result: &str, throughput: f64) {
-        let mut targets: Vec<Target> = vec![
-            Target{
-                name: result.to_string(),
-                throughput,
+    pub fn solve(&self, target: Target) {
+        struct SolveItem {
+            t: Target,
+            tier: u64,
+        }
+
+        let mut stack: Vec<SolveItem> = vec![
+            SolveItem{
+                t: target,
                 tier: 0
             }
         ];
         
-        while let Some(t) = targets.pop() {
+        while let Some(i) = stack.pop() {
+            let t = i.t;
             let recipes = self.recipe_set.find_recipes(&t.name);
             if recipes.len() == 0 {
-                indent(t.tier);
+                indent(i.tier);
                 println!("source of {}: {:.2} item/s", t.name, t.throughput);
                 continue;
             }
@@ -52,7 +58,7 @@ impl Solver {
             let craft_throughput = t.throughput / (processer.productivity() * (r.result_num(&t.name) as f64));
             let unit_count = (r.cost() * craft_throughput / processer.speed()).ceil() as u64;
 
-            indent(t.tier);
+            indent(i.tier);
             println!(
                 "{} ({:.2}/s): {} {:.2} units, {:.2} craft/s",
                 t.name,
@@ -63,11 +69,13 @@ impl Solver {
             );
 
             for (name, count) in r.ingredients() {
-                targets.push(
-                    Target{
-                        name: name.to_string(),
-                        throughput: (*count as f64) * craft_throughput,
-                        tier: t.tier + 1,
+                stack.push(
+                    SolveItem {
+                        t: Target{
+                            name: name.to_string(),
+                            throughput: (*count as f64) * craft_throughput,
+                        },
+                        tier: i.tier + 1,
                     }
                 );
             }

@@ -6,3 +6,11 @@
   ingredients:
     copper-plate: 1
     iron-gear-wheel: 1
+-
+  type: assembler
+  cost: 6
+  results:
+    science-pack-2: 1
+  ingredients:
+    transport-belt: 1
+    inserter: 1
