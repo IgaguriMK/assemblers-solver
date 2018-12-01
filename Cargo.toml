@@ -1,0 +1,6 @@
+[package]
+name = "assemblers-solver"
+version = "0.1.0"
+authors = ["Igaguri <igagurimk@gmail.com>"]
+
+[dependencies]
