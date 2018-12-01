@@ -4,7 +4,8 @@ extern crate serde_yaml;
 #[macro_use]
 extern crate serde_derive;
 
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
+use std::collections::hash_map::Iter;
 use std::fs;
 use std::io::BufReader;
 
@@ -30,6 +31,35 @@ fn main() {
     solver.solve();
 }
 
+fn load_target_settings(file_name: &str) -> TargetSettings {
+    let file = fs::File::open(file_name).expect("failed open file");
+    let reader = BufReader::new(file);
+    serde_yaml::from_reader(reader).expect("can't parse target settings")
+}
+
+fn load_recipes() -> RecipeSet {
+    let pathes = fs::read_dir("./data/recipes").expect("failed read ./data/recipes/");
+
+    let mut recipe_set = RecipeSet::new();
+
+    for p in pathes {
+        let path = p.expect("faied get file info").path();
+
+        if let Some(ext) = path.extension() {
+            if ext != "yaml" {
+                continue;
+            }
+        }
+
+        let file = fs::File::open(path).expect("failed open file");
+        let reader = BufReader::new(file);
+
+        let recipes: Vec<Recipe> = serde_yaml::from_reader(reader).expect("can't parse recipe YAML");
+        recipe_set.append_recipes(recipes);
+    }
+
+    recipe_set
+}
 
 #[derive(Debug)]
 struct Solver {
@@ -56,13 +86,18 @@ impl Solver {
         let mut stack: Vec<SolveItem> = vec![
             SolveItem{
                 t: self.target.clone(),
-                tier: 0
+                tier: 1
             }
         ];
         
+        let mut source_throughputs: SourceThroughputs = SourceThroughputs::new();
+
+        println!("Processing tree:");
         while let Some(i) = stack.pop() {
             let t = i.t;
             if self.sources.get(&t.name).is_some() {
+                source_throughputs.add(&t.name, t.throughput);
+
                 indent(i.tier);
                 println!("source of {}: {:.2} item/s", t.name, t.throughput);
                 continue;
@@ -71,6 +106,9 @@ impl Solver {
             let recipes = self.recipe_set.find_recipes(&t.name);
             if self.sources.get(&t.name).is_some() || recipes.len() == 0 {
                 eprintln!("WARNING: recipe for '{}' is not exist.", t.name);
+
+                source_throughputs.add(&t.name, t.throughput);
+
                 indent(i.tier);
                 println!("source of {}: {:.2} item/s", t.name, t.throughput);
                 continue;
@@ -102,6 +140,13 @@ impl Solver {
                     }
                 );
             }
+        }
+
+        println!("");
+        println!("Source throughputs:");
+
+        for (n, t) in source_throughputs.iter() {
+            println!("    {}: {:.2}/s", n, t);
         }
     }
 
@@ -147,32 +192,28 @@ impl Processer {
     }
 }
 
-fn load_target_settings(file_name: &str) -> TargetSettings {
-    let file = fs::File::open(file_name).expect("failed open file");
-    let reader = BufReader::new(file);
-    serde_yaml::from_reader(reader).expect("can't parse target settings")
+struct SourceThroughputs {
+    map: HashMap<String, f64>
 }
 
-fn load_recipes() -> RecipeSet {
-    let pathes = fs::read_dir("./data/recipes").expect("failed read ./data/recipes/");
-
-    let mut recipe_set = RecipeSet::new();
-
-    for p in pathes {
-        let path = p.expect("faied get file info").path();
-
-        if let Some(ext) = path.extension() {
-            if ext != "yaml" {
-                continue;
-            }
+impl SourceThroughputs {
+    fn new() -> SourceThroughputs {
+        SourceThroughputs{
+            map: HashMap::new(),
         }
-
-        let file = fs::File::open(path).expect("failed open file");
-        let reader = BufReader::new(file);
-
-        let recipes: Vec<Recipe> = serde_yaml::from_reader(reader).expect("can't parse recipe YAML");
-        recipe_set.append_recipes(recipes);
     }
 
-    recipe_set
+    fn add(&mut self, name: &str, amount: f64) {
+        let mut throughput: f64 = amount;
+
+        if let Some(t) = self.map.get(name) {
+            throughput += t;
+        }
+
+        self.map.insert(name.to_string(), throughput);
+    }
+
+    fn iter(&self) -> Iter<String, f64> {
+        self.map.iter()
+    }
 }
