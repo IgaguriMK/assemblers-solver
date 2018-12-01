@@ -2,7 +2,7 @@
   type: assembler
   cost: 5
   results:
-    - science-pack-1: 1
+    science-pack-1: 1
   ingredients:
-    - copper-plate: 1
-    - iron-geer-wheel: 1
+    copper-plate: 1
+    iron-geer-wheel: 1

@@ -9,8 +9,8 @@ pub struct Recipe {
     #[serde(rename = "type")]
     recipe_type: RecipeType,
     cost: f64,
-    results: Vec<HashMap<String, i64>>,
-    ingredients: Vec<HashMap<String, i64>>,
+    results: HashMap<String, i64>,
+    ingredients: HashMap<String, i64>,
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
