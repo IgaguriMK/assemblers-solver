@@ -10,8 +10,8 @@ pub struct Recipe {
     #[serde(rename = "type")]
     recipe_type: RecipeType,
     cost: f64,
-    results: HashMap<String, u64>,
-    ingredients: HashMap<String, u64>,
+    results: HashMap<String, f64>,
+    ingredients: HashMap<String, f64>,
 }
 
 impl Recipe {
@@ -22,14 +22,14 @@ impl Recipe {
         }
     }
 
-    pub fn result_num(&self, result: &str) -> u64 {
+    pub fn result_num(&self, result: &str) -> f64 {
         match self.results.get(result) {
             Some(&n) => n,
-            None => 0,
+            None => 0.0,
         }
     }
 
-    pub fn ingredients(&self) -> Iter<String, u64> {
+    pub fn ingredients(&self) -> Iter<String, f64> {
         self.ingredients.iter()
     }
 

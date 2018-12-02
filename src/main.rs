@@ -116,7 +116,7 @@ impl Solver {
 
             let r = recipes[0];
             let processer = self.best_processer(r);
-            let craft_throughput = t.throughput / (processer.productivity() * (r.result_num(&t.name) as f64));
+            let craft_throughput = t.throughput / (processer.productivity() * r.result_num(&t.name));
             let unit_count = (r.cost() * craft_throughput / processer.speed()).ceil() as u64;
 
             indent(i.tier);
@@ -134,7 +134,7 @@ impl Solver {
                     SolveItem {
                         t: Target{
                             name: name.to_string(),
-                            throughput: (*count as f64) * craft_throughput,
+                            throughput: *count * craft_throughput,
                         },
                         tier: i.tier + 1,
                     }

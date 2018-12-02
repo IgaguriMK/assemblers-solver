@@ -1,0 +1,5 @@
+target:
+  name: copper-plate
+  throughput: 40
+sources:
+  - copper-ore
