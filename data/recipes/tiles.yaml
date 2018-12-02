@@ -1,0 +1,19 @@
+-
+  type: assembler
+  cost: 10
+  results:
+    concrete: 10
+  ingredients:
+    iron-ore: 1
+    stone-brick: 5
+    water: 100
+-
+  type: assembler
+  cost: 15
+  results:
+    refined-concrete: 10
+  ingredients:
+    steel: 1
+    iron-stick: 5
+    concrete: 20
+    water: 100

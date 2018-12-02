@@ -1,6 +1,7 @@
 -
   type: assembler
   cost: 5
+  material: true
   results:
     science-pack-1: 1
   ingredients:
@@ -9,6 +10,7 @@
 -
   type: assembler
   cost: 6
+  material: true
   results:
     science-pack-2: 1
   ingredients:
@@ -17,6 +19,7 @@
 -
   type: assembler
   cost: 12
+  material: true
   results:
     science-pack-3: 1
   ingredients:

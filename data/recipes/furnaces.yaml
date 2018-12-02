@@ -1,6 +1,7 @@
 -
   type: furnace
   cost: 3.5
+  material: true
   results:
     copper-plate: 1
   ingredients:
@@ -8,7 +9,16 @@
 -
   type: furnace
   cost: 0.5
+  material: true
   results:
     iron-plate: 1
   ingredients:
     iron-ore: 1
+-
+  type: furnace
+  cost: 3.5
+  material: true
+  results:
+    stone-brick: 1
+  ingredients:
+    stone: 2

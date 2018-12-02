@@ -1,6 +1,7 @@
 - 
   type: assembler
   cost: 0.5
+  material: true
   results:
     iron-gear-wheel: 1
   ingredients:
@@ -8,6 +9,7 @@
 - 
   type: assembler
   cost: 0.5
+  material: true
   results:
     electronic-circuit: 1
   ingredients:
@@ -16,6 +18,7 @@
 -
   type: assembler
   cost: 0.5
+  material: true
   results:
     copper-cable: 2
   ingredients:
@@ -23,6 +26,7 @@
 - 
   type: assembler
   cost: 6
+  material: true
   results:
     advanced-circuit: 1
   ingredients:
@@ -32,9 +36,18 @@
 -
   type: assembler
   cost: 10
+  material: true
   results:
     engine-unit: 1
   ingredients:
     steel: 1
     iron-gear-wheel: 1
     pipe: 2
+- 
+  type: assembler
+  cost: 0.5
+  material: true
+  results:
+    iron-stick: 2
+  ingredients:
+    iron-plate: 1

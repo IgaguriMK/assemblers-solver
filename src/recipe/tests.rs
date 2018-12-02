@@ -15,8 +15,9 @@ fn should_parse_recipe_yaml() {
     
     let recipe: Recipe = from_str(string).unwrap();
 
-    assert_eq!(recipe.recipe_type, RecipeType::Assembler);
+    assert_eq!(recipe.recipe_type, "assembler");
     assert_eq!(recipe.cost, 5.0);
+    assert_eq!(recipe.material, false);
     assert_eq!(*recipe.results.get("science-pack-1").unwrap(), 1.0);
     assert_eq!(*recipe.ingredients.get("copper-plate").unwrap(), 1.0);
     assert_eq!(*recipe.ingredients.get("iron-geer-wheel").unwrap(), 1.0);
@@ -48,7 +49,7 @@ fn should_find_recipe_with_result() {
     let gear_recipes = recipe_set.find_recipes("iron-gear-wheel");
 
     assert_eq!(gear_recipes.len(), 1);
-    assert_eq!(gear_recipes[0].recipe_type, RecipeType::Assembler);
+    assert_eq!(gear_recipes[0].recipe_type, "assembler");
     assert_eq!(gear_recipes[0].cost, 0.5);
     assert_eq!(*gear_recipes[0].results.get("iron-gear-wheel").unwrap(), 1.0);
     assert_eq!(*gear_recipes[0].ingredients.get("iron-plate").unwrap(), 2.0);

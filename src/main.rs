@@ -4,12 +4,12 @@ extern crate serde_yaml;
 #[macro_use]
 extern crate serde_derive;
 
-use std::collections::{HashMap, HashSet};
 use std::collections::hash_map::Iter;
+use std::collections::{HashMap, HashSet};
 use std::fs;
 use std::io::BufReader;
 
-use recipe::{Recipe, RecipeType, RecipeSet};
+use recipe::{Recipe, RecipeSet};
 use target::{Target, TargetSettings};
 
 mod recipe;
@@ -54,7 +54,8 @@ fn load_recipes() -> RecipeSet {
         let file = fs::File::open(path).expect("failed open file");
         let reader = BufReader::new(file);
 
-        let recipes: Vec<Recipe> = serde_yaml::from_reader(reader).expect("can't parse recipe YAML");
+        let recipes: Vec<Recipe> =
+            serde_yaml::from_reader(reader).expect("can't parse recipe YAML");
         recipe_set.append_recipes(recipes);
     }
 
@@ -70,10 +71,14 @@ struct Solver {
 
 impl Solver {
     pub fn new(recipe_set: RecipeSet, target_settings: TargetSettings) -> Solver {
-        Solver{
+        Solver {
             target: target_settings.target,
             recipe_set,
-            sources: target_settings.sources.iter().map(|rs| rs.to_string()).collect(),
+            sources: target_settings
+                .sources
+                .iter()
+                .map(|rs| rs.to_string())
+                .collect(),
         }
     }
 
@@ -83,13 +88,11 @@ impl Solver {
             tier: u64,
         }
 
-        let mut stack: Vec<SolveItem> = vec![
-            SolveItem{
-                t: self.target.clone(),
-                tier: 1
-            }
-        ];
-        
+        let mut stack: Vec<SolveItem> = vec![SolveItem {
+            t: self.target.clone(),
+            tier: 1,
+        }];
+
         let mut source_throughputs: SourceThroughputs = SourceThroughputs::new();
 
         println!("Processing tree:");
@@ -116,7 +119,8 @@ impl Solver {
 
             let r = recipes[0];
             let processer = self.best_processer(r);
-            let craft_throughput = t.throughput / (processer.productivity() * r.result_num(&t.name));
+            let craft_throughput =
+                t.throughput / (processer.productivity() * r.result_num(&t.name));
             let unit_count = (r.cost() * craft_throughput / processer.speed()).ceil() as u64;
 
             indent(i.tier);
@@ -130,15 +134,13 @@ impl Solver {
             );
 
             for (name, count) in r.ingredients() {
-                stack.push(
-                    SolveItem {
-                        t: Target{
-                            name: name.to_string(),
-                            throughput: *count * craft_throughput,
-                        },
-                        tier: i.tier + 1,
-                    }
-                );
+                stack.push(SolveItem {
+                    t: Target {
+                        name: name.to_string(),
+                        throughput: *count * craft_throughput,
+                    },
+                    tier: i.tier + 1,
+                });
             }
         }
 
@@ -152,16 +154,47 @@ impl Solver {
 
     fn best_processer(&self, recipe: &Recipe) -> Processer {
         match recipe.recipe_type() {
-            RecipeType::Assembler => Processer{
-                name: "assembler".to_string(),
-                productivity: 1.4,
-                speed: 5.5,
-            },
-            RecipeType::Furnace => Processer{
-                name: "furnace".to_string(),
-                productivity: 1.2,
-                speed: 5.5,
+            "assembler" => {
+                if recipe.is_material() {
+                    if recipe.ingredients_count() <= 2 {
+                        return Processer {
+                            name: "assembler-p4-b8".to_string(),
+                            productivity: 1.4,
+                            speed: 5.5,
+                        };
+                    }
+                    if recipe.ingredients_count() == 3 {
+                        return Processer {
+                            name: "assembler-p4-b4".to_string(),
+                            productivity: 1.4,
+                            speed: 3.0,
+                        };
+                    }
+                } else {
+                    return Processer {
+                        name: "assembler-s4".to_string(),
+                        productivity: 1.0,
+                        speed: 3.75,
+                    };
+                }
             }
+            "furnace" => {
+                if recipe.is_material() {
+                    return Processer {
+                        name: "furnace".to_string(),
+                        productivity: 1.2,
+                        speed: 5.5,
+                    }
+                }
+            }
+
+            _ => {}
+        }
+
+        Processer {
+            name: "unknown".to_string(),
+            productivity: 1.0,
+            speed: 1.0,
         }
     }
 }
@@ -182,7 +215,7 @@ impl Processer {
     pub fn name(&self) -> &str {
         &self.name
     }
- 
+
     pub fn productivity(&self) -> f64 {
         self.productivity
     }
@@ -193,12 +226,12 @@ impl Processer {
 }
 
 struct SourceThroughputs {
-    map: HashMap<String, f64>
+    map: HashMap<String, f64>,
 }
 
 impl SourceThroughputs {
     fn new() -> SourceThroughputs {
-        SourceThroughputs{
+        SourceThroughputs {
             map: HashMap::new(),
         }
     }

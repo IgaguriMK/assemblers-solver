@@ -8,13 +8,27 @@ mod tests;
 #[serde(deny_unknown_fields)]
 pub struct Recipe {
     #[serde(rename = "type")]
-    recipe_type: RecipeType,
+    recipe_type: String,
     cost: f64,
+    #[serde(default)]
+    material: bool,
     results: HashMap<String, f64>,
     ingredients: HashMap<String, f64>,
 }
 
 impl Recipe {
+    pub fn recipe_type(&self) -> &str {
+        &self.recipe_type
+    }
+
+    pub fn cost(&self) -> f64 {
+        self.cost
+    }
+
+    pub fn is_material(&self) -> bool {
+        self.material
+    }
+
     pub fn has_result(&self, result: &str) -> bool {
         match self.results.get(result) {
             Some(_) => true,
@@ -33,21 +47,9 @@ impl Recipe {
         self.ingredients.iter()
     }
 
-    pub fn recipe_type(&self) -> RecipeType {
-        self.recipe_type
+    pub fn ingredients_count(&self) -> usize {
+        self.ingredients.len()
     }
-
-    pub fn cost(&self) -> f64 {
-        self.cost
-    }
-}
-
-#[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
-pub enum RecipeType {
-    #[serde(rename = "assembler")]
-    Assembler,
-    #[serde(rename = "furnace")]
-    Furnace,
 }
 
 #[derive(Debug)]
