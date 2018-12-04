@@ -181,13 +181,25 @@ impl Solver {
             "furnace" => {
                 if recipe.is_material() {
                     return Processer {
-                        name: "furnace".to_string(),
+                        name: "furnace-p2-b8".to_string(),
                         productivity: 1.2,
-                        speed: 5.5,
+                        speed: 9.4,
+                    }
+                } else {
+                    return Processer {
+                        name: "furnace-s2".to_string(),
+                        productivity: 1.0,
+                        speed: 4.0,
                     }
                 }
             }
-
+            "rocket-silo" => {
+                return Processer {
+                    name: "rocket-silo".to_string(),
+                    productivity: 1.0,
+                    speed: 0.01616666666666666666666666666667,
+                }
+            }
             _ => {}
         }
 
