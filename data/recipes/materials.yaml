@@ -51,3 +51,21 @@
     iron-stick: 2
   ingredients:
     iron-plate: 1
+-
+  type: assembler
+  cost: 10
+  material: true
+  results:
+    processing-unit: 1
+  ingredients:
+    advanced-circuit: 2
+    electronic-circuit: 20
+    sulfuric-acid: 5
+-
+  type: assembler
+  cost: 30
+  material: true
+  results:
+    rocket-fuel: 1
+  ingredients:
+    solid-fuel: 10

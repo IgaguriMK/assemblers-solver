@@ -1,0 +1,8 @@
+- 
+  type: assembler
+  cost: 10
+  results:
+    speed-module: 1
+  ingredients:
+    advanced-circuit: 5
+    electronic-circuit: 5

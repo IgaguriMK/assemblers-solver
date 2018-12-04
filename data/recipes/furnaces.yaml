@@ -8,7 +8,7 @@
     copper-ore: 1
 -
   type: furnace
-  cost: 0.5
+  cost: 3.5
   material: true
   results:
     iron-plate: 1
