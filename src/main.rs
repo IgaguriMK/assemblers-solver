@@ -94,6 +94,7 @@ impl Solver {
         }];
 
         let mut source_throughputs: SourceThroughputs = SourceThroughputs::new();
+        let mut missings: HashSet<String> = HashSet::new();
 
         println!("Processing tree:");
         while let Some(i) = stack.pop() {
@@ -108,7 +109,7 @@ impl Solver {
 
             let recipes = self.recipe_set.find_recipes(&t.name);
             if self.sources.get(&t.name).is_some() || recipes.len() == 0 {
-                eprintln!("WARNING: recipe for '{}' is not exist.", t.name);
+                missings.insert(t.name.clone());
 
                 source_throughputs.add(&t.name, t.throughput);
 
@@ -149,6 +150,12 @@ impl Solver {
 
         for (n, t) in source_throughputs.iter() {
             println!("    {}: {:.2}/s", n, t);
+        }
+
+        if missings.len() > 0 {
+            for m in missings.iter() {
+                eprintln!("WARNING: recipe for '{}' is not exist.", m);
+            }
         }
     }
 
