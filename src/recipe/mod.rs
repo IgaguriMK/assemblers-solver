@@ -1,5 +1,6 @@
-use std::collections::HashMap;
 use std::collections::hash_map::Iter;
+use std::collections::{HashMap, HashSet};
+use std::cmp::Ordering;
 
 #[cfg(test)]
 mod tests;
@@ -54,12 +55,14 @@ impl Recipe {
 
 #[derive(Debug)]
 pub struct RecipeSet {
-    recipes: Vec<Recipe>
+    recipes: Vec<Recipe>,
 }
 
 impl RecipeSet {
     pub fn new() -> RecipeSet {
-        RecipeSet{recipes: Vec::new()}
+        RecipeSet {
+            recipes: Vec::new(),
+        }
     }
 
     pub fn append_recipes(&mut self, mut recipes: Vec<Recipe>) {
@@ -72,5 +75,38 @@ impl RecipeSet {
             .into_iter()
             .filter(|r| r.has_result(result))
             .collect()
+    }
+
+    pub fn compare(&self, left: &str, right: &str) -> Ordering {
+        if self.is_ingredient_of(right, left) {
+            return Ordering::Less;
+        }
+        if self.is_ingredient_of(left, right) {
+            return Ordering::Greater;
+        }
+
+        Ordering::Equal
+    }
+
+    fn is_ingredient_of(&self, ingredient: &str, result: &str) -> bool {
+        let mut targets = vec![result.to_string()];
+
+        while targets.len() > 1 {
+            if let Some(t) = targets.pop() {
+                let ingredients: HashSet<String> = self.find_recipes(&t)
+                    .iter()
+                    .flat_map(|r| r.ingredients().map(|i| i.0.to_string()))
+                    .collect();
+                
+                for i in ingredients {
+                    if i == ingredient {
+                        return true;
+                    }
+                    targets.push(i);
+                }
+            }
+        }
+
+        false
     }
 }

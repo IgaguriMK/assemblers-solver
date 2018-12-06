@@ -6,4 +6,5 @@ sources:
   - copper-plate
   - plastic-bar
   - steel
+merged:
   - electronic-circuit

@@ -11,3 +11,6 @@ sources:
   - solid-fuel
 merged:
   - electronic-circuit
+  - advanced-circuit
+  - low-density-structure
+  - rocket-fuel
