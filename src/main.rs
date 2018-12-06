@@ -5,7 +5,7 @@ extern crate serde_yaml;
 extern crate serde_derive;
 
 use std::collections::hash_map::Iter;
-use std::collections::{HashMap, HashSet, VecDeque};
+use std::collections::{HashMap, HashSet};
 use std::fs;
 use std::io::BufReader;
 
@@ -64,36 +64,49 @@ fn load_recipes() -> RecipeSet {
 
 #[derive(Debug)]
 struct Solver {
-    targets: VecDeque<Flow>,
+    targets: ItemThroughputs,
     recipe_set: RecipeSet,
     sources: HashSet<String>,
-    middle_targets: ItemThroughputs,
+    merged: HashSet<String>,
     source_throughputs: ItemThroughputs,
     missings: HashSet<String>,
 }
 
 impl Solver {
     pub fn new(recipe_set: RecipeSet, target_settings: TargetSettings) -> Solver {
+        let mut targets = ItemThroughputs::new(); 
+
+        targets.add(target_settings.target);
+
         Solver {
-            targets: vec![target_settings.target].into(),
+            targets,
             recipe_set,
             sources: target_settings
                 .sources
                 .iter()
                 .map(|rs| rs.to_string())
                 .collect(),
-            middle_targets: ItemThroughputs::new(),
+            merged: target_settings
+                .merged
+                .iter()
+                .map(|rs| rs.to_string())
+                .collect(),
             source_throughputs: ItemThroughputs::new(),
             missings: HashSet::new(),
         }
     }
 
     pub fn solve(&mut self) {
-        if let Some(t) = self.targets.pop_front() {
+        if let Some(t) = self.next_target() {
             self.solve_one(t);
         }
 
-        println!("");
+        while let Some(t) = self.next_target() {
+            println!();
+            self.solve_one(t);
+        }
+
+        println!();
         println!("Source throughputs:");
 
         for (n, t) in self.source_throughputs.iter() {
@@ -105,7 +118,17 @@ impl Solver {
         }
     }
 
+    fn next_target(&mut self) -> Option<Flow> {
+        if let Some(name) = self.targets.names().into_iter().min_by(|l, r| self.recipe_set.compare(l, r)) {
+            return Some(self.targets.take(name));
+        }
+
+        None
+    }
+
     fn solve_one(&mut self, target: Flow) {
+        let target_name = target.name.clone();
+
         struct SolveItem {
             t: Flow,
             tier: u64,
@@ -116,14 +139,22 @@ impl Solver {
             tier: 1,
         }];
 
-        println!("Processing tree:");
+        println!("Processing tree [{}]:", target_name);
         while let Some(i) = stack.pop() {
             let t = i.t;
             if self.sources.get(&t.name).is_some() {
-                self.source_throughputs.add(&t.name, t.throughput);
-
                 indent(i.tier);
                 println!("source of {}: {:.2} item/s", t.name, t.throughput);
+
+                self.source_throughputs.add(t);
+                continue;
+            }
+
+            if t.name != target_name && self.merged.get(&t.name).is_some() {
+                indent(i.tier);
+                println!("merged {}: {:.2} item/s", t.name, t.throughput);
+
+                self.targets.add(t.clone());
                 continue;
             }
 
@@ -131,10 +162,10 @@ impl Solver {
             if recipes.len() == 0 {
                 self.missings.insert(t.name.clone());
 
-                self.source_throughputs.add(&t.name, t.throughput);
-
                 indent(i.tier);
                 println!("source of {}: {:.2} item/s", t.name, t.throughput);
+
+                self.source_throughputs.add(t.clone());
                 continue;
             }
 
@@ -263,17 +294,27 @@ impl ItemThroughputs {
         }
     }
 
-    fn add(&mut self, name: &str, amount: f64) {
-        let mut throughput: f64 = amount;
+    fn add(&mut self, flow: Flow) {
+        let mut throughput: f64 = flow.throughput;
 
-        if let Some(t) = self.map.get(name) {
+        if let Some(t) = self.map.get(&flow.name) {
             throughput += t;
         }
 
-        self.map.insert(name.to_string(), throughput);
+        self.map.insert(flow.name, throughput);
     }
 
     fn iter(&self) -> Iter<String, f64> {
         self.map.iter()
     }
+
+    fn names(&self) -> Vec<String> {
+        self.iter().map(|(n, _)| n.to_string()).collect()
+    }
+
+    fn take(&mut self, name: String) -> Flow {
+        let throughput = self.map.remove(&name).unwrap_or(0.0);
+
+        Flow{name, throughput}
+    } 
 }

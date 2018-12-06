@@ -3,6 +3,7 @@
 pub struct TargetSettings {
     pub target: Flow,
     pub sources: Vec<String>,
+    pub merged: Vec<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
