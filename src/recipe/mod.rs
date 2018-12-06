@@ -91,7 +91,7 @@ impl RecipeSet {
     fn is_ingredient_of(&self, ingredient: &str, result: &str) -> bool {
         let mut targets = vec![result.to_string()];
 
-        while targets.len() > 1 {
+        while targets.len() != 0 {
             if let Some(t) = targets.pop() {
                 let ingredients: HashSet<String> = self.find_recipes(&t)
                     .iter()
