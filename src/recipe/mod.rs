@@ -1,5 +1,5 @@
-use std::collections::HashMap;
 use std::collections::hash_map::Iter;
+use std::collections::{HashMap, HashSet};
 
 #[cfg(test)]
 mod tests;
@@ -54,12 +54,14 @@ impl Recipe {
 
 #[derive(Debug)]
 pub struct RecipeSet {
-    recipes: Vec<Recipe>
+    recipes: Vec<Recipe>,
 }
 
 impl RecipeSet {
     pub fn new() -> RecipeSet {
-        RecipeSet{recipes: Vec::new()}
+        RecipeSet {
+            recipes: Vec::new(),
+        }
     }
 
     pub fn append_recipes(&mut self, mut recipes: Vec<Recipe>) {
@@ -72,5 +74,27 @@ impl RecipeSet {
             .into_iter()
             .filter(|r| r.has_result(result))
             .collect()
+    }
+
+    pub fn less(&self, left: &str, right: &str) -> bool {
+        let mut targets = vec![left.to_string()];
+
+        while targets.len() > 1 {
+            if let Some(t) = targets.pop() {
+                let ingredients: HashSet<String> = self.find_recipes(&t)
+                    .iter()
+                    .flat_map(|r| r.ingredients().map(|i| i.0.to_string()))
+                    .collect();
+                
+                for i in ingredients {
+                    if i == right {
+                        return true;
+                    }
+                    targets.push(i);
+                }
+            }
+        }
+
+        false
     }
 }
