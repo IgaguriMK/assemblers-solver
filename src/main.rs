@@ -5,12 +5,12 @@ extern crate serde_yaml;
 extern crate serde_derive;
 
 use std::collections::hash_map::Iter;
-use std::collections::{HashMap, HashSet};
+use std::collections::{HashMap, HashSet, VecDeque};
 use std::fs;
 use std::io::BufReader;
 
 use recipe::{Recipe, RecipeSet};
-use target::{Target, TargetSettings};
+use target::{Flow, TargetSettings};
 
 mod recipe;
 mod target;
@@ -26,7 +26,7 @@ fn main() {
     }
 
     let target_settings = load_target_settings(&target_settings_file_name);
-    let solver = Solver::new(load_recipes(), target_settings);
+    let mut solver = Solver::new(load_recipes(), target_settings);
 
     solver.solve();
 }
@@ -64,43 +64,63 @@ fn load_recipes() -> RecipeSet {
 
 #[derive(Debug)]
 struct Solver {
-    target: Target,
+    targets: VecDeque<Flow>,
     recipe_set: RecipeSet,
     sources: HashSet<String>,
+    middle_targets: ItemThroughputs,
+    source_throughputs: ItemThroughputs,
+    missings: HashSet<String>,
 }
 
 impl Solver {
     pub fn new(recipe_set: RecipeSet, target_settings: TargetSettings) -> Solver {
         Solver {
-            target: target_settings.target,
+            targets: vec![target_settings.target].into(),
             recipe_set,
             sources: target_settings
                 .sources
                 .iter()
                 .map(|rs| rs.to_string())
                 .collect(),
+            middle_targets: ItemThroughputs::new(),
+            source_throughputs: ItemThroughputs::new(),
+            missings: HashSet::new(),
         }
     }
 
-    pub fn solve(&self) {
+    pub fn solve(&mut self) {
+        if let Some(t) = self.targets.pop_front() {
+            self.solve_one(t);
+        }
+
+        println!("");
+        println!("Source throughputs:");
+
+        for (n, t) in self.source_throughputs.iter() {
+            println!("    {}: {:.2}/s", n, t);
+        }
+
+        for m in self.missings.iter() {
+            eprintln!("WARNING: recipe for '{}' is not exist.", m);
+        }
+    }
+
+    fn solve_one(&mut self, target: Flow) {
         struct SolveItem {
-            t: Target,
+            t: Flow,
             tier: u64,
         }
 
         let mut stack: Vec<SolveItem> = vec![SolveItem {
-            t: self.target.clone(),
+            t: target,
             tier: 1,
         }];
-
-        let mut source_throughputs: SourceThroughputs = SourceThroughputs::new();
-        let mut missings: HashSet<String> = HashSet::new();
 
         println!("Processing tree:");
         while let Some(i) = stack.pop() {
             let t = i.t;
             if self.sources.get(&t.name).is_some() {
-                source_throughputs.add(&t.name, t.throughput);
+                self.source_throughputs.add(&t.name, t.throughput);
 
                 indent(i.tier);
                 println!("source of {}: {:.2} item/s", t.name, t.throughput);
@@ -108,10 +128,10 @@ impl Solver {
             }
 
             let recipes = self.recipe_set.find_recipes(&t.name);
-            if self.sources.get(&t.name).is_some() || recipes.len() == 0 {
-                missings.insert(t.name.clone());
+            if recipes.len() == 0 {
+                self.missings.insert(t.name.clone());
 
-                source_throughputs.add(&t.name, t.throughput);
+                self.source_throughputs.add(&t.name, t.throughput);
 
                 indent(i.tier);
                 println!("source of {}: {:.2} item/s", t.name, t.throughput);
@@ -136,25 +156,12 @@ impl Solver {
 
             for (name, count) in r.ingredients() {
                 stack.push(SolveItem {
-                    t: Target {
+                    t: Flow {
                         name: name.to_string(),
                         throughput: *count * craft_throughput,
                     },
                     tier: i.tier + 1,
                 });
-            }
-        }
-
-        println!("");
-        println!("Source throughputs:");
-
-        for (n, t) in source_throughputs.iter() {
-            println!("    {}: {:.2}/s", n, t);
-        }
-
-        if missings.len() > 0 {
-            for m in missings.iter() {
-                eprintln!("WARNING: recipe for '{}' is not exist.", m);
             }
         }
     }
@@ -244,13 +251,14 @@ impl Processer {
     }
 }
 
-struct SourceThroughputs {
+#[derive(Debug)]
+struct ItemThroughputs {
     map: HashMap<String, f64>,
 }
 
-impl SourceThroughputs {
-    fn new() -> SourceThroughputs {
-        SourceThroughputs {
+impl ItemThroughputs {
+    fn new() -> ItemThroughputs {
+        ItemThroughputs {
             map: HashMap::new(),
         }
     }

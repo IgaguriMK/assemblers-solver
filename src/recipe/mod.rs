@@ -1,5 +1,6 @@
 use std::collections::hash_map::Iter;
 use std::collections::{HashMap, HashSet};
+use std::cmp::Ordering;
 
 #[cfg(test)]
 mod tests;
@@ -76,8 +77,19 @@ impl RecipeSet {
             .collect()
     }
 
-    pub fn less(&self, left: &str, right: &str) -> bool {
-        let mut targets = vec![left.to_string()];
+    pub fn compare(&self, left: &str, right: &str) -> Ordering {
+        if self.is_ingredient_of(right, left) {
+            return Ordering::Less;
+        }
+        if self.is_ingredient_of(left, right) {
+            return Ordering::Greater;
+        }
+
+        Ordering::Equal
+    }
+
+    fn is_ingredient_of(&self, ingredient: &str, result: &str) -> bool {
+        let mut targets = vec![result.to_string()];
 
         while targets.len() > 1 {
             if let Some(t) = targets.pop() {
@@ -87,7 +99,7 @@ impl RecipeSet {
                     .collect();
                 
                 for i in ingredients {
-                    if i == right {
+                    if i == ingredient {
                         return true;
                     }
                     targets.push(i);

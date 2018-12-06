@@ -1,12 +1,12 @@
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TargetSettings {
-    pub target: Target,
+    pub target: Flow,
     pub sources: Vec<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Target {
+pub struct Flow {
     pub name: String,
     pub throughput: f64,
 }
