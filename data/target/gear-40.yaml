@@ -1,0 +1,5 @@
+target:
+  name: iron-gear-wheel
+  throughput: 40.0
+sources:
+  - iron-plate
