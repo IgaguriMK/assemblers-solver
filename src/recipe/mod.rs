@@ -85,7 +85,7 @@ impl RecipeSet {
             return Ordering::Greater;
         }
 
-        Ordering::Equal
+        Ord::cmp(left, right)
     }
 
     fn is_ingredient_of(&self, ingredient: &str, result: &str) -> bool {

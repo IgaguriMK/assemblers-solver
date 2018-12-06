@@ -2,8 +2,10 @@
 use std::collections::hash_map::Iter;
 use std::collections::{HashMap, HashSet};
 
-use recipe::{Recipe, RecipeSet};
+use recipe::RecipeSet;
 use target::{Flow, TargetSettings};
+
+mod processer;
 
 #[derive(Debug)]
 pub struct Solver {
@@ -111,9 +113,10 @@ impl Solver {
             }
 
             let r = recipes[0];
-            let processer = self.best_processer(r);
+            let result_num = r.result_num(&t.name);
+            let processer = processer::best_processer(r, t.throughput / result_num);
             let craft_throughput =
-                t.throughput / (processer.productivity() * r.result_num(&t.name));
+                t.throughput / (processer.productivity() * result_num);
             let unit_count = (r.cost() * craft_throughput / processer.speed()).ceil() as u64;
 
             indent(i.tier);
@@ -137,89 +140,11 @@ impl Solver {
             }
         }
     }
-
-    fn best_processer(&self, recipe: &Recipe) -> Processer {
-        match recipe.recipe_type() {
-            "assembler" => {
-                if recipe.is_material() {
-                    if recipe.ingredients_count() <= 2 {
-                        return Processer {
-                            name: "assembler-p4-b8".to_string(),
-                            productivity: 1.4,
-                            speed: 5.5,
-                        };
-                    }
-                    if recipe.ingredients_count() == 3 {
-                        return Processer {
-                            name: "assembler-p4-b4".to_string(),
-                            productivity: 1.4,
-                            speed: 3.0,
-                        };
-                    }
-                } else {
-                    return Processer {
-                        name: "assembler-s4".to_string(),
-                        productivity: 1.0,
-                        speed: 3.75,
-                    };
-                }
-            }
-            "furnace" => {
-                if recipe.is_material() {
-                    return Processer {
-                        name: "furnace-p2-b8".to_string(),
-                        productivity: 1.2,
-                        speed: 9.4,
-                    }
-                } else {
-                    return Processer {
-                        name: "furnace-s2".to_string(),
-                        productivity: 1.0,
-                        speed: 4.0,
-                    }
-                }
-            }
-            "rocket-silo" => {
-                return Processer {
-                    name: "rocket-silo".to_string(),
-                    productivity: 1.0,
-                    speed: 0.01616666666666666666666666666667,
-                }
-            }
-            _ => {}
-        }
-
-        Processer {
-            name: "unknown".to_string(),
-            productivity: 1.0,
-            speed: 1.0,
-        }
-    }
 }
 
 fn indent(n: u64) {
     for _ in 0..n {
         print!("    ")
-    }
-}
-
-struct Processer {
-    name: String,
-    productivity: f64,
-    speed: f64,
-}
-
-impl Processer {
-    pub fn name(&self) -> &str {
-        &self.name
-    }
-
-    pub fn productivity(&self) -> f64 {
-        self.productivity
-    }
-
-    pub fn speed(&self) -> f64 {
-        self.speed
     }
 }
 
