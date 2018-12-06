@@ -27,7 +27,7 @@ pub fn best_processer(recipe: &Recipe, craft_throughput: f64) -> Processer {
         "rocket-silo" => Processer {
             name: "rocket-silo".to_string(),
             productivity: 1.0,
-            speed: 0.01616666666666666666666666666667,
+            speed: 0.016_166_666_666_666_666,
         },
         _ => Processer {
             name: "unknown".to_string(),
@@ -106,11 +106,11 @@ fn best_furnace(recipe: &Recipe, _craft_throughput: f64) -> Processer {
             productivity: 1.2,
             speed: 9.4,
         };
-    } else {
-        return Processer {
-            name: "furnace-s2".to_string(),
-            productivity: 1.0,
-            speed: 4.0,
-        };
+    }
+
+    Processer {
+        name: "furnace-s2".to_string(),
+        productivity: 1.0,
+        speed: 4.0,
     }
 }

@@ -102,7 +102,7 @@ impl Solver {
             }
 
             let recipes = self.recipe_set.find_recipes(&t.name);
-            if recipes.len() == 0 {
+            if recipes.is_empty() {
                 self.missings.insert(t.name.clone());
 
                 indent(i.tier);
