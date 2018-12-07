@@ -1,6 +1,8 @@
 use std::collections::hash_map::Iter;
 use std::collections::{HashMap, HashSet};
 use std::cmp::Ordering;
+use std::fs;
+use std::io::BufReader;
 
 #[cfg(test)]
 mod tests;
@@ -79,12 +81,15 @@ impl RecipeSet {
 
     pub fn compare(&self, left: &str, right: &str) -> Ordering {
         if self.is_ingredient_of(right, left) {
+            eprintln!(";; {} < {}", left, right);
             return Ordering::Less;
         }
         if self.is_ingredient_of(left, right) {
+            eprintln!(";; {} > {}", left, right);
             return Ordering::Greater;
         }
 
+        eprintln!(";; {} = {}", left, right);
         Ord::cmp(left, right)
     }
 
@@ -92,14 +97,21 @@ impl RecipeSet {
         let mut targets = vec![result.to_string()];
 
         while !targets.is_empty() {
+            //eprintln!("[{} <> {}] TARGETS: {:?}", result, ingredient, targets);
             if let Some(t) = targets.pop() {
-                let ingredients: HashSet<String> = self.find_recipes(&t)
-                    .iter()
-                    .flat_map(|r| r.ingredients().map(|i| i.0.to_string()))
-                    .collect();
+                let mut ingredients: HashSet<String> = HashSet::new();
                 
+                for r in self.find_recipes(&t) {
+                    for (name, _) in r.ingredients() {
+                        ingredients.insert(name.to_string());
+                    }
+                }
+                    
+                //eprintln!("[{} <> {}] INGREDIENTS OF {} : {:?}", result, ingredient, t, ingredients);
+
                 for i in ingredients {
                     if i == ingredient {
+                        //eprintln!("[{} <> {}] TRUE", result, ingredient);
                         return true;
                     }
                     targets.push(i);
@@ -107,6 +119,32 @@ impl RecipeSet {
             }
         }
 
+        //eprintln!("[{} <> {}] FALSE", result, ingredient);
         false
     }
+}
+
+pub fn load_recipes(dir: &str) -> RecipeSet {
+    let pathes = fs::read_dir(dir).expect("failed read ./data/recipes/");
+
+    let mut recipe_set = RecipeSet::new();
+
+    for p in pathes {
+        let path = p.expect("faied get file info").path();
+
+        if let Some(ext) = path.extension() {
+            if ext != "yaml" {
+                continue;
+            }
+        }
+
+        let file = fs::File::open(path).expect("failed open file");
+        let reader = BufReader::new(file);
+
+        let recipes: Vec<Recipe> =
+            serde_yaml::from_reader(reader).expect("can't parse recipe YAML");
+        recipe_set.append_recipes(recipes);
+    }
+
+    recipe_set
 }
