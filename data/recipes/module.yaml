@@ -1,8 +1,26 @@
 - 
   type: assembler
-  cost: 10
+  cost: 15
   results:
     speed-module: 1
   ingredients:
     advanced-circuit: 5
     electronic-circuit: 5
+- 
+  type: assembler
+  cost: 30
+  results:
+    speed-module-2: 1
+  ingredients:
+    advanced-circuit: 5
+    processing-unit: 5
+    speed-module: 4
+- 
+  type: assembler
+  cost: 60
+  results:
+    speed-module-3: 1
+  ingredients:
+    advanced-circuit: 5
+    processing-unit: 5
+    speed-module-2: 5

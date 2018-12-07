@@ -1,0 +1,15 @@
+target:
+  name: speed-module-3
+  throughput: 0.07
+sources:
+  - iron-plate
+  - copper-plate
+  - plastic-bar
+  - steel
+  - sulfuric-acid
+  - battery
+  - solid-fuel
+merged:
+  - electronic-circuit
+  - advanced-circuit
+  - processing-unit
