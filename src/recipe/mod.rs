@@ -1,5 +1,5 @@
 use std::collections::hash_map::Iter;
-use std::collections::{HashMap, HashSet};
+use std::collections::HashMap;
 use std::cmp::Ordering;
 use std::fs;
 use std::io::BufReader;
@@ -80,47 +80,34 @@ impl RecipeSet {
     }
 
     pub fn compare(&self, left: &str, right: &str) -> Ordering {
-        if self.is_ingredient_of(right, left) {
-            eprintln!(";; {} < {}", left, right);
-            return Ordering::Less;
-        }
-        if self.is_ingredient_of(left, right) {
-            eprintln!(";; {} > {}", left, right);
-            return Ordering::Greater;
-        }
+        let ld = self.depth(left);
+        let rd = self.depth(right);
 
-        eprintln!(";; {} = {}", left, right);
-        Ord::cmp(left, right)
+        if ld > rd {
+            Ordering::Less
+        } else if ld < rd {
+            Ordering::Greater            
+        } else {
+            Ord::cmp(left, right)
+        }
     }
 
-    fn is_ingredient_of(&self, ingredient: &str, result: &str) -> bool {
-        let mut targets = vec![result.to_string()];
+    fn depth(&self, item: &str) -> usize {
+        let mut depth = 0;
 
-        while !targets.is_empty() {
-            //eprintln!("[{} <> {}] TARGETS: {:?}", result, ingredient, targets);
-            if let Some(t) = targets.pop() {
-                let mut ingredients: HashSet<String> = HashSet::new();
-                
-                for r in self.find_recipes(&t) {
-                    for (name, _) in r.ingredients() {
-                        ingredients.insert(name.to_string());
-                    }
-                }
-                    
-                //eprintln!("[{} <> {}] INGREDIENTS OF {} : {:?}", result, ingredient, t, ingredients);
+        let recipes = self.find_recipes(item);
+        for r in recipes {
+            let ingredients: Vec<String> = r.ingredients().map(|(n, _)| n.to_string()).collect();
 
-                for i in ingredients {
-                    if i == ingredient {
-                        //eprintln!("[{} <> {}] TRUE", result, ingredient);
-                        return true;
-                    }
-                    targets.push(i);
+            for i in ingredients {
+                let di = self.depth(&i);
+                if di + 1 > depth {
+                    depth = di + 1
                 }
             }
         }
 
-        //eprintln!("[{} <> {}] FALSE", result, ingredient);
-        false
+        depth
     }
 }
 

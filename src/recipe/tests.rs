@@ -54,3 +54,44 @@ fn should_find_recipe_with_result() {
     assert_eq!(*gear_recipes[0].results.get("iron-gear-wheel").unwrap(), 1.0);
     assert_eq!(*gear_recipes[0].ingredients.get("iron-plate").unwrap(), 2.0);
 }
+
+#[test]
+fn compare_should_be_tranisitive() {
+    let recipes: Vec<Recipe> = from_str(r#"
+        - 
+            type: assembler
+            cost: 0.5
+            results:
+                ba: 1
+            ingredients:
+                aa: 1
+
+        - 
+            type: assembler
+            cost: 0.5
+            results:
+                bb: 1
+            ingredients:
+                aa: 1
+        - 
+            type: assembler
+            cost: 0.5
+            results:
+                ca: 1
+            ingredients:
+                ba: 1
+    "#).unwrap();
+
+    let mut recipe_set = RecipeSet::new();
+    recipe_set.append_recipes(recipes);
+
+    assert_eq!(recipe_set.compare("ba", "aa"), Ordering::Less);
+    assert_eq!(recipe_set.compare("bb", "aa"), Ordering::Less);
+    
+    assert_eq!(recipe_set.compare("ba", "bb"), Ordering::Less);
+    
+    assert_eq!(recipe_set.compare("ca", "ba"), Ordering::Less);
+    assert_eq!(recipe_set.compare("ca", "aa"), Ordering::Less);
+    
+    assert_eq!(recipe_set.compare("ca", "bb"), Ordering::Less);
+}
