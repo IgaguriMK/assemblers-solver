@@ -71,7 +71,7 @@ impl RecipeSet {
     pub fn find_recipes(&self, result: &str) -> Vec<&Recipe> {
         self.recipes
             .as_slice()
-            .into_iter()
+            .iter()
             .filter(|r| r.has_result(result))
             .collect()
     }
