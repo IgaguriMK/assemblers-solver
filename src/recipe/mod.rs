@@ -33,10 +33,7 @@ impl Recipe {
     }
 
     pub fn has_result(&self, result: &str) -> bool {
-        match self.results.get(result) {
-            Some(_) => true,
-            None => false,
-        }
+        self.results.get(result).is_some()
     }
 
     pub fn result_num(&self, result: &str) -> f64 {
