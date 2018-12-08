@@ -1,6 +1,5 @@
-target:
-  name: electronic-circuit
-  throughput: 40.0
+targets:
+  electronic-circuit: 40.0
 sources:
   - iron-plate
   - copper-plate

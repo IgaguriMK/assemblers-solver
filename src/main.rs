@@ -23,7 +23,7 @@ fn main() {
     }
 
     let target_settings = load_target_settings(&target_settings_file_name);
-    let mut solver = Solver::new(load_recipes("./data/recipes"), target_settings);
+    let mut solver = Solver::new(load_recipes("./data/recipes"), &target_settings);
 
     solver.solve();
 }

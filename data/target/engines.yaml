@@ -1,14 +1,14 @@
 targets:
-  speed-module-3: 0.07
+  engine-unit: 1
+  electric-engine-unit: 1
 sources:
   - iron-plate
   - copper-plate
-  - plastic-bar
   - steel
+  - plastic-bar
   - sulfuric-acid
-  - battery
-  - solid-fuel
 merged:
   - electronic-circuit
   - advanced-circuit
   - processing-unit
+  - engine-unit

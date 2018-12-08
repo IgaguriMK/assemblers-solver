@@ -18,21 +18,25 @@ pub struct Solver {
 }
 
 impl Solver {
-    pub fn new(recipe_set: RecipeSet, target_settings: TargetSettings) -> Solver {
+    pub fn new(recipe_set: RecipeSet, target_settings: &TargetSettings) -> Solver {
         let mut targets = ItemThroughputs::new(); 
 
-        targets.add(target_settings.target);
+        for t in  target_settings.targets() {
+            targets.add(t);
+        }
 
         Solver {
             targets,
             recipe_set,
             sources: target_settings
-                .sources
-                .into_iter()
+                .sources()
+                .iter()
+                .map(|n| n.to_owned())
                 .collect(),
             merged: target_settings
-                .merged
-                .into_iter()
+                .merged()
+                .iter()
+                .map(|n| n.to_owned())
                 .collect(),
             source_throughputs: ItemThroughputs::new(),
             missings: HashSet::new(),
@@ -40,10 +44,6 @@ impl Solver {
     }
 
     pub fn solve(&mut self) {
-        if let Some(t) = self.next_target() {
-            self.solve_one(t);
-        }
-
         while let Some(t) = self.next_target() {
             println!();
             self.solve_one(t);

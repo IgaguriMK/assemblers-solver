@@ -1,5 +1,4 @@
-target:
-  name: copper-plate
-  throughput: 40
+targets:
+  copper-plate: 40
 sources:
   - copper-ore

@@ -1,6 +1,5 @@
-target:
-  name: space-science-pack
-  throughput: 20.0
+targets:
+  space-science-pack: 20.0
 sources:
   - iron-plate
   - copper-plate
