@@ -1,6 +1,5 @@
-target:
-  name: advanced-circuit
-  throughput: 20.0
+targets:
+  advanced-circuit: 20.0
 sources:
   - iron-plate
   - copper-plate

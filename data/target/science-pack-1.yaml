@@ -1,6 +1,0 @@
-target:
-  name: science-pack-1
-  throughput: 20.0
-sources:
-  - iron-plate
-  - copper-plate

@@ -1,11 +1,28 @@
+use std::collections::HashMap;
 use std::fs;
 use std::io::BufReader;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TargetSettings {
-    pub target: Flow,
-    pub sources: Vec<String>,
-    pub merged: Vec<String>,
+    targets: HashMap<String, f64>,
+    #[serde(default)]
+    sources: Vec<String>,
+    #[serde(default)]
+    merged: Vec<String>,
+}
+
+impl TargetSettings {
+    pub fn targets(&self) -> Vec<Flow> {
+        self.targets.iter().map(|(n, t)| Flow{name: n.to_owned(), throughput: *t}).collect()
+    }
+
+    pub fn sources(&self) -> &[String] {
+        &self.sources
+    }
+
+    pub fn merged(&self) -> &[String] {
+        &self.merged
+    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

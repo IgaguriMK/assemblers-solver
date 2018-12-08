@@ -1,6 +1,5 @@
-target:
-  name: refined-concrete
-  throughput: 40
+targets:
+  refined-concrete: 40
 sources:
   - iron-ore
   - steel
