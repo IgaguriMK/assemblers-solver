@@ -17,3 +17,10 @@
     iron-stick: 8
     concrete: 20
     water: 100
+-
+  type: assembler
+  cost: 0.5
+  results:
+    landfill: 1
+  ingredients:
+    stone: 20

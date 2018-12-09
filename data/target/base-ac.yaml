@@ -1,11 +1,6 @@
 targets:
-  advanced-circuit: 20.0
+  advanced-circuit: 28.0
 sources:
   - iron-plate
   - copper-plate
   - plastic-bar
-  - steel
-  - coal
-  - stone
-  - lubricant
-  - solid-fuel

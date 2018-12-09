@@ -1,0 +1,10 @@
+targets:
+  processing-unit: 2.8
+sources:
+  - iron-plate
+  - copper-plate
+  - plastic-bar
+  - sulfuric-acid
+  - advanced-circuit
+merged:
+  - electronic-circuit
