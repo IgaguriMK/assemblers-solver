@@ -1,7 +1,0 @@
-targets:
-  refined-concrete: 40
-sources:
-  - iron-ore
-  - steel
-  - stone
-  - water
