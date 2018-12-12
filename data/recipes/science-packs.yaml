@@ -26,4 +26,33 @@
     advanced-circuit: 1
     engine-unit: 1
     electric-mining-drill: 1
-
+-
+  type: assembler
+  cost: 10
+  material: true
+  results:
+    military-science-pack: 2
+  ingredients:
+    grenade: 1
+    gun-turret: 1
+    piercing-rounds-magazine: 1
+-
+  type: assembler
+  cost: 14
+  material: true
+  results:
+    production-science-pack: 2
+  ingredients:
+    electric-engine-unit: 1
+    electric-furnace: 1
+-
+  type: assembler
+  cost: 14
+  material: true
+  results:
+    high-tech-science-pack: 2
+  ingredients:
+    battery: 1
+    copper-cable: 30
+    processing-unit: 3
+    speed-module: 1

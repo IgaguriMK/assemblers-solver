@@ -7,3 +7,36 @@
     electronic-circuit: 5
     iron-gear-wheel: 5
     iron-plate: 10
+-
+  type: assembler
+  cost: 8
+  results:
+    grenade: 1
+  ingredients:
+    coal: 10
+    iron-plate: 5
+-
+  type: assembler
+  cost: 8
+  results:
+    gun-turret: 1
+  ingredients:
+    copper-plate: 10
+    iron-gear-wheel: 10
+    iron-plate: 20
+-
+  type: assembler
+  cost: 3
+  results:
+    piercing-rounds-magazine: 1
+  ingredients:
+    copper-plate: 5
+    firearm-magazine: 1
+    steel: 1
+-
+  type: assembler
+  cost: 1
+  results:
+    firearm-magazine: 1
+  ingredients:
+    iron-plate: 4

@@ -1,0 +1,9 @@
+- 
+  type: assembler
+  cost: 5
+  results:
+    electric-furnace: 1
+  ingredients:
+    advanced-circuit: 5
+    steel: 10
+    stone-brick: 10
