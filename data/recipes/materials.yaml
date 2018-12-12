@@ -79,3 +79,13 @@
     electronic-circuit: 2
     engine-unit: 1
     lubricant: 15
+-
+  type: chemical
+  cost: 5
+  material: true
+  results:
+    battery: 1
+  ingredients:
+    copper-plate: 1
+    iron-plate: 1
+    sulfuric-acid: 20

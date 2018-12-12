@@ -24,15 +24,15 @@ pub fn best_processer(recipe: &Recipe, craft_throughput: f64) -> Processer {
     match recipe.recipe_type() {
         "assembler" => best_assembler(recipe, craft_throughput),
         "furnace" => best_furnace(recipe, craft_throughput),
+        "chemical" => best_chemical(recipe, craft_throughput),
         "rocket-silo" => Processer {
             name: "rocket-silo".to_string(),
             productivity: 1.0,
             speed: 0.016_166_666_666_666_666,
         },
-        _ => Processer {
-            name: "unknown".to_string(),
-            productivity: 1.0,
-            speed: 1.0,
+        unknown => {
+            eprintln!("ERROR: Unknown processer type '{}'.", unknown);
+            std::process::exit(1);
         },
     }
 }
@@ -112,5 +112,47 @@ fn best_furnace(recipe: &Recipe, _craft_throughput: f64) -> Processer {
         name: "furnace-s2".to_string(),
         productivity: 1.0,
         speed: 4.0,
+    }
+}
+
+fn best_chemical(recipe: &Recipe, craft_throughput: f64) -> Processer {
+    if recipe.is_material() {
+        return Processer {
+            name: "chemical-p3-b8".to_string(),
+            productivity: 1.3,
+            speed: 5.6875,
+        };
+    }
+
+    let chemicals = vec![
+        Processer {
+            name: "chemical".to_string(),
+            productivity: 1.0,
+            speed: 1.25,
+        },
+        Processer {
+            name: "chemical-s1".to_string(),
+            productivity: 1.0,
+            speed: 1.875,
+        },
+        Processer {
+            name: "chemical-s2".to_string(),
+            productivity: 1.0,
+            speed: 2.5,
+        },
+    ];
+
+    let crafting_power = craft_throughput * recipe.cost();
+
+    for c in chemicals {
+        if c.speed >= crafting_power {
+            return c;
+        }
+    }
+
+    Processer {
+        name: "chemical-s3".to_string(),
+        productivity: 1.0,
+        speed: 3.125,
     }
 }
