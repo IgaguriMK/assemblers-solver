@@ -1,6 +1,6 @@
 
-use std::collections::hash_map::Iter;
-use std::collections::{HashMap, HashSet};
+use std::collections::btree_map::Iter;
+use std::collections::{BTreeMap, BTreeSet, HashSet};
 
 use recipe::RecipeSet;
 use target::{Flow, TargetSettings};
@@ -14,7 +14,7 @@ pub struct Solver {
     sources: HashSet<String>,
     merged: HashSet<String>,
     source_throughputs: ItemThroughputs,
-    missings: HashSet<String>,
+    missings: BTreeSet<String>,
 }
 
 impl Solver {
@@ -39,7 +39,7 @@ impl Solver {
                 .map(|n| n.to_owned())
                 .collect(),
             source_throughputs: ItemThroughputs::new(),
-            missings: HashSet::new(),
+            missings: BTreeSet::new(),
         }
     }
 
@@ -150,13 +150,13 @@ fn indent(n: u64) {
 
 #[derive(Debug)]
 struct ItemThroughputs {
-    map: HashMap<String, f64>,
+    map: BTreeMap<String, f64>,
 }
 
 impl ItemThroughputs {
     fn new() -> ItemThroughputs {
         ItemThroughputs {
-            map: HashMap::new(),
+            map: BTreeMap::new(),
         }
     }
 
