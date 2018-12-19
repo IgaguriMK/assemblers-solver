@@ -4,9 +4,9 @@ extern crate serde_yaml;
 #[macro_use]
 extern crate serde_derive;
 
-use recipe::load_recipes;
-use solver::Solver;
-use target::load_target_settings;
+use crate::recipe::load_recipes;
+use crate::solver::Solver;
+use crate::target::load_target_settings;
 
 mod recipe;
 mod target;
