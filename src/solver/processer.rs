@@ -1,4 +1,4 @@
-use recipe::Recipe;
+use crate::recipe::Recipe;
 
 pub struct Processer {
     name: String,

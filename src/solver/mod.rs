@@ -2,8 +2,8 @@
 use std::collections::btree_map::Iter;
 use std::collections::{BTreeMap, BTreeSet, HashSet};
 
-use recipe::RecipeSet;
-use target::{Flow, TargetSettings};
+use crate::recipe::RecipeSet;
+use crate::target::{Flow, TargetSettings};
 
 mod processer;
 
