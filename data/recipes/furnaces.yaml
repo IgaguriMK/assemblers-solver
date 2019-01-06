@@ -22,3 +22,11 @@
     stone-brick: 1
   ingredients:
     stone: 2
+-
+  type: furnace
+  cost: 17.5
+  material: true
+  results:
+    steel: 1
+  ingredients:
+    iron-plate: 5

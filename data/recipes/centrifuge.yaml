@@ -1,0 +1,7 @@
+-
+  type: centrifuge
+  cost: 10
+  results:
+    uranium: 1
+  ingredients:
+    uranium-ore: 10

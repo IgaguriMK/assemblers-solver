@@ -30,6 +30,11 @@ pub fn best_processer(recipe: &Recipe, craft_throughput: f64) -> Processer {
             productivity: 1.0,
             speed: 0.016_166_666_666_666_666,
         },
+        "centrifuge" => Processer {
+            name: "centrifuge".to_string(),
+            productivity: 1.0,
+            speed: 0.75,
+        },
         unknown => {
             eprintln!("ERROR: Unknown processer type '{}'.", unknown);
             std::process::exit(1);

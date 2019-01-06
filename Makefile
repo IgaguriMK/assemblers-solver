@@ -1,3 +1,5 @@
+CRATE_NAME:=assemblers-solver
+
 .PHONY: all
 all: soft-clean build check
 
@@ -12,7 +14,7 @@ check:
 
 .PHONY: soft-clean
 soft-clean:
-	cargo clean -p assemblers-solver
+	cargo clean -p $(CRATE_NAME)
 
 .PHONY: clean
 clean:
