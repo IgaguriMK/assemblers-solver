@@ -1,4 +1,3 @@
-
 use std::collections::btree_map::Iter;
 use std::collections::{BTreeMap, BTreeSet, HashSet};
 
@@ -19,9 +18,9 @@ pub struct Solver {
 
 impl Solver {
     pub fn new(recipe_set: RecipeSet, target_settings: &TargetSettings) -> Solver {
-        let mut targets = ItemThroughputs::new(); 
+        let mut targets = ItemThroughputs::new();
 
-        for t in  target_settings.targets() {
+        for t in target_settings.targets() {
             targets.add(t);
         }
 
@@ -53,7 +52,7 @@ impl Solver {
         println!("Source throughputs:");
 
         for (n, t) in self.source_throughputs.iter() {
-            println!("    {}: {:.2}/s", n, t);
+            println!("    {}: {:.2}/s ({:.1} B)", n, t, t / 40.0);
         }
 
         for m in self.missings.iter() {
@@ -62,7 +61,12 @@ impl Solver {
     }
 
     fn next_target(&mut self) -> Option<Flow> {
-        if let Some(name) = self.targets.names().into_iter().min_by(|l, r| self.recipe_set.compare(l, r)) {
+        if let Some(name) = self
+            .targets
+            .names()
+            .into_iter()
+            .min_by(|l, r| self.recipe_set.compare(l, r))
+        {
             return Some(self.targets.take(name));
         }
 
@@ -77,17 +81,19 @@ impl Solver {
             tier: u64,
         }
 
-        let mut stack: Vec<SolveItem> = vec![SolveItem {
-            t: target,
-            tier: 1,
-        }];
+        let mut stack: Vec<SolveItem> = vec![SolveItem { t: target, tier: 1 }];
 
         println!("Processing tree [{}]:", target_name);
         while let Some(i) = stack.pop() {
             let t = i.t;
             if self.sources.get(&t.name).is_some() {
                 indent(i.tier);
-                println!("source of {}: {:.2} item/s", t.name, t.throughput);
+                println!(
+                    "source of {}: {:.2} item/s ({:.1} B)",
+                    t.name,
+                    t.throughput,
+                    t.throughput / 40.0
+                );
 
                 self.source_throughputs.add(t);
                 continue;
@@ -95,7 +101,12 @@ impl Solver {
 
             if t.name != target_name && self.merged.get(&t.name).is_some() {
                 indent(i.tier);
-                println!("merged {}: {:.2} item/s", t.name, t.throughput);
+                println!(
+                    "merged {}: {:.2} item/s ({:.1} B)",
+                    t.name,
+                    t.throughput,
+                    t.throughput / 40.0
+                );
 
                 self.targets.add(t.clone());
                 continue;
@@ -106,7 +117,12 @@ impl Solver {
                 self.missings.insert(t.name.clone());
 
                 indent(i.tier);
-                println!("source of {}: {:.2} item/s", t.name, t.throughput);
+                println!(
+                    "source of {}: {:.2} item/s ({:.1} B)",
+                    t.name,
+                    t.throughput,
+                    t.throughput / 40.0
+                );
 
                 self.source_throughputs.add(t.clone());
                 continue;
@@ -115,15 +131,15 @@ impl Solver {
             let r = recipes[0];
             let result_num = r.result_num(&t.name);
             let processer = processer::best_processer(r, t.throughput / result_num);
-            let craft_throughput =
-                t.throughput / (processer.productivity() * result_num);
+            let craft_throughput = t.throughput / (processer.productivity() * result_num);
             let unit_count = (r.cost() * craft_throughput / processer.speed()).ceil() as u64;
 
             indent(i.tier);
             println!(
-                "{} ({:.2}/s): {} {:.2} units, {:.2} craft/s",
+                "{} ({:.2}/s, {:.1} B): {} {:.2} units, {:.2} craft/s",
                 t.name,
                 t.throughput,
+                t.throughput / 40.0,
                 processer.name(),
                 unit_count,
                 craft_throughput
@@ -181,6 +197,6 @@ impl ItemThroughputs {
     fn take(&mut self, name: String) -> Flow {
         let throughput = self.map.remove(&name).unwrap_or(0.0);
 
-        Flow{name, throughput}
-    } 
+        Flow { name, throughput }
+    }
 }

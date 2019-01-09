@@ -5,9 +5,9 @@
     space-science-pack: 1000
   ingredients:
     satellite: 1
-    low-density-structure: 71.4285714
-    rocket-fuel: 71.4285714
-    rocket-control-unit: 71.4285714
+    low-density-structure: 714.285714
+    rocket-fuel: 714.285714
+    rocket-control-unit: 714.285714
 -
   type: assembler
   cost: 5
