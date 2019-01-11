@@ -1,0 +1,17 @@
+-
+  type: chemical
+  cost: 1.0
+  material: true
+  results:
+    plastic-bar: 2
+  ingredients:
+    coal: 1
+    petroleum-gas: 20
+-
+  type: chemical
+  cost: 3.0
+  material: true
+  results:
+    solid-fuel: 1
+  ingredients:
+    light-oil: 10
