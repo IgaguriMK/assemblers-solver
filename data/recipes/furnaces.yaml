@@ -1,6 +1,6 @@
 -
   type: furnace
-  cost: 3.5
+  cost: 3.2
   material: true
   results:
     copper-plate: 1
@@ -8,7 +8,7 @@
     copper-ore: 1
 -
   type: furnace
-  cost: 3.5
+  cost: 3.2
   material: true
   results:
     iron-plate: 1
@@ -16,7 +16,7 @@
     iron-ore: 1
 -
   type: furnace
-  cost: 3.5
+  cost: 3.2
   material: true
   results:
     stone-brick: 1
@@ -24,7 +24,7 @@
     stone: 2
 -
   type: furnace
-  cost: 17.5
+  cost: 16
   material: true
   results:
     steel: 1

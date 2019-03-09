@@ -1,6 +1,6 @@
 -
   type: chemical
-  cost: 1.0
+  cost: 1
   material: true
   results:
     plastic-bar: 2
@@ -9,7 +9,7 @@
     petroleum-gas: 20
 -
   type: chemical
-  cost: 3.0
+  cost: 2
   material: true
   results:
     solid-fuel: 1

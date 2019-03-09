@@ -40,3 +40,10 @@
     firearm-magazine: 1
   ingredients:
     iron-plate: 4
+-
+  type: assembler
+  cost: 0.5
+  results:
+    wall: 1
+  ingredients:
+    stone-birck: 5

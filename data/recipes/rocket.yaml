@@ -22,14 +22,14 @@
     solar-panel: 100
 -
   type: assembler
-  cost: 30
+  cost: 20
   material: true
   results:
     low-density-structure: 1
   ingredients:
-    copper-plate: 5
+    copper-plate: 20
     plastic-bar: 5
-    steel: 10
+    steel: 2
 -
   type: assembler
   cost: 30

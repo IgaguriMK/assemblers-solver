@@ -18,14 +18,14 @@
     inserter: 1
 -
   type: assembler
-  cost: 12
+  cost: 24
   material: true
   results:
-    science-pack-3: 1
+    science-pack-3: 2
   ingredients:
     advanced-circuit: 1
     engine-unit: 1
-    electric-mining-drill: 1
+    solid-fuel: 1
 -
   type: assembler
   cost: 10
@@ -34,25 +34,25 @@
     military-science-pack: 2
   ingredients:
     grenade: 1
-    gun-turret: 1
+    wall: 1
     piercing-rounds-magazine: 1
 -
   type: assembler
-  cost: 14
+  cost: 21
   material: true
   results:
-    production-science-pack: 2
+    production-science-pack: 3
   ingredients:
-    electric-engine-unit: 1
+    rail: 30
     electric-furnace: 1
+    productivity-module: 1
 -
   type: assembler
-  cost: 14
+  cost: 21
   material: true
   results:
-    high-tech-science-pack: 2
+    high-tech-science-pack: 3
   ingredients:
-    battery: 1
-    copper-cable: 30
-    processing-unit: 3
-    speed-module: 1
+    processing-unit: 2
+    flying-robot-frame: 1
+    low-density-structure: 3
