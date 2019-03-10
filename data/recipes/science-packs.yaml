@@ -3,7 +3,7 @@
   cost: 5
   material: true
   results:
-    science-pack-1: 1
+    automation-science-pack: 1
   ingredients:
     copper-plate: 1
     iron-gear-wheel: 1
@@ -12,7 +12,7 @@
   cost: 6
   material: true
   results:
-    science-pack-2: 1
+    logistic-science-pack: 1
   ingredients:
     transport-belt: 1
     inserter: 1
@@ -21,7 +21,7 @@
   cost: 24
   material: true
   results:
-    science-pack-3: 2
+    chemical-science-pack: 2
   ingredients:
     advanced-circuit: 1
     engine-unit: 1
@@ -51,7 +51,7 @@
   cost: 21
   material: true
   results:
-    high-tech-science-pack: 3
+    utility-science-pack: 3
   ingredients:
     processing-unit: 2
     flying-robot-frame: 1
