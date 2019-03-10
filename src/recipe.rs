@@ -4,6 +4,8 @@ use std::cmp::Ordering;
 use std::fs;
 use std::io::BufReader;
 
+use serde::{Deserialize, Serialize};
+
 #[cfg(test)]
 mod tests;
 

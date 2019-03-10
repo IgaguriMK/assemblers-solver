@@ -2,6 +2,8 @@ use std::collections::HashMap;
 use std::fs;
 use std::io::BufReader;
 
+use serde::{Deserialize, Serialize};
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TargetSettings {
     targets: HashMap<String, f64>,

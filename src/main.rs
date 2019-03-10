@@ -1,9 +1,3 @@
-extern crate serde;
-extern crate serde_yaml;
-
-#[macro_use]
-extern crate serde_derive;
-
 use crate::recipe::load_recipes;
 use crate::solver::Solver;
 use crate::target::load_target_settings;
