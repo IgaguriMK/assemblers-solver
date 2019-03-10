@@ -6,18 +6,21 @@ use crate::target::{Flow, TargetSettings};
 
 mod processer;
 
+pub use processer::ProcesserChoice;
+
 #[derive(Debug)]
 pub struct Solver {
     targets: ItemThroughputs,
     recipe_set: RecipeSet,
     sources: HashSet<String>,
     merged: HashSet<String>,
+    processer_choice: ProcesserChoice,
     source_throughputs: ItemThroughputs,
     missings: BTreeSet<String>,
 }
 
 impl Solver {
-    pub fn new(recipe_set: RecipeSet, target_settings: &TargetSettings) -> Solver {
+    pub fn new(recipe_set: RecipeSet, target_settings: &TargetSettings, processer_choice: ProcesserChoice) -> Solver {
         let mut targets = ItemThroughputs::new();
 
         for t in target_settings.targets() {
@@ -37,6 +40,7 @@ impl Solver {
                 .iter()
                 .map(|n| n.to_owned())
                 .collect(),
+            processer_choice,
             source_throughputs: ItemThroughputs::new(),
             missings: BTreeSet::new(),
         }
@@ -130,7 +134,7 @@ impl Solver {
 
             let r = recipes[0];
             let result_num = r.result_num(&t.name);
-            let processer = processer::best_processer(r, t.throughput / result_num);
+            let processer = processer::best_processer(r, t.throughput / result_num, &self.processer_choice);
             let craft_throughput = t.throughput / (processer.productivity() * result_num);
             let unit_count = (r.cost() * craft_throughput / processer.speed()).ceil() as u64;
 
@@ -200,3 +204,4 @@ impl ItemThroughputs {
         Flow { name, throughput }
     }
 }
+
