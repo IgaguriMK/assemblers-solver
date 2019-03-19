@@ -28,8 +28,8 @@
     low-density-structure: 1
   ingredients:
     copper-plate: 20
-    plastic-bar: 5
     steel: 2
+    plastic-bar: 5
 -
   type: assembler
   cost: 30

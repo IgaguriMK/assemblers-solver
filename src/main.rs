@@ -27,6 +27,11 @@ fn w_main() -> Result<()> {
         .version(env!("CARGO_PKG_VERSION"))
         .author(env!("CARGO_PKG_AUTHORS"))
         .about(env!("CARGO_PKG_DESCRIPTION"))
+        .arg(Arg::with_name("mult")
+            .long("mult")
+            .short("m")
+            .default_value("1.0")
+        )
         .arg(Arg::with_name("no-beacon")
             .long("no-beacon")
         )
@@ -42,8 +47,11 @@ fn w_main() -> Result<()> {
         .get_matches_safe()?;
 
     
-    let target_settings_file_name = matches.value_of("target-file").ok_or_else(|| {format_err!("target file required.")})?;
-    let target_settings = load_target_settings(&target_settings_file_name);
+    let target_settings_file_name = matches.value_of("target-file").ok_or_else(|| {format_err!("target file required.")})?;    
+    let mult = matches.value_of("mult").unwrap().parse::<f64>()?;
+
+    let mut target_settings = load_target_settings(&target_settings_file_name);
+    target_settings.multiply(mult);
 
     let processer_choice = solver::ProcesserChoice::new()
         .beacon(!matches.is_present("no-beacon"))
