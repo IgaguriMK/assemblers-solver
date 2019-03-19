@@ -14,13 +14,19 @@ pub struct Solver {
     recipe_set: RecipeSet,
     sources: HashSet<String>,
     merged: HashSet<String>,
+    all_merged: bool,
+    never_merged: HashSet<String>,
     processer_choice: ProcesserChoice,
     source_throughputs: ItemThroughputs,
     missings: BTreeSet<String>,
 }
 
 impl Solver {
-    pub fn new(recipe_set: RecipeSet, target_settings: &TargetSettings, processer_choice: ProcesserChoice) -> Solver {
+    pub fn new(
+        recipe_set: RecipeSet,
+        target_settings: &TargetSettings,
+        processer_choice: ProcesserChoice,
+    ) -> Solver {
         let mut targets = ItemThroughputs::new();
 
         for t in target_settings.targets() {
@@ -40,6 +46,8 @@ impl Solver {
                 .iter()
                 .map(|n| n.to_owned())
                 .collect(),
+            all_merged: false,
+            never_merged: HashSet::new(),
             processer_choice,
             source_throughputs: ItemThroughputs::new(),
             missings: BTreeSet::new(),
@@ -62,6 +70,14 @@ impl Solver {
         for m in self.missings.iter() {
             eprintln!("WARNING: recipe for '{}' is not exist.", m);
         }
+    }
+
+    pub fn all_merged(&mut self, flag: bool) {
+        self.all_merged = flag;
+    }
+
+    pub fn never_merged<S: AsRef<str>, I: Iterator<Item = S>>(&mut self, names: I) {
+        self.never_merged = names.map(|s| s.as_ref().to_string()).collect();
     }
 
     fn next_target(&mut self) -> Option<Flow> {
@@ -103,7 +119,7 @@ impl Solver {
                 continue;
             }
 
-            if t.name != target_name && self.merged.get(&t.name).is_some() {
+            if t.name != target_name && self.is_merged(&t.name) {
                 indent(i.tier);
                 println!(
                     "merged {}: {:.2} item/s ({:.1} B)",
@@ -134,7 +150,8 @@ impl Solver {
 
             let r = recipes[0];
             let result_num = r.result_num(&t.name);
-            let processer = processer::best_processer(r, t.throughput / result_num, &self.processer_choice);
+            let processer =
+                processer::best_processer(r, t.throughput / result_num, &self.processer_choice);
             let craft_throughput = t.throughput / (processer.productivity() * result_num);
             let unit_count = (r.cost() * craft_throughput / processer.speed()).ceil() as u64;
 
@@ -159,6 +176,13 @@ impl Solver {
                 });
             }
         }
+    }
+
+    fn is_merged(&self, name: &str) -> bool {
+        if self.never_merged.get(name).is_some() {
+            return false;
+        }
+        self.all_merged || self.merged.get(name).is_some()
     }
 }
 
@@ -204,4 +228,3 @@ impl ItemThroughputs {
         Flow { name, throughput }
     }
 }
-

@@ -32,6 +32,17 @@ fn w_main() -> Result<()> {
             .short("m")
             .default_value("1.0")
         )
+        .arg(Arg::with_name("all-merged")
+            .long("all-merged")
+            .short("M")
+        )
+        .arg(Arg::with_name("never-merged")
+            .long("never-merged")
+            .short("N")
+            .multiple(true)
+            .number_of_values(1)
+            .takes_value(true)
+        )
         .arg(Arg::with_name("no-beacon")
             .long("no-beacon")
         )
@@ -59,6 +70,11 @@ fn w_main() -> Result<()> {
         .productivity_module(!matches.is_present("no-prod"));
 
     let mut solver = Solver::new(load_recipes("./data/recipes"), &target_settings, processer_choice);
+
+    solver.all_merged(matches.is_present("all-merged"));
+    if let Some(never_merged) = matches.values_of("never-merged") {
+        solver.never_merged(never_merged);
+    }
 
     solver.solve();
 
