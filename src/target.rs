@@ -27,7 +27,7 @@ impl TargetSettings {
     }
 
     pub fn multiply(&mut self, mult: f64) {
-        self.targets.iter_mut().for_each(|(_, t)| {*t = *t * mult});
+        self.targets.iter_mut().for_each(|(_, t)| {*t *= mult});
     }
 }
 
