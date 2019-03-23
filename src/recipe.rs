@@ -19,6 +19,8 @@ pub struct Recipe {
     material: bool,
     results: BTreeMap<String, f64>,
     ingredients: BTreeMap<String, f64>,
+    // metadata
+    version: Option<String>,
     file_path: Option<String>,
 }
 
@@ -64,6 +66,10 @@ impl Recipe {
             .map(|p| p.as_str())
             .unwrap_or(if_none)
             .to_string()
+    }
+
+    pub fn version(&self) -> Option<&str> {
+        self.version.as_ref().map(|s| s.as_str())
     }
 }
 
