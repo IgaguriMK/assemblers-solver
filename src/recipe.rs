@@ -103,14 +103,6 @@ impl RecipeSet {
             .collect()
     }
 
-        pub fn all_ingredients(&self) -> BTreeSet<String> {
-        self.recipes
-            .iter()
-            .flat_map(|r| r.ingredients())
-            .map(|r| r.0.to_string())
-            .collect()
-    }
-
     pub fn compare(&self, left: &str, right: &str) -> Ordering {
         let ld = self.depth(left);
         let rd = self.depth(right);
