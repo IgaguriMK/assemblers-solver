@@ -15,3 +15,40 @@
     solid-fuel: 1
   ingredients:
     light-oil: 10
+-
+  type: chemical
+  cost: 1
+  material: true
+  results:
+    lubricant: 10
+  ingredients:
+    heavy-oil: 10
+-
+  type: chemical
+  cost: 1
+  material: true
+  results:
+    sulfur: 2
+  ingredients:
+    water: 30
+    petroleum-gas: 30
+-
+  type: chemical
+  cost: 1
+  material: true
+  results:
+    sulfuric-acid: 50
+  ingredients:
+    iron-plate: 1
+    sulfur: 5
+    water: 100
+-
+  type: chemical
+  cost: 4
+  material: true
+  results:
+    explosives: 2
+  ingredients:
+    coal: 1
+    sulfur: 1
+    water: 10

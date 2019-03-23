@@ -39,6 +39,26 @@ pub fn best_processer(
             productivity: 1.0,
             speed: 0.75,
         },
+        "mining-drill" => Processer {
+            name: "mining-drill".to_string(),
+            productivity: 1.0,
+            speed: 0.5,
+        },
+        "pump" => Processer {
+            name: "pump".to_string(),
+            productivity: 1.0,
+            speed: 1200.0,
+        },
+        "pumpjack" => Processer {
+            name: "pumpjack".to_string(),
+            productivity: 1.0,
+            speed: 1.0,
+        },
+        "temporary" => Processer {
+            name: "temporary".to_string(),
+            productivity: 1.0,
+            speed: 1.0,
+        },
         unknown => {
             eprintln!("ERROR: Unknown processer type '{}'.", unknown);
             std::process::exit(1);

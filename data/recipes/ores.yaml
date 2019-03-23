@@ -1,0 +1,31 @@
+- 
+  type: mining-drill
+  cost: 1
+  results:
+    iron-ore: 1
+  ingredients: {}
+- 
+  type: mining-drill
+  cost: 1
+  results:
+    copper-ore: 1
+  ingredients: {}
+- 
+  type: mining-drill
+  cost: 1
+  results:
+    stone: 1
+  ingredients: {}
+- 
+  type: mining-drill
+  cost: 1
+  results:
+    coal: 1
+  ingredients: {}
+- 
+  type: mining-drill
+  cost: 1
+  results:
+    uranium-ore: 1
+  ingredients:
+    sulfuric-acid: 1

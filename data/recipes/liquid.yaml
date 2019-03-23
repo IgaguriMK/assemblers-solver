@@ -1,0 +1,30 @@
+- 
+  type: pump
+  cost: 2
+  results:
+    water: 1
+  ingredients: {}
+- 
+  type: pumpjack
+  cost: 2
+  results:
+    crude-oil: 1
+  ingredients: {}
+- 
+  type: temporary
+  cost: 1
+  results:
+    heavy-oil: 1
+  ingredients: {}
+- 
+  type: temporary
+  cost: 1
+  results:
+    light-oil: 1
+  ingredients: {}
+- 
+  type: temporary
+  cost: 1
+  results:
+    petroleum-gas: 1
+  ingredients: {}
