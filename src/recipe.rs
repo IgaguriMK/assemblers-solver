@@ -1,9 +1,9 @@
-use std::collections::hash_map::Iter;
-use std::collections::HashMap;
 use std::cmp::Ordering;
+use std::collections::{BTreeMap, BTreeSet};
 use std::fs;
 use std::io::BufReader;
 
+use failure::Error;
 use serde::{Deserialize, Serialize};
 
 #[cfg(test)]
@@ -17,8 +17,9 @@ pub struct Recipe {
     cost: f64,
     #[serde(default)]
     material: bool,
-    results: HashMap<String, f64>,
-    ingredients: HashMap<String, f64>,
+    results: BTreeMap<String, f64>,
+    ingredients: BTreeMap<String, f64>,
+    file_path: Option<String>,
 }
 
 impl Recipe {
@@ -45,12 +46,24 @@ impl Recipe {
         }
     }
 
-    pub fn ingredients(&self) -> Iter<String, f64> {
+    pub fn results(&self) -> impl Iterator<Item = (&String, &f64)> {
+        self.results.iter()
+    }
+
+    pub fn ingredients(&self) -> impl Iterator<Item = (&String, &f64)> {
         self.ingredients.iter()
     }
 
     pub fn ingredients_count(&self) -> usize {
         self.ingredients.len()
+    }
+
+    pub fn file_path(&self, if_none: &str) -> String {
+        self.file_path
+            .as_ref()
+            .map(|p| p.as_str())
+            .unwrap_or(if_none)
+            .to_string()
     }
 }
 
@@ -78,6 +91,26 @@ impl RecipeSet {
             .collect()
     }
 
+    pub fn recipes(&self) -> impl Iterator<Item = &Recipe> {
+        self.recipes.iter()
+    }
+
+    pub fn all_results(&self) -> BTreeSet<String> {
+        self.recipes
+            .iter()
+            .flat_map(|r| r.results())
+            .map(|r| r.0.to_string())
+            .collect()
+    }
+
+        pub fn all_ingredients(&self) -> BTreeSet<String> {
+        self.recipes
+            .iter()
+            .flat_map(|r| r.ingredients())
+            .map(|r| r.0.to_string())
+            .collect()
+    }
+
     pub fn compare(&self, left: &str, right: &str) -> Ordering {
         let ld = self.depth(left);
         let rd = self.depth(right);
@@ -85,7 +118,7 @@ impl RecipeSet {
         if ld > rd {
             Ordering::Less
         } else if ld < rd {
-            Ordering::Greater            
+            Ordering::Greater
         } else {
             Ord::cmp(left, right)
         }
@@ -110,13 +143,13 @@ impl RecipeSet {
     }
 }
 
-pub fn load_recipes(dir: &str) -> RecipeSet {
-    let pathes = fs::read_dir(dir).expect("failed read ./data/recipes/");
+pub fn load_recipes(dir: &str) -> Result<RecipeSet, Error> {
+    let pathes = fs::read_dir(dir)?;
 
     let mut recipe_set = RecipeSet::new();
 
     for p in pathes {
-        let path = p.expect("faied get file info").path();
+        let path = p?.path();
 
         if let Some(ext) = path.extension() {
             if ext != "yaml" {
@@ -124,13 +157,17 @@ pub fn load_recipes(dir: &str) -> RecipeSet {
             }
         }
 
-        let file = fs::File::open(path).expect("failed open file");
+        let file = fs::File::open(&path)?;
         let reader = BufReader::new(file);
 
-        let recipes: Vec<Recipe> =
-            serde_yaml::from_reader(reader).expect("can't parse recipe YAML");
+        let mut recipes: Vec<Recipe> = serde_yaml::from_reader(reader)?;
+
+        for r in &mut recipes {
+            r.file_path = Some(path.to_string_lossy().into_owned());
+        }
+
         recipe_set.append_recipes(recipes);
     }
 
-    recipe_set
+    Ok(recipe_set)
 }

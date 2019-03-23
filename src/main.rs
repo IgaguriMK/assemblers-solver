@@ -1,13 +1,16 @@
+use clap::{App, Arg};
+use failure::{Error, format_err};
+
 use crate::recipe::load_recipes;
 use crate::solver::Solver;
 use crate::target::load_target_settings;
 
-use clap::{App, Arg};
-use failure::{Error, format_err};
-
 mod recipe;
 mod target;
 mod solver;
+mod sub;
+
+use sub::{SubCmd, RecipeCheck};
 
 type Result<T> = std::result::Result<T, Error>;
 
@@ -22,11 +25,14 @@ fn main() {
 }
 
 fn w_main() -> Result<()> {
+    let recipe_check = RecipeCheck::new();
+
     let matches = App::new(env!("CARGO_PKG_NAME"))
         .bin_name(env!("CARGO_PKG_NAME"))
         .version(env!("CARGO_PKG_VERSION"))
         .author(env!("CARGO_PKG_AUTHORS"))
         .about(env!("CARGO_PKG_DESCRIPTION"))
+        .subcommand(recipe_check.command_args())
         .arg(Arg::with_name("mult")
             .long("mult")
             .short("m")
@@ -57,7 +63,14 @@ fn w_main() -> Result<()> {
         )
         .get_matches_safe()?;
 
+    //// Sub commands
     
+    if let Some(m) = matches.subcommand_matches(recipe_check.name()) {
+        return recipe_check.exec(m);
+    }
+    
+    //// Main command
+
     let target_settings_file_name = matches.value_of("target-file").ok_or_else(|| {format_err!("target file required.")})?;    
     let mult = matches.value_of("mult").unwrap().parse::<f64>()?;
 
@@ -69,7 +82,7 @@ fn w_main() -> Result<()> {
         .speed_module(!matches.is_present("no-speed"))
         .productivity_module(!matches.is_present("no-prod"));
 
-    let mut solver = Solver::new(load_recipes("./data/recipes"), &target_settings, processer_choice);
+    let mut solver = Solver::new(load_recipes("./data/recipes")?, &target_settings, processer_choice);
 
     solver.all_merged(matches.is_present("all-merged"));
     if let Some(never_merged) = matches.values_of("never-merged") {
