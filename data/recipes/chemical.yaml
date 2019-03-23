@@ -7,6 +7,7 @@
   ingredients:
     coal: 1
     petroleum-gas: 20
+  version: "0.17.17"
 -
   type: chemical
   cost: 2
@@ -15,6 +16,7 @@
     solid-fuel: 1
   ingredients:
     light-oil: 10
+  version: "0.17.17"
 -
   type: chemical
   cost: 1
@@ -23,6 +25,7 @@
     lubricant: 10
   ingredients:
     heavy-oil: 10
+  version: "0.17.17"
 -
   type: chemical
   cost: 1
@@ -32,6 +35,7 @@
   ingredients:
     water: 30
     petroleum-gas: 30
+  version: "0.17.17"
 -
   type: chemical
   cost: 1
@@ -42,6 +46,7 @@
     iron-plate: 1
     sulfur: 5
     water: 100
+  version: "0.17.17"
 -
   type: chemical
   cost: 4
@@ -52,3 +57,4 @@
     coal: 1
     sulfur: 1
     water: 10
+  version: "0.17.17"

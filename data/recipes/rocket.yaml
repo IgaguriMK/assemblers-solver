@@ -8,6 +8,7 @@
     low-density-structure: 714.285714
     rocket-fuel: 714.285714
     rocket-control-unit: 714.285714
+  version: "0.17.17"
 -
   type: assembler
   cost: 5
@@ -20,6 +21,7 @@
     rader: 5
     rocket-fuel: 50
     solar-panel: 100
+  version: "0.17.17"
 -
   type: assembler
   cost: 20
@@ -30,6 +32,7 @@
     copper-plate: 20
     steel: 2
     plastic-bar: 5
+  version: "0.17.17"
 -
   type: assembler
   cost: 30
@@ -39,3 +42,4 @@
   ingredients:
     processing-unit: 1
     speed-module: 1
+  version: "0.17.17"

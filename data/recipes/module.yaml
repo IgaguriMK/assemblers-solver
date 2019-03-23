@@ -6,6 +6,7 @@
   ingredients:
     advanced-circuit: 5
     electronic-circuit: 5
+  version: "0.17.17"
 - 
   type: assembler
   cost: 30
@@ -15,6 +16,7 @@
     advanced-circuit: 5
     processing-unit: 5
     speed-module: 4
+  version: "0.17.17"
 - 
   type: assembler
   cost: 60
@@ -24,6 +26,7 @@
     advanced-circuit: 5
     processing-unit: 5
     speed-module-2: 5
+  version: "0.17.17"
 - 
   type: assembler
   cost: 15
@@ -32,6 +35,7 @@
   ingredients:
     advanced-circuit: 5
     electronic-circuit: 5
+  version: "0.17.17"
 - 
   type: assembler
   cost: 30
@@ -41,6 +45,7 @@
     advanced-circuit: 5
     processing-unit: 5
     effectivity-module: 4
+  version: "0.17.17"
 - 
   type: assembler
   cost: 60
@@ -50,6 +55,7 @@
     advanced-circuit: 5
     processing-unit: 5
     effectivity-module-2: 5
+  version: "0.17.17"
 - 
   type: assembler
   cost: 15
@@ -58,6 +64,7 @@
   ingredients:
     advanced-circuit: 5
     electronic-circuit: 5
+  version: "0.17.17"
 - 
   type: assembler
   cost: 30
@@ -67,6 +74,7 @@
     advanced-circuit: 5
     processing-unit: 5
     productivity-module: 4
+  version: "0.17.17"
 - 
   type: assembler
   cost: 60
@@ -76,3 +84,4 @@
     advanced-circuit: 5
     processing-unit: 5
     productivity-module-2: 5
+  version: "0.17.17"

@@ -4,27 +4,32 @@
   results:
     water: 1
   ingredients: {}
+  version: "0.17.17"
 - 
   type: pumpjack
   cost: 2
   results:
     crude-oil: 1
   ingredients: {}
+  version: "0.17.17"
 - 
   type: temporary
   cost: 1
   results:
     heavy-oil: 1
   ingredients: {}
+  version: "0.17.17"
 - 
   type: temporary
   cost: 1
   results:
     light-oil: 1
   ingredients: {}
+  version: "0.17.17"
 - 
   type: temporary
   cost: 1
   results:
     petroleum-gas: 1
   ingredients: {}
+  version: "0.17.17"
