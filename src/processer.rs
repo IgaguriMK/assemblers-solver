@@ -1,5 +1,6 @@
 use crate::recipe::Recipe;
 
+#[derive(Debug, Clone, PartialEq)]
 pub struct Processer {
     name: String,
     productivity: f64,

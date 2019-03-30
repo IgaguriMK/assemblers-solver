@@ -12,7 +12,7 @@ fn should_parse_recipe_yaml() {
             copper-plate: 1
             iron-geer-wheel: 1
     "#;
-    
+
     let recipe: Recipe = from_str(string).unwrap();
 
     assert_eq!(recipe.recipe_type, "assembler");
@@ -25,7 +25,8 @@ fn should_parse_recipe_yaml() {
 
 #[test]
 fn should_find_recipe_with_result() {
-    let recipes: Vec<Recipe> = from_str(r#"
+    let recipes: Vec<Recipe> = from_str(
+        r#"
         - 
             type: assembler
             cost: 0.5
@@ -41,7 +42,9 @@ fn should_find_recipe_with_result() {
             ingredients:
                 iron-plate: 1
                 copper-cable: 3
-    "#).unwrap();
+    "#,
+    )
+    .unwrap();
 
     let mut recipe_set = RecipeSet::new();
     recipe_set.append_recipes(recipes);
@@ -51,13 +54,17 @@ fn should_find_recipe_with_result() {
     assert_eq!(gear_recipes.len(), 1);
     assert_eq!(gear_recipes[0].recipe_type, "assembler");
     assert_eq!(gear_recipes[0].cost, 0.5);
-    assert_eq!(*gear_recipes[0].results.get("iron-gear-wheel").unwrap(), 1.0);
+    assert_eq!(
+        *gear_recipes[0].results.get("iron-gear-wheel").unwrap(),
+        1.0
+    );
     assert_eq!(*gear_recipes[0].ingredients.get("iron-plate").unwrap(), 2.0);
 }
 
 #[test]
 fn compare_should_be_tranisitive() {
-    let recipes: Vec<Recipe> = from_str(r#"
+    let recipes: Vec<Recipe> = from_str(
+        r#"
         - 
             type: assembler
             cost: 0.5
@@ -80,18 +87,20 @@ fn compare_should_be_tranisitive() {
                 ca: 1
             ingredients:
                 ba: 1
-    "#).unwrap();
+    "#,
+    )
+    .unwrap();
 
     let mut recipe_set = RecipeSet::new();
     recipe_set.append_recipes(recipes);
 
     assert_eq!(recipe_set.compare("ba", "aa"), Ordering::Less);
     assert_eq!(recipe_set.compare("bb", "aa"), Ordering::Less);
-    
+
     assert_eq!(recipe_set.compare("ba", "bb"), Ordering::Less);
-    
+
     assert_eq!(recipe_set.compare("ca", "ba"), Ordering::Less);
     assert_eq!(recipe_set.compare("ca", "aa"), Ordering::Less);
-    
+
     assert_eq!(recipe_set.compare("ca", "bb"), Ordering::Less);
 }

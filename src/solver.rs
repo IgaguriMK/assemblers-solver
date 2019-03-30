@@ -2,11 +2,10 @@ use std::collections::btree_map::Iter;
 use std::collections::{BTreeMap, BTreeSet, HashSet};
 
 use crate::recipe::RecipeSet;
+use crate::solution::*;
 use crate::target::{Flow, TargetSettings};
 
-mod processer;
-
-pub use processer::ProcesserChoice;
+pub use crate::processer::{best_processer, ProcesserChoice};
 
 #[derive(Debug)]
 pub struct Solver {
@@ -54,10 +53,11 @@ impl Solver {
         }
     }
 
-    pub fn solve(&mut self) {
+    pub fn solve(&mut self) -> Solution {
+        let mut trees = Vec::new();
         while let Some(t) = self.next_target() {
-            println!();
-            self.solve_one(t);
+            let process = self.solve_one(t);
+            trees.push(ProcessingTree { process });
         }
 
         println!();
@@ -67,8 +67,14 @@ impl Solver {
             println!("    {}: {:.2}/s ({:.1} B)", n, t, t / 40.0);
         }
 
-        for m in self.missings.iter() {
-            eprintln!("WARNING: recipe for '{}' is not exist.", m);
+        Solution {
+            trees,
+            sources: self
+                .source_throughputs
+                .iter()
+                .map(|(n, t)| Throughput::new(n.clone(), *t))
+                .collect(),
+            missings: self.missings.iter().map(|s| s.to_string()).collect(),
         }
     }
 
@@ -93,89 +99,53 @@ impl Solver {
         None
     }
 
-    fn solve_one(&mut self, target: Flow) {
-        let target_name = target.name.clone();
-
-        struct SolveItem {
-            t: Flow,
-            tier: u64,
+    fn solve_one(&mut self, t: Flow) -> Process {
+        let recipes = self.recipe_set.find_recipes(&t.name);
+        if recipes.is_empty() {
+            self.missings.insert(t.name.clone());
+            self.source_throughputs.add(t.clone());
         }
 
-        let mut stack: Vec<SolveItem> = vec![SolveItem { t: target, tier: 1 }];
+        let r = recipes[0];
+        let result_num = r.result_num(&t.name);
+        let processer = best_processer(r, t.throughput / result_num, &self.processer_choice);
+        let craft_throughput = t.throughput / (processer.productivity() * result_num);
+        let unit_count = (r.cost() * craft_throughput / processer.speed()).ceil() as u64;
 
-        println!("Processing tree [{}]:", target_name);
-        while let Some(i) = stack.pop() {
-            let t = i.t;
-            if self.sources.get(&t.name).is_some() {
-                indent(i.tier);
-                println!(
-                    "source of {}: {:.2} item/s ({:.1} B)",
-                    t.name,
-                    t.throughput,
-                    t.throughput / 40.0
-                );
+        let ingredients: Vec<(String, f64)> =
+            r.ingredients().map(|(n, c)| (n.clone(), *c)).collect();
 
-                self.source_throughputs.add(t);
-                continue;
-            }
-
-            if t.name != target_name && self.is_merged(&t.name) {
-                indent(i.tier);
-                println!(
-                    "merged {}: {:.2} item/s ({:.1} B)",
-                    t.name,
-                    t.throughput,
-                    t.throughput / 40.0
-                );
-
-                self.targets.add(t.clone());
-                continue;
-            }
-
-            let recipes = self.recipe_set.find_recipes(&t.name);
-            if recipes.is_empty() {
-                self.missings.insert(t.name.clone());
-
-                indent(i.tier);
-                println!(
-                    "source of {}: {:.2} item/s ({:.1} B)",
-                    t.name,
-                    t.throughput,
-                    t.throughput / 40.0
-                );
-
-                self.source_throughputs.add(t.clone());
-                continue;
-            }
-
-            let r = recipes[0];
-            let result_num = r.result_num(&t.name);
-            let processer =
-                processer::best_processer(r, t.throughput / result_num, &self.processer_choice);
-            let craft_throughput = t.throughput / (processer.productivity() * result_num);
-            let unit_count = (r.cost() * craft_throughput / processer.speed()).ceil() as u64;
-
-            indent(i.tier);
-            println!(
-                "{} ({:.2}/s, {:.1} B): {} {:.2} units, {:.2} craft/s",
-                t.name,
-                t.throughput,
-                t.throughput / 40.0,
-                processer.name(),
-                unit_count,
-                craft_throughput
-            );
-
-            for (name, count) in r.ingredients() {
-                stack.push(SolveItem {
-                    t: Flow {
-                        name: name.to_string(),
-                        throughput: *count * craft_throughput,
-                    },
-                    tier: i.tier + 1,
-                });
-            }
+        let mut sources = Vec::new();
+        for (n, c) in ingredients {
+            let s = self.solve_source(Flow {
+                name: n,
+                throughput: c * craft_throughput,
+            });
+            sources.push(s);
         }
+
+        Process {
+            throughput: Throughput::new(t.name, t.throughput),
+            processer,
+            processer_num: unit_count,
+            craft_per_sec: craft_throughput,
+            sources,
+        }
+    }
+
+    fn solve_source(&mut self, t: Flow) -> Source {
+        if self.sources.get(&t.name).is_some() {
+            self.source_throughputs.add(t.clone());
+            return Source::Source(Throughput::new(t.name, t.throughput));
+        }
+
+        if self.is_merged(&t.name) {
+            self.targets.add(t.clone());
+            return Source::Merged(Throughput::new(t.name, t.throughput));
+        }
+
+        let process = self.solve_one(t);
+        Source::Process(process)
     }
 
     fn is_merged(&self, name: &str) -> bool {
@@ -183,12 +153,6 @@ impl Solver {
             return false;
         }
         self.all_merged || self.merged.get(name).is_some()
-    }
-}
-
-fn indent(n: u64) {
-    for _ in 0..n {
-        print!("    ")
     }
 }
 

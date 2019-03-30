@@ -1,11 +1,15 @@
 use clap::{App, Arg, ArgMatches};
 use failure::{format_err, Error};
 
+use crate::formatter::{Formatter, TextFormatter};
 use crate::recipe::load_recipes;
 use crate::solver::Solver;
 use crate::target::load_target_settings;
 
+mod formatter;
+mod processer;
 mod recipe;
+mod solution;
 mod solver;
 mod sub;
 mod target;
@@ -88,7 +92,10 @@ fn main_cmd(matches: ArgMatches) -> Result<()> {
         solver.never_merged(never_merged);
     }
 
-    solver.solve();
+    let mut formatter = TextFormatter::new(std::io::stdout());
+    let solution = solver.solve();
+
+    formatter.format(&solution)?;
 
     Ok(())
 }

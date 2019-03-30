@@ -15,7 +15,13 @@ pub struct TargetSettings {
 
 impl TargetSettings {
     pub fn targets(&self) -> Vec<Flow> {
-        self.targets.iter().map(|(n, t)| Flow{name: n.to_owned(), throughput: *t}).collect()
+        self.targets
+            .iter()
+            .map(|(n, t)| Flow {
+                name: n.to_owned(),
+                throughput: *t,
+            })
+            .collect()
     }
 
     pub fn sources(&self) -> &[String] {
@@ -27,7 +33,7 @@ impl TargetSettings {
     }
 
     pub fn multiply(&mut self, mult: f64) {
-        self.targets.iter_mut().for_each(|(_, t)| {*t *= mult});
+        self.targets.iter_mut().for_each(|(_, t)| *t *= mult);
     }
 }
 
