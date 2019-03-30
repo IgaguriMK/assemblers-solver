@@ -36,9 +36,17 @@ pub enum Throughput {
 
 impl Throughput {
     pub fn new(name: String, throughput: f64) -> Throughput {
-        let liquids = [];
+        let liquids = [
+            "water",
+            "crude-oil",
+            "heavy-oil",
+            "light-oil",
+            "petroleum-gas",
+            "lubricant",
+            "sulfuric-acid",
+        ];
 
-        if liquids.contains(&name) {
+        if liquids.contains(&name.as_str()) {
             Throughput::Liquid(name, throughput)
         } else {
             Throughput::Item(name, throughput)
