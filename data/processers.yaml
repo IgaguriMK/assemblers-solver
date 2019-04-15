@@ -1,0 +1,59 @@
+-
+  name: assembler
+  base_speed: 1.25
+  max_modules: 4
+  configulations:
+    - {beacon: 0, io: 8}
+    - {beacon: 4, io: 6}
+    - {beacon: 8, io: 4}
+-
+  name: furnace
+  base_speed: 2.0
+  max_modules: 2
+  configulations:
+    - {beacon: 0, io: 4}
+    - {beacon: 8, io: 4}
+-
+  name: chemical
+  base_speed: 1.0
+  max_modules: 2
+  configulations:
+    - {beacon: 0, io: 4}
+    - {beacon: 8, io: 4}
+-
+  name: centrifuge
+  base_speed: 1.0
+  max_modules: 2
+  configulations:
+    - {beacon: 0, io: 4}
+    - {beacon: 8, io: 4}
+-
+  name: mining-drill
+  base_speed: 0.5
+  max_modules: 0
+  configulations:
+    - {beacon: 0, io: 1}
+-
+  name: pump
+  base_speed: 1200.0
+  max_modules: 0
+  configulations:
+    - {beacon: 0, io: 1}
+-
+  name: pumpjack
+  base_speed: 1.0
+  max_modules: 0
+  configulations:
+    - {beacon: 0, io: 1}
+-
+  name: rocket-silo
+  base_speed: 0.016166666666666666
+  max_modules: 0
+  configulations:
+    - {beacon: 0, io: 8}
+-
+  name: temporary
+  base_speed: 1.0
+  max_modules: 0
+  configulations:
+    - {beacon: 0, io: 1}
