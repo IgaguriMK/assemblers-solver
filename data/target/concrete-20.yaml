@@ -1,0 +1,6 @@
+targets:
+  concrete: 20
+sources:
+  - iron-ore
+  - stone
+  - water

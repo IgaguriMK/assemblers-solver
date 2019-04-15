@@ -1,0 +1,4 @@
+targets:
+  steel: 9.6
+sources:
+  - iron-plate

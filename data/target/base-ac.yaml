@@ -1,0 +1,6 @@
+targets:
+  advanced-circuit: 28.0
+sources:
+  - iron-plate
+  - copper-plate
+  - plastic-bar

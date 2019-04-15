@@ -1,0 +1,4 @@
+targets:
+  uranium: 4.0
+sources:
+  - uranium-ore

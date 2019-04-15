@@ -1,0 +1,13 @@
+targets:
+  chemical-science-pack: 1
+sources:
+  - iron-plate
+  - copper-plate
+  - plastic-bar
+  - solid-fuel
+  - steel
+merged:
+  - advanced-circuit
+  - engine-unit
+  - electronic-circuit
+  - iron-gear-wheel

@@ -1,0 +1,12 @@
+targets:
+  flying-robot-frame: 5
+merged:
+  - electric-engine-unit
+  - engine-unit
+sources:
+  - iron-plate
+  - copper-plate
+  - electronic-circuit
+  - battery
+  - steel
+  - lubricant
