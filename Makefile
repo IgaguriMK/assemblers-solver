@@ -13,7 +13,10 @@ check:
 	cargo test
 
 .PHONY: release
-release: clean build check
+release: clean build check r
+
+.PHONY: r
+r:
 	cargo build --release
 	cp target/release/assemblers-solver.exe .
 

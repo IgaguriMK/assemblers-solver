@@ -60,13 +60,6 @@ impl Solver {
             trees.push(ProcessingTree { process });
         }
 
-        println!();
-        println!("Source throughputs:");
-
-        for (n, t) in self.source_throughputs.iter() {
-            println!("    {}: {:.2}/s ({:.1} B)", n, t, t / 40.0);
-        }
-
         Solution {
             trees,
             sources: self
