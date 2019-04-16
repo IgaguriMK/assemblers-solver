@@ -38,12 +38,12 @@ impl Solver {
             sources: target_settings
                 .sources()
                 .iter()
-                .map(|n| n.to_owned())
+                .map(ToOwned::to_owned)
                 .collect(),
             merged: target_settings
                 .merged()
                 .iter()
-                .map(|n| n.to_owned())
+                .map(ToOwned::to_owned)
                 .collect(),
             all_merged: false,
             never_merged: HashSet::new(),
@@ -74,7 +74,7 @@ impl Solver {
                 .iter()
                 .map(|(n, t)| Throughput::new(n.clone(), *t))
                 .collect(),
-            missings: self.missings.iter().map(|s| s.to_string()).collect(),
+            missings: self.missings.iter().map(ToString::to_string).collect(),
         }
     }
 

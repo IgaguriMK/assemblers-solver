@@ -63,13 +63,13 @@ impl Recipe {
     pub fn file_path(&self, if_none: &str) -> String {
         self.file_path
             .as_ref()
-            .map(|p| p.as_str())
+            .map(String::as_str)
             .unwrap_or(if_none)
             .to_string()
     }
 
     pub fn version(&self) -> Option<&str> {
-        self.version.as_ref().map(|s| s.as_str())
+        self.version.as_ref().map(String::as_str)
     }
 }
 
@@ -104,7 +104,7 @@ impl RecipeSet {
     pub fn all_results(&self) -> BTreeSet<String> {
         self.recipes
             .iter()
-            .flat_map(|r| r.results())
+            .flat_map(Recipe::results)
             .map(|r| r.0.to_string())
             .collect()
     }
