@@ -55,6 +55,7 @@ fn w_main() -> Result<()> {
         .arg(Arg::with_name("no-beacon").long("no-beacon"))
         .arg(Arg::with_name("no-speed").long("no-speed"))
         .arg(Arg::with_name("no-prod").long("no-prod"))
+        .arg(Arg::with_name("allow-speed-only-beacon").long("allow-speed-only-beacon"))
         .arg(Arg::with_name("target-file"))
         .get_matches_safe()?;
 
@@ -79,11 +80,15 @@ fn main_cmd(matches: ArgMatches) -> Result<()> {
     let processer_choice = solver::ProcesserChoice::new()
         .beacon(!matches.is_present("no-beacon"))
         .speed_module(!matches.is_present("no-speed"))
-        .productivity_module(!matches.is_present("no-prod"));
+        .productivity_module(!matches.is_present("no-prod"))
+        .speed_only_beacon(matches.is_present("allow-speed-only-beacon"));
+
+    let processer_set = processer::ProcSet::open_set()?;
 
     let mut solver = Solver::new(
         load_recipes("./data/recipes")?,
         &target_settings,
+        processer_set,
         processer_choice,
     );
 
@@ -93,7 +98,7 @@ fn main_cmd(matches: ArgMatches) -> Result<()> {
     }
 
     let mut formatter = TextFormatter::new(std::io::stdout());
-    let solution = solver.solve();
+    let solution = solver.solve()?;
 
     formatter.format(&solution)?;
 
