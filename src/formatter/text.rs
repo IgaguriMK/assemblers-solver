@@ -30,7 +30,7 @@ impl<W: Write> TextFormatter<W> {
     fn format_proc_tree(&mut self, proc_tree: &ProcessingTree) -> Result<()> {
         writeln!(
             self.w,
-            "Processing tree [{}]:",
+            "[ ] Processing tree [{}]:",
             proc_tree.process.throughput.name()
         )?;
         self.format_proc(&proc_tree.process, 1)
