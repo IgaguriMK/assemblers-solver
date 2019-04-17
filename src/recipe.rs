@@ -1,5 +1,5 @@
 use std::cmp::Ordering;
-use std::collections::{BTreeMap, BTreeSet};
+use std::collections::{BTreeMap, BTreeSet, HashSet};
 use std::fs;
 use std::io::BufReader;
 
@@ -109,9 +109,9 @@ impl RecipeSet {
             .collect()
     }
 
-    pub fn compare(&self, left: &str, right: &str) -> Ordering {
-        let ld = self.depth(left);
-        let rd = self.depth(right);
+    pub fn compare(&self, left: &str, right: &str, sources: &HashSet<String>) -> Ordering {
+        let ld = self.depth(left, sources);
+        let rd = self.depth(right, sources);
 
         if ld > rd {
             Ordering::Less
@@ -122,22 +122,57 @@ impl RecipeSet {
         }
     }
 
-    fn depth(&self, item: &str) -> usize {
-        let mut depth = 0;
+    fn depth(&self, item: &str, sources: &HashSet<String>) -> Depth {
+        if sources.contains(item) {
+            return Depth(0, 1);
+        }
+
+        let mut depth = Depth(0,0);
 
         let recipes = self.find_recipes(item);
         for r in recipes {
-            let ingredients: Vec<String> = r.ingredients().map(|(n, _)| n.to_string()).collect();
+            let mut dd = 0;
+            let mut dc = 1;
 
-            for i in ingredients {
-                let di = self.depth(&i);
-                if di + 1 > depth {
-                    depth = di + 1
+            for (n, _) in r.ingredients() {
+                let di = self.depth(n, sources);
+
+                if di.0 > dd {
+                    dd = di.0;
                 }
+
+                dc += di.1;
+            }
+
+            let d = Depth(dd+1, dc);
+
+            if d > depth {
+                depth = d;
             }
         }
 
         depth
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq,)]
+struct Depth(usize, usize);
+
+impl PartialOrd for Depth {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        let Depth(xd, xc) = self;
+        let Depth(yd, yc) = other;
+
+        match xd.cmp(yd) {
+            Ordering::Equal => xc.partial_cmp(yc),
+            x => Some(x),
+        }
+    }
+}
+
+impl Ord for Depth {
+    fn cmp(&self, other: &Self) -> Ordering {
+        self.partial_cmp(other).unwrap()
     }
 }
 

@@ -1,5 +1,8 @@
-use super::*;
+use std::collections::HashSet;
+
 use serde_yaml::from_str;
+
+use super::*;
 
 #[test]
 fn should_parse_recipe_yaml() {
@@ -94,13 +97,16 @@ fn compare_should_be_tranisitive() {
     let mut recipe_set = RecipeSet::new();
     recipe_set.append_recipes(recipes);
 
-    assert_eq!(recipe_set.compare("ba", "aa"), Ordering::Less);
-    assert_eq!(recipe_set.compare("bb", "aa"), Ordering::Less);
+    let mut sources = HashSet::new();
+    sources.insert("aa".to_string());
 
-    assert_eq!(recipe_set.compare("ba", "bb"), Ordering::Less);
+    assert_eq!(recipe_set.compare("ba", "aa", &sources), Ordering::Less);
+    assert_eq!(recipe_set.compare("bb", "aa", &sources), Ordering::Less);
 
-    assert_eq!(recipe_set.compare("ca", "ba"), Ordering::Less);
-    assert_eq!(recipe_set.compare("ca", "aa"), Ordering::Less);
+    assert_eq!(recipe_set.compare("ba", "bb", &sources), Ordering::Less);
 
-    assert_eq!(recipe_set.compare("ca", "bb"), Ordering::Less);
+    assert_eq!(recipe_set.compare("ca", "ba", &sources), Ordering::Less);
+    assert_eq!(recipe_set.compare("ca", "aa", &sources), Ordering::Less);
+
+    assert_eq!(recipe_set.compare("ca", "bb", &sources), Ordering::Less);
 }

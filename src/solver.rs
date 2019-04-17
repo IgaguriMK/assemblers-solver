@@ -1,5 +1,6 @@
 use std::collections::btree_map::Iter;
 use std::collections::{BTreeMap, BTreeSet, HashSet};
+use std::cmp::Ordering;
 
 use failure::Error;
 
@@ -91,7 +92,18 @@ impl Solver {
             .targets
             .names()
             .into_iter()
-            .min_by(|l, r| self.recipe_set.compare(l, r))
+            .min_by(|l, r| {
+                let ml = self.merged.contains(l);
+                let mr = self.merged.contains(r);
+                if ml && !mr {
+                    return Ordering::Greater;
+                }
+                if !ml && mr {
+                    return Ordering::Less;
+                }
+
+                self.recipe_set.compare(l, r, &self.sources)
+            })
         {
             return Some(self.targets.take(name));
         }

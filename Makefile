@@ -8,7 +8,7 @@ build:
 	cargo build
 
 .PHONY: check
-check:
+check: soft-clean
 	cargo clippy -- -D warnings
 	cargo test
 
