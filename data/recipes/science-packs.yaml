@@ -37,7 +37,7 @@
     chemical-science-pack: 2
   ingredients:
     advanced-circuit: 3
-    engine-unit: 1
+    engine-unit: 2
     solid-fuel: 1
   version: "0.17.17"
 -
