@@ -26,7 +26,7 @@
     military-science-pack: 2
   ingredients:
     grenade: 1
-    wall: 1
+    wall: 2
     piercing-rounds-magazine: 1
   version: "0.17.17"
 -
