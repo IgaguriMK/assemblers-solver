@@ -1,0 +1,4 @@
+targets:
+  steel: 1
+sources:
+  - iron-plate
