@@ -14,7 +14,7 @@ mod solver;
 mod sub;
 mod target;
 
-use sub::{RecipeCheck, SubCmd};
+use sub::{Mining, RecipeCheck, SubCmd};
 
 type Result<T> = std::result::Result<T, Error>;
 
@@ -29,6 +29,7 @@ fn main() {
 }
 
 fn w_main() -> Result<()> {
+    let mining = Mining::new();
     let recipe_check = RecipeCheck::new();
 
     let matches = App::new(env!("CARGO_PKG_NAME"))
@@ -36,6 +37,7 @@ fn w_main() -> Result<()> {
         .version(env!("CARGO_PKG_VERSION"))
         .author(env!("CARGO_PKG_AUTHORS"))
         .about(env!("CARGO_PKG_DESCRIPTION"))
+        .subcommand(mining.command_args())
         .subcommand(recipe_check.command_args())
         .arg(
             Arg::with_name("mult")
@@ -60,6 +62,10 @@ fn w_main() -> Result<()> {
         .get_matches_safe()?;
 
     //// Sub commands
+
+    if let Some(m) = matches.subcommand_matches(mining.name()) {
+        return mining.exec(m);
+    }
 
     if let Some(m) = matches.subcommand_matches(recipe_check.name()) {
         return recipe_check.exec(m);

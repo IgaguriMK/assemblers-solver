@@ -1,8 +1,10 @@
 use clap::{App, ArgMatches};
 use failure::Error;
 
+pub mod mining;
 pub mod recipe_check;
 
+pub use mining::Mining;
 pub use recipe_check::RecipeCheck;
 
 pub trait SubCmd {
