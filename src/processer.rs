@@ -76,7 +76,8 @@ impl ProcSet {
             .filter(|p| processer_choice.allow_beacon || !p.use_beacon())
             .filter(|p| {
                 processer_choice.allow_speed_only_beacon
-                    || p.use_prod_module() || !( p.use_speed_module() && p.use_beacon())
+                    || p.use_prod_module()
+                    || !(p.use_speed_module() && p.use_beacon())
             })
             .filter(|p| p.io > ingredients_count)
             .collect();

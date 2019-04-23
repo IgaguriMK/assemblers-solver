@@ -127,7 +127,7 @@ impl RecipeSet {
             return Depth(0, 1);
         }
 
-        let mut depth = Depth(0,0);
+        let mut depth = Depth(0, 0);
 
         let recipes = self.find_recipes(item);
         for r in recipes {
@@ -144,7 +144,7 @@ impl RecipeSet {
                 dc += di.1;
             }
 
-            let d = Depth(dd+1, dc);
+            let d = Depth(dd + 1, dc);
 
             if d > depth {
                 depth = d;
@@ -155,7 +155,7 @@ impl RecipeSet {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq,)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 struct Depth(usize, usize);
 
 impl PartialOrd for Depth {

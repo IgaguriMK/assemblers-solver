@@ -36,11 +36,16 @@ pub fn load() -> Result<Vec<Processer>, Error> {
     Ok(res)
 }
 
-fn build_proc(base_name: &str, base_speed: f64, io: usize, mods: (usize, usize), conf: &Configulation) -> Processer {
+fn build_proc(
+    base_name: &str,
+    base_speed: f64,
+    io: usize,
+    mods: (usize, usize),
+    conf: &Configulation,
+) -> Processer {
     let (proc_cnt, speed_cnt) = mods;
 
-    let speed =
-        base_speed
+    let speed = base_speed
         + (proc_cnt as f64) * PROC_MOD_SPEED
         + (speed_cnt as f64) * SPEED_MOD_SPPEED
         + (conf.beacon as f64) * BEACON_SPEED;
@@ -58,7 +63,7 @@ fn build_proc(base_name: &str, base_speed: f64, io: usize, mods: (usize, usize),
     }
 
     if conf.beacon > 0 {
-        name += &format!("-b{}", conf.beacon);        
+        name += &format!("-b{}", conf.beacon);
     }
 
     Processer {
@@ -91,7 +96,7 @@ fn gen_ps_tuples(max: usize) -> Vec<(usize, usize)> {
     let mut res = Vec::new();
 
     // Allow always (0, 0)
-    res.push((0,0));
+    res.push((0, 0));
 
     if max > 0 {
         // all prod
@@ -99,7 +104,7 @@ fn gen_ps_tuples(max: usize) -> Vec<(usize, usize)> {
 
         // 'PPPS' configulation
         if max >= 2 {
-            res.push((max-1, 1));
+            res.push((max - 1, 1));
         }
 
         // speed modules only

@@ -35,7 +35,7 @@ impl SubCmd for Mining {
             )
     }
 
-    fn exec(self, matches: &ArgMatches) -> Result<(), Error> {
+    fn exec(&self, matches: &ArgMatches) -> Result<(), Error> {
         let bonus: u64 = matches.value_of("bonus").unwrap().parse()?;
         let count: u64 = matches.value_of("count").unwrap().parse()?;
 

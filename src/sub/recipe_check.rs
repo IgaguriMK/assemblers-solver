@@ -47,7 +47,7 @@ impl SubCmd for RecipeCheck {
             )
     }
 
-    fn exec(self, matches: &ArgMatches) -> Result<(), Error> {
+    fn exec(&self, matches: &ArgMatches) -> Result<(), Error> {
         let allowed_version_str = matches.value_of("version").unwrap();
         let allowed_version = VersionReq::parse(allowed_version_str)?;
 

@@ -14,7 +14,7 @@ mod solver;
 mod sub;
 mod target;
 
-use sub::{Mining, RecipeCheck, SubCmd};
+use sub::{sub_commands, SubCmd};
 
 type Result<T> = std::result::Result<T, Error>;
 
@@ -29,16 +29,19 @@ fn main() {
 }
 
 fn w_main() -> Result<()> {
-    let mining = Mining::new();
-    let recipe_check = RecipeCheck::new();
+    let sub_cmds: Vec<Box<dyn SubCmd>> = sub_commands();
 
-    let matches = App::new(env!("CARGO_PKG_NAME"))
+    let mut app = App::new(env!("CARGO_PKG_NAME"))
         .bin_name(env!("CARGO_PKG_NAME"))
         .version(env!("CARGO_PKG_VERSION"))
         .author(env!("CARGO_PKG_AUTHORS"))
-        .about(env!("CARGO_PKG_DESCRIPTION"))
-        .subcommand(mining.command_args())
-        .subcommand(recipe_check.command_args())
+        .about(env!("CARGO_PKG_DESCRIPTION"));
+
+    for s in &sub_cmds {
+        app = app.subcommand(s.command_args());
+    }
+
+    let matches = app
         .arg(
             Arg::with_name("mult")
                 .long("mult")
@@ -63,12 +66,10 @@ fn w_main() -> Result<()> {
 
     //// Sub commands
 
-    if let Some(m) = matches.subcommand_matches(mining.name()) {
-        return mining.exec(m);
-    }
-
-    if let Some(m) = matches.subcommand_matches(recipe_check.name()) {
-        return recipe_check.exec(m);
+    for s in sub_cmds {
+        if let Some(m) = matches.subcommand_matches(s.name()) {
+            return s.exec(m);
+        }
     }
 
     main_cmd(matches)
