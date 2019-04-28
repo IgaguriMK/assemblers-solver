@@ -1,0 +1,8 @@
+targets:
+  sulfuric-acid: 1
+sources:
+  - iron-plate
+  - petroleum-gas
+  - water
+merged:
+  - sulfur
