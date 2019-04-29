@@ -2,11 +2,11 @@ use clap::{App, ArgMatches};
 use failure::Error;
 
 pub mod mining;
-pub mod recipe_check;
+pub mod check;
 pub mod stack;
 
 use mining::Mining;
-use recipe_check::RecipeCheck;
+use check::Check;
 use stack::Stack;
 
 pub trait SubCmd {
@@ -17,8 +17,8 @@ pub trait SubCmd {
 
 pub fn sub_commands() -> Vec<Box<dyn SubCmd>> {
     vec![
+        Box::new(Check::new()),
         Box::new(Mining::new()),
-        Box::new(RecipeCheck::new()),
         Box::new(Stack::new()),
     ]
 }
