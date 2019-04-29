@@ -13,6 +13,7 @@ mod solution;
 mod solver;
 mod sub;
 mod target;
+mod stack;
 
 use sub::{sub_commands, SubCmd};
 

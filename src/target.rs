@@ -14,6 +14,24 @@ pub struct TargetSettings {
 }
 
 impl TargetSettings {
+    pub fn new() -> TargetSettings {
+        TargetSettings {
+            targets: HashMap::new(),
+            sources: Vec::new(),
+            merged: Vec::new(),
+        }
+    }
+
+    pub fn add_target(&mut self, name: String, throughput: f64) {
+        self.targets.entry(name)
+            .and_modify(|t| *t += throughput)
+            .or_insert(throughput);
+    }
+
+    pub fn add_source(&mut self, name: String) {
+        self.sources.push(name);
+    }
+
     pub fn targets(&self) -> Vec<Flow> {
         self.targets
             .iter()

@@ -64,8 +64,9 @@ impl Solver {
     pub fn solve(&mut self) -> Result<Solution> {
         let mut trees = Vec::new();
         while let Some(t) = self.next_target() {
-            let process = self.solve_one(t)?;
-            trees.push(ProcessingTree { process });
+            if let Some(process) = self.solve_one(t)? {
+                trees.push(ProcessingTree { process });
+            }
         }
 
         Ok(Solution {
@@ -106,11 +107,12 @@ impl Solver {
         None
     }
 
-    fn solve_one(&mut self, t: Flow) -> Result<Process> {
+    fn solve_one(&mut self, t: Flow) -> Result<Option<Process>> {
         let recipes = self.recipe_set.find_recipes(&t.name);
         if recipes.is_empty() {
             self.missings.insert(t.name.clone());
             self.source_throughputs.add(t.clone());
+            return Ok(None);
         }
 
         let r = recipes[0];
@@ -140,13 +142,13 @@ impl Solver {
             sources.push(s);
         }
 
-        Ok(Process {
+        Ok(Some(Process {
             throughput: Throughput::new(t.name, t.throughput),
             processer,
             processer_num: unit_count,
             craft_per_sec: craft_throughput,
             sources,
-        })
+        }))
     }
 
     fn solve_source(&mut self, t: Flow) -> Result<Source> {
@@ -160,8 +162,11 @@ impl Solver {
             return Ok(Source::Merged(Throughput::new(t.name, t.throughput)));
         }
 
-        let process = self.solve_one(t)?;
-        Ok(Source::Process(process))
+        if let Some(process) = self.solve_one(t.clone())? {
+            return Ok(Source::Process(process));
+        }
+
+        Ok(Source::Source(Throughput::new(t.name, t.throughput)))
     }
 
     fn is_merged(&self, name: &str) -> bool {

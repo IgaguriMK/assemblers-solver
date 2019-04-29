@@ -3,9 +3,11 @@ use failure::Error;
 
 pub mod mining;
 pub mod recipe_check;
+pub mod stack;
 
-pub use mining::Mining;
-pub use recipe_check::RecipeCheck;
+use mining::Mining;
+use recipe_check::RecipeCheck;
+use stack::Stack;
 
 pub trait SubCmd {
     fn name(&self) -> &'static str;
@@ -14,5 +16,9 @@ pub trait SubCmd {
 }
 
 pub fn sub_commands() -> Vec<Box<dyn SubCmd>> {
-    vec![Box::new(Mining::new()), Box::new(RecipeCheck::new())]
+    vec![
+        Box::new(Mining::new()),
+        Box::new(RecipeCheck::new()),
+        Box::new(Stack::new()),
+    ]
 }
