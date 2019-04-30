@@ -1,4 +1,4 @@
 targets:
-  copper-plate: 40
+  copper-plate: 1
 sources:
   - copper-ore
