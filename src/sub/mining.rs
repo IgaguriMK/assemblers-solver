@@ -43,11 +43,13 @@ impl SubCmd for Mining {
         println!();
 
         let prod = (bonus as f64) / 100.0 + 1.0;
-        let output = 0.5 * prod * (count as f64);
+        let ore_output = 0.5 * prod * (count as f64);
+        let plate_output = 1.2 * ore_output;
 
-        let out_belt = output / 40.0;
+        let out_belt = plate_output / 40.0;
 
-        println!("Output: {:.1}", output);
+        println!("Ore Output:   {:.1}", ore_output);
+        println!("Plate Output: {:.1}", plate_output);
         println!("Lanes:  {:.1}", out_belt);
 
         Ok(())
