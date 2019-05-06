@@ -2,6 +2,7 @@ use clap::{App, Arg, ArgMatches, SubCommand};
 use failure::Error;
 
 use super::SubCmd;
+use crate::consts::BELT_THROUGHPUT;
 
 pub struct Mining();
 
@@ -46,7 +47,7 @@ impl SubCmd for Mining {
         let ore_output = 0.5 * prod * (count as f64);
         let plate_output = 1.2 * ore_output;
 
-        let out_belt = plate_output / 40.0;
+        let out_belt = plate_output / BELT_THROUGHPUT;
 
         println!("Ore Output:   {:.1}", ore_output);
         println!("Plate Output: {:.1}", plate_output);

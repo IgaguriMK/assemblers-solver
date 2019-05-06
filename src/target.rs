@@ -23,7 +23,8 @@ impl TargetSettings {
     }
 
     pub fn add_target(&mut self, name: String, throughput: f64) {
-        self.targets.entry(name)
+        self.targets
+            .entry(name)
             .and_modify(|t| *t += throughput)
             .or_insert(throughput);
     }

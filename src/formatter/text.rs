@@ -1,5 +1,6 @@
 use std::io::Write;
 
+use crate::consts::BELT_THROUGHPUT;
 use crate::solution::*;
 
 use super::{Formatter, Result};
@@ -86,7 +87,13 @@ impl<W: Write> TextFormatter<W> {
 
     fn format_throughput(&mut self, th: &Throughput) -> Result<()> {
         match th {
-            Throughput::Item(n, t) => write!(self.w, "{}: {:.2} item/s ({:.1} B)", n, t, t / 40.4),
+            Throughput::Item(n, t) => write!(
+                self.w,
+                "{}: {:.2} item/s ({:.1} B)",
+                n,
+                t,
+                t / BELT_THROUGHPUT
+            ),
             Throughput::Liquid(n, t) => write!(self.w, "{}: {:.2} unit/s", n, t),
         }
     }

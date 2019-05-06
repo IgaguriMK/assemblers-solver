@@ -6,14 +6,15 @@ use crate::recipe::load_recipes;
 use crate::solver::Solver;
 use crate::target::load_target_settings;
 
+mod consts;
 mod formatter;
 mod processer;
 mod recipe;
 mod solution;
 mod solver;
+mod stack;
 mod sub;
 mod target;
-mod stack;
 
 use sub::{sub_commands, SubCmd};
 

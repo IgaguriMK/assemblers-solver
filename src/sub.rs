@@ -1,12 +1,12 @@
 use clap::{App, ArgMatches};
 use failure::Error;
 
-pub mod mining;
 pub mod check;
+pub mod mining;
 pub mod stack;
 
-use mining::Mining;
 use check::Check;
+use mining::Mining;
 use stack::Stack;
 
 pub trait SubCmd {
