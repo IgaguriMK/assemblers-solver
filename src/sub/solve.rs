@@ -7,7 +7,7 @@ use crate::processer;
 use crate::recipe::load_recipes;
 use crate::solver;
 use crate::solver::Solver;
-use crate::target::load_target_settings;
+use crate::target::{load_target_settings, TargetSettings};
 
 pub struct Solve();
 
@@ -30,7 +30,15 @@ impl SubCmd for Solve {
                     .short("m")
                     .default_value("1.0"),
             )
-            .arg(Arg::with_name("all-merged").long("all-merged").short("M"))
+            .arg(Arg::with_name("all-merged").long("all-merged"))
+            .arg(
+                Arg::with_name("merged")
+                    .long("merged")
+                    .short("M")
+                    .multiple(true)
+                    .number_of_values(1)
+                    .takes_value(true),
+            )
             .arg(
                 Arg::with_name("never-merged")
                     .long("never-merged")
@@ -39,21 +47,44 @@ impl SubCmd for Solve {
                     .number_of_values(1)
                     .takes_value(true),
             )
+            .arg(
+                Arg::with_name("sources")
+                    .long("sources")
+                    .short("S")
+                    .takes_value(true),
+            )
             .arg(Arg::with_name("no-beacon").long("no-beacon"))
             .arg(Arg::with_name("no-speed").long("no-speed"))
             .arg(Arg::with_name("no-prod").long("no-prod"))
             .arg(Arg::with_name("allow-speed-only-beacon").long("allow-speed-only-beacon"))
-            .arg(Arg::with_name("target-file"))
+            .arg(Arg::with_name("target"))
     }
 
     fn exec(&self, matches: &ArgMatches) -> Result<(), Error> {
-        let target_settings_file_name = matches
-            .value_of("target-file")
-            .ok_or_else(|| format_err!("target file required."))?;
-        let mult = matches.value_of("mult").unwrap().parse::<f64>()?;
+        let target_str = matches
+            .value_of("target")
+            .ok_or_else(|| format_err!("target required."))?;
 
-        let mut target_settings = load_target_settings(&target_settings_file_name);
+        let from_file = target_str.ends_with(".yaml") || target_str.ends_with(".yml");
+
+        let mut target_settings = if from_file {
+            load_target_settings(&target_str)
+        } else {
+            let mut tgt = TargetSettings::new();
+            tgt.add_target(target_str.to_string(), 1.0);
+            tgt
+        };
+
+        let default_sources = if from_file { "none" } else { "basic" };
+        let addtional_sources = sources_set(matches.value_of("sources").unwrap_or(default_sources))?;
+        target_settings.add_sources(addtional_sources);
+
+        let mult = matches.value_of("mult").unwrap().parse::<f64>()?;
         target_settings.multiply(mult);
+
+        if let Some(mergeds) = matches.values_of("merged") {
+            target_settings.add_mergeds(mergeds.map(|n| n.to_string()).collect());
+        }
 
         let processer_choice = solver::ProcesserChoice::new()
             .beacon(!matches.is_present("no-beacon"))
@@ -81,5 +112,23 @@ impl SubCmd for Solve {
         formatter.format(&solution)?;
 
         Ok(())
+    }
+}
+
+fn sources_set(name: &str) -> Result<Vec<String>, Error> {
+    match name {
+        "none" => Ok(vec![]),
+        "basic" => Ok(vec![
+            "coal".to_string(),
+            "copper-plate".to_string(),
+            "iron-plate".to_string(),
+            "lubricant".to_string(),
+            "plastic-bar".to_string(),
+            "solid-fuel".to_string(),
+            "steel".to_string(),
+            "stone".to_string(),
+            "sulfuric-acid".to_string(),
+        ]),
+        _ => Err(format_err!("unknown source set: {}", name)),
     }
 }

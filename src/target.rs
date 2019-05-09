@@ -33,6 +33,16 @@ impl TargetSettings {
         self.sources.push(name);
     }
 
+    pub fn add_sources(&mut self, names: Vec<String>) {
+        let mut names = names;
+        self.sources.append(&mut names);
+    }
+
+    pub fn add_mergeds(&mut self, names: Vec<String>) {
+        let mut names = names;
+        self.merged.append(&mut names);
+    }
+
     pub fn targets(&self) -> Vec<Flow> {
         self.targets
             .iter()

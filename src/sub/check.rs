@@ -1,7 +1,4 @@
-use std::collections::BTreeSet;
-
 use clap::{App, Arg, ArgMatches, SubCommand};
-use edit_distance::edit_distance;
 use failure::{format_err, Error};
 use semver::{Version, VersionReq};
 
@@ -9,8 +6,6 @@ use crate::recipe::load_recipes;
 use crate::stack::load_stack_dict;
 
 use super::SubCmd;
-
-const MAX_FIND_DIST: usize = 2;
 
 pub struct Check();
 
@@ -117,7 +112,7 @@ fn recipe_check(matches: &ArgMatches) -> Result<(), Error> {
 
                 println!("{}[{}]: \"{}\" is missing.", r.file_path("unknown"), n, i.0);
 
-                let did_you_mean = find_did_you_mean(i.0, &all_results);
+                let did_you_mean = recipes.find_did_you_mean(i.0);
                 if !did_you_mean.is_empty() {
                     print!("    Did you mean ");
                     for (j, na) in did_you_mean.iter().enumerate() {
@@ -152,7 +147,7 @@ fn stack_check(matches: &ArgMatches) -> Result<(), Error> {
             println!("stack data for {} is missing.", n);
 
             if !all_results.contains(n) {
-                let did_you_mean = find_did_you_mean(n, &all_results);
+                let did_you_mean = recipes.find_did_you_mean(n);
                 if !did_you_mean.is_empty() {
                     print!("    Did you mean ");
                     for (j, na) in did_you_mean.iter().enumerate() {
@@ -168,31 +163,4 @@ fn stack_check(matches: &ArgMatches) -> Result<(), Error> {
     }
 
     Ok(())
-}
-
-fn find_did_you_mean(name: &str, set: &BTreeSet<String>) -> Vec<String> {
-    let mut res = Vec::new();
-
-    let mut min_dist = usize::max_value();
-
-    for r in set {
-        let dist = edit_distance(name, r);
-
-        if dist > MAX_FIND_DIST {
-            continue;
-        }
-
-        if dist < min_dist {
-            min_dist = dist;
-            res.clear();
-            res.push(r.to_string());
-            continue;
-        }
-
-        if dist == min_dist {
-            res.push(r.to_string());
-        }
-    }
-
-    res
 }
