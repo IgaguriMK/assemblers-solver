@@ -3,10 +3,12 @@ use failure::Error;
 
 pub mod check;
 pub mod mining;
+pub mod solve;
 pub mod stack;
 
 use check::Check;
 use mining::Mining;
+use solve::Solve;
 use stack::Stack;
 
 pub trait SubCmd {
@@ -20,5 +22,6 @@ pub fn sub_commands() -> Vec<Box<dyn SubCmd>> {
         Box::new(Check::new()),
         Box::new(Mining::new()),
         Box::new(Stack::new()),
+        Box::new(Solve::new()),
     ]
 }
