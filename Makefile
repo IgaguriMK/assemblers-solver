@@ -15,11 +15,6 @@ check: soft-clean
 .PHONY: release
 release: clean build check r
 
-.PHONY: r
-r:
-	cargo build --release
-	cp target/release/assemblers-solver.exe .
-
 .PHONY: soft-clean
 soft-clean:
 	cargo clean -p $(CRATE_NAME)
