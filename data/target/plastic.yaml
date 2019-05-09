@@ -1,5 +1,5 @@
 targets:
-  plastic-bar: 40.0
+  plastic-bar: 1
 sources:
   - coal
   - petroleum-gas

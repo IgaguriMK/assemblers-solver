@@ -2,3 +2,5 @@ targets:
   steel: 1
 sources:
   - iron-ore
+merged:
+  - iron-plate

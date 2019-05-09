@@ -1,5 +1,5 @@
 targets:
-  flying-robot-frame: 5
+  flying-robot-frame: 1
 merged:
   - electric-engine-unit
   - engine-unit

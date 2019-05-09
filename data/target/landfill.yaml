@@ -1,4 +1,4 @@
 targets:
-  landfill: 40
+  landfill: 1
 sources:
   - stone

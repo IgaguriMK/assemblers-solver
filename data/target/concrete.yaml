@@ -1,7 +1,6 @@
 targets:
-  refined-concrete: 40
+  concrete: 1
 sources:
   - iron-ore
-  - steel
   - stone
   - water

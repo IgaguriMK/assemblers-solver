@@ -1,4 +1,4 @@
 targets:
-  solid-fuel: 40.0
+  solid-fuel: 1
 sources:
   - light-oil

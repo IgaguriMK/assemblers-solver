@@ -1,5 +1,5 @@
 targets:
-  electronic-circuit: 40.0
+  electronic-circuit: 1
 sources:
   - iron-plate
   - copper-plate

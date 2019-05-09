@@ -1,5 +1,5 @@
 targets:
-  processing-unit: 2.8
+  processing-unit: 1
 sources:
   - iron-plate
   - copper-plate
