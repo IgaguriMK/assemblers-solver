@@ -83,7 +83,7 @@ impl SubCmd for Solve {
         target_settings.multiply(mult);
 
         if let Some(mergeds) = matches.values_of("merged") {
-            target_settings.add_mergeds(mergeds.map(|n| n.to_string()).collect());
+            target_settings.add_mergeds(mergeds.map(ToString::to_string).collect());
         }
 
         let processer_choice = solver::ProcesserChoice::new()

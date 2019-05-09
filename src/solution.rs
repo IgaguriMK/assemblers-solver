@@ -4,7 +4,7 @@ use crate::processer::Processer;
 pub struct Solution {
     pub trees: Vec<ProcessingTree>,
     pub sources: Vec<Throughput>,
-    pub missings: Vec<String>,
+    pub missings: Vec<Missing>,
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -58,5 +58,30 @@ impl Throughput {
             Throughput::Item(n, _) => n,
             Throughput::Liquid(n, _) => n,
         }
+    }
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub struct Missing {
+    pub name: String,
+    pub candidates: Vec<String>,
+}
+
+impl std::fmt::Display for Missing {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "{}", self.name)?;
+
+        if !self.candidates.is_empty() {
+            write!(f, ", did you mean [")?;
+            for (i, c) in self.candidates.iter().enumerate() {
+                if i > 0 {
+                    write!(f, ", ")?;
+                }
+                write!(f, "{}", c)?;
+            }
+            write!(f, "]")?;
+        }
+
+        Ok(())
     }
 }

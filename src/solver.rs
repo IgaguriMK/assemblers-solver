@@ -69,6 +69,15 @@ impl Solver {
             }
         }
 
+        let missings = self
+            .missings
+            .iter()
+            .map(|n| Missing {
+                name: n.to_string(),
+                candidates: self.recipe_set.find_did_you_mean(n),
+            })
+            .collect();
+
         Ok(Solution {
             trees,
             sources: self
@@ -76,7 +85,7 @@ impl Solver {
                 .iter()
                 .map(|(n, t)| Throughput::new(n.clone(), *t))
                 .collect(),
-            missings: self.missings.iter().map(ToString::to_string).collect(),
+            missings,
         })
     }
 

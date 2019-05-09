@@ -98,9 +98,22 @@ impl<W: Write> TextFormatter<W> {
         }
     }
 
-    fn format_missings(&mut self, missings: &[String]) -> Result<()> {
+    fn format_missings(&mut self, missings: &[Missing]) -> Result<()> {
         for m in missings {
-            writeln!(self.w, "WARNING: {} is missing.", m)?;
+            write!(self.w, "WARNING: {} is missing.", m.name)?;
+
+            if !m.candidates.is_empty() {
+                write!(self.w, " Did you mean ")?;
+                for (i, c) in m.candidates.iter().enumerate() {
+                    if i > 0 {
+                        write!(self.w, ", ")?;
+                    }
+                    write!(self.w, "{}", c)?;
+                }
+                write!(self.w, "?")?;
+            }
+
+            writeln!(self.w)?;
         }
         Ok(())
     }
