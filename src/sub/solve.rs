@@ -2,6 +2,7 @@ use clap::{App, Arg, ArgMatches, SubCommand};
 use failure::{format_err, Error};
 
 use super::SubCmd;
+use crate::consts::BELT_THROUGHPUT;
 use crate::formatter::{Formatter, TextFormatter};
 use crate::processer;
 use crate::recipe::load_recipes;
@@ -28,7 +29,7 @@ impl SubCmd for Solve {
                 Arg::with_name("mult")
                     .long("mult")
                     .short("m")
-                    .default_value("1.0"),
+                    .takes_value(true),
             )
             .arg(Arg::with_name("all-merged").long("all-merged"))
             .arg(
@@ -76,11 +77,18 @@ impl SubCmd for Solve {
         };
 
         let default_sources = if from_file { "none" } else { "basic" };
-        let addtional_sources = sources_set(matches.value_of("sources").unwrap_or(default_sources))?;
+        let addtional_sources =
+            sources_set(matches.value_of("sources").unwrap_or(default_sources))?;
         target_settings.add_sources(addtional_sources);
 
-        let mult = matches.value_of("mult").unwrap().parse::<f64>()?;
-        target_settings.multiply(mult);
+        if let Some(mult) = matches.value_of("mult") {
+            if mult.ends_with('B') {
+                let mult = mult.trim_end_matches('B');
+                target_settings.multiply(BELT_THROUGHPUT * mult.parse::<f64>()?);
+            } else {
+                target_settings.multiply(mult.parse::<f64>()?);
+            }
+        }
 
         if let Some(mergeds) = matches.values_of("merged") {
             target_settings.add_mergeds(mergeds.map(ToString::to_string).collect());
