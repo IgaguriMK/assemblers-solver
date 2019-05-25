@@ -49,9 +49,17 @@ impl SubCmd for Solve {
                     .takes_value(true),
             )
             .arg(
-                Arg::with_name("sources")
-                    .long("sources")
+                Arg::with_name("source-set")
+                    .long("source-set")
                     .short("S")
+                    .takes_value(true),
+            )
+            .arg(
+                Arg::with_name("source")
+                    .long("source")
+                    .short("s")
+                    .multiple(true)
+                    .number_of_values(1)
                     .takes_value(true),
             )
             .arg(Arg::with_name("no-beacon").long("no-beacon"))
@@ -76,10 +84,16 @@ impl SubCmd for Solve {
             tgt
         };
 
-        let default_sources = if from_file { "none" } else { "basic" };
-        let addtional_sources =
-            sources_set(matches.value_of("sources").unwrap_or(default_sources))?;
-        target_settings.add_sources(addtional_sources);
+        let default_source_set = if from_file { "none" } else { "basic" };
+        let source_set =
+            sources_set(matches.value_of("source-set").unwrap_or(default_source_set))?;
+        target_settings.add_sources(source_set);
+
+        if let Some(additional_sources) = matches.values_of("source") {
+            for s in additional_sources {
+                target_settings.add_source(s.to_string());
+            }
+        }
 
         if let Some(mult) = matches.value_of("mult") {
             if mult.ends_with('B') {
