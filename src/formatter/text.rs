@@ -45,7 +45,7 @@ impl<W: Write> TextFormatter<W> {
             ": {} {} units, {:.2} craft/s",
             process.processer.name(),
             process.processer_num,
-            process.craft_per_sec,
+            process.craft_per_sec.ceil_at(-2),
         )?;
 
         for s in &process.sources {
@@ -91,10 +91,10 @@ impl<W: Write> TextFormatter<W> {
                 self.w,
                 "{}: {:.2} item/s ({:.1} B)",
                 n,
-                t,
-                t / BELT_THROUGHPUT
+                t.ceil_at(-2),
+                (t / BELT_THROUGHPUT).ceil_at(-1)
             ),
-            Throughput::Liquid(n, t) => write!(self.w, "{}: {:.2} unit/s", n, t),
+            Throughput::Liquid(n, t) => write!(self.w, "{}: {:.2} unit/s", n, t.ceil_at(-2)),
         }
     }
 
@@ -123,5 +123,34 @@ impl<W: Write> TextFormatter<W> {
             write!(self.w, "    ")?;
         }
         Ok(())
+    }
+}
+
+trait F64Extra {
+    fn val(&self) -> f64;
+    fn ceil_at(&self, idx: i32) -> f64 {
+        let x = self.val();
+        let shift = 10f64.powi(idx);
+        (x / shift).ceil() * shift
+    }
+}
+
+impl F64Extra for f64 {
+    fn val(&self) -> f64 {
+        *self
+    }
+}
+
+#[test]
+fn ceil_at() {
+    let params = [
+        (1.1, 0, 2.0),
+        (1.23, -1, 1.3),
+        (1.23, -2, 1.23),
+        (123.0, 1, 130.0),
+    ];
+
+    for p in &params {
+        assert_eq!(p.0.ceil_at(p.1), p.2);
     }
 }
