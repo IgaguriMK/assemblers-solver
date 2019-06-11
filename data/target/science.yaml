@@ -15,10 +15,10 @@ sources:
   - steel
   - stone
   - sulfuric-acid
+  - electronic-circuit
 merged:
   - advanced-circuit
   - battery
-  - electronic-circuit
   - electric-engine-unit
   - engine-unit
   - iron-gear-wheel

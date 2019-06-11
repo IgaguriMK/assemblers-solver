@@ -7,9 +7,9 @@ sources:
   - steel
   - sulfuric-acid
   - solid-fuel
+  - electronic-circuit
 merged:
   - satellite
-  - electronic-circuit
   - advanced-circuit
   - processing-unit
   - low-density-structure
