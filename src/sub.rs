@@ -3,11 +3,13 @@ use failure::Error;
 
 pub mod check;
 pub mod mining;
+pub mod oil;
 pub mod solve;
 pub mod stack;
 
 use check::Check;
 use mining::Mining;
+use oil::Oil;
 use solve::Solve;
 use stack::Stack;
 
@@ -21,6 +23,7 @@ pub fn sub_commands() -> Vec<Box<dyn SubCmd>> {
     vec![
         Box::new(Check::new()),
         Box::new(Mining::new()),
+        Box::new(Oil::new()),
         Box::new(Stack::new()),
         Box::new(Solve::new()),
     ]

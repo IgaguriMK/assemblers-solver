@@ -1,7 +1,6 @@
 use clap::{App, Arg, ArgMatches, SubCommand};
 use failure::{format_err, Error};
 
-use super::SubCmd;
 use crate::consts::BELT_THROUGHPUT;
 use crate::formatter::{Formatter, TextFormatter};
 use crate::processer;
@@ -9,6 +8,8 @@ use crate::recipe::load_recipes;
 use crate::solver;
 use crate::solver::Solver;
 use crate::target::{load_target_settings, TargetSettings};
+
+use super::SubCmd;
 
 pub struct Solve();
 
@@ -85,8 +86,7 @@ impl SubCmd for Solve {
         };
 
         let default_source_set = if from_file { "none" } else { "basic" };
-        let source_set =
-            sources_set(matches.value_of("source-set").unwrap_or(default_source_set))?;
+        let source_set = sources_set(matches.value_of("source-set").unwrap_or(default_source_set))?;
         target_settings.add_sources(source_set);
 
         if let Some(additional_sources) = matches.values_of("source") {
