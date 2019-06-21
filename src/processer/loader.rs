@@ -1,3 +1,6 @@
+#[cfg(test)]
+mod test;
+
 use std::fs::File;
 
 use failure::Error;
@@ -27,7 +30,7 @@ pub fn load() -> Result<Vec<Processer>, Error> {
                     continue;
                 }
 
-                let p = build_proc(&t.name, t.base_speed, c.io, *m, c);
+                let p = build_proc(&t.name, t.base_speed, m, c);
                 res.push(p);
             }
         }
@@ -39,16 +42,16 @@ pub fn load() -> Result<Vec<Processer>, Error> {
 fn build_proc(
     base_name: &str,
     base_speed: f64,
-    io: usize,
-    mods: (usize, usize),
+    mods: &(usize, usize),
     conf: &Configulation,
 ) -> Processer {
-    let (proc_cnt, speed_cnt) = mods;
+    let &(proc_cnt, speed_cnt) = mods;
 
-    let speed = base_speed
+    let speed_mult = 1.0
         + (proc_cnt as f64) * PROC_MOD_SPEED
         + (speed_cnt as f64) * SPEED_MOD_SPPEED
         + (conf.beacon as f64) * BEACON_SPEED;
+    let speed = base_speed * speed_mult;
 
     let productivity = 1.0 + (proc_cnt as f64) * PROC_MOD_PROC;
 
@@ -71,7 +74,7 @@ fn build_proc(
         proc_type: base_name.to_string(),
         productivity,
         speed,
-        io,
+        io: conf.io,
         speed_module: speed_cnt,
         productivity_module: proc_cnt,
         beacon: conf.beacon,

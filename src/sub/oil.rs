@@ -1,5 +1,5 @@
 use clap::{App, Arg, ArgMatches, SubCommand};
-use failure::{Error};
+use failure::Error;
 
 use super::SubCmd;
 
@@ -42,7 +42,8 @@ impl SubCmd for Oil {
         println!("|:------------------------:|-----------:|-----------:|-----------:|-----------:|----------------:|");
 
         // refinary
-        let refinery_craft_per_sec = (REFINERY_COUNT_PER_LINE as f64) * (count as f64) * REFINERY_SPEED / 5.0;
+        let refinery_craft_per_sec =
+            (REFINERY_COUNT_PER_LINE as f64) * (count as f64) * REFINERY_SPEED / 5.0;
         let refinary = LiquidFlow {
             name: "refinary",
             crude_oil: -100.0 * refinery_craft_per_sec,
@@ -57,7 +58,8 @@ impl SubCmd for Oil {
         let heavy_oil_cracking_max = LiquidFlow {
             name: "heavy oil cracking (max)",
             heavy_oil: 0.0,
-            light_oil: refinary.light_oil + 30.0 * HEAVY_OIL_CRACKING_PROD * heavy_oil_cracking_per_sec,
+            light_oil: refinary.light_oil
+                + 30.0 * HEAVY_OIL_CRACKING_PROD * heavy_oil_cracking_per_sec,
             water: refinary.water + 30.0 * heavy_oil_cracking_per_sec,
             ..refinary
         };
@@ -67,7 +69,8 @@ impl SubCmd for Oil {
         let light_oil_cracking_max = LiquidFlow {
             name: "light oil cracking (max)",
             light_oil: 0.0,
-            petroleum_gas: heavy_oil_cracking_max.petroleum_gas + 20.0 * LIGHT_OIL_CRACKING_PROD * light_oil_cracking_per_sec,
+            petroleum_gas: heavy_oil_cracking_max.petroleum_gas
+                + 20.0 * LIGHT_OIL_CRACKING_PROD * light_oil_cracking_per_sec,
             water: heavy_oil_cracking_max.water + 30.0 * light_oil_cracking_per_sec,
             ..heavy_oil_cracking_max
         };
