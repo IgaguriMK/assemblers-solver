@@ -59,6 +59,13 @@ impl Throughput {
             Throughput::Liquid(n, _) => n,
         }
     }
+
+    pub fn throughput(&self) -> f64 {
+        match self {
+            Throughput::Item(_, t) => *t,
+            Throughput::Liquid(_, t) => *t,
+        }
+    }
 }
 
 #[derive(Debug, Clone, PartialEq)]

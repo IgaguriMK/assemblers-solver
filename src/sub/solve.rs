@@ -2,7 +2,7 @@ use clap::{App, Arg, ArgMatches, SubCommand};
 use failure::{format_err, Error};
 
 use crate::consts::BELT_THROUGHPUT;
-use crate::formatter::{Formatter, TextFormatter};
+use crate::formatter::formatter_by_name;
 use crate::processer;
 use crate::recipe::load_recipes;
 use crate::solver;
@@ -67,6 +67,12 @@ impl SubCmd for Solve {
             .arg(Arg::with_name("no-speed").long("no-speed"))
             .arg(Arg::with_name("no-prod").long("no-prod"))
             .arg(Arg::with_name("allow-speed-only-beacon").long("allow-speed-only-beacon"))
+            .arg(
+                Arg::with_name("format")
+                    .long("format")
+                    .short("f")
+                    .default_value("text"),
+            )
             .arg(Arg::with_name("target"))
     }
 
@@ -128,7 +134,8 @@ impl SubCmd for Solve {
             solver.never_merged(never_merged);
         }
 
-        let mut formatter = TextFormatter::new(std::io::stdout());
+        let mut formatter = formatter_by_name(matches.value_of("format").unwrap())?;
+
         let solution = solver.solve()?;
 
         formatter.format(&solution)?;
