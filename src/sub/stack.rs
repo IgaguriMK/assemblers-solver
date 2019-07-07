@@ -3,6 +3,7 @@ use std::collections::BTreeMap;
 use clap::{App, Arg, ArgMatches, SubCommand};
 use failure::{format_err, Error};
 
+use crate::consts::LIQUID_EQ_STACK_SIZE;
 use crate::processer::ProcSet;
 use crate::recipe::load_recipes;
 use crate::solution::Throughput;
@@ -45,10 +46,22 @@ impl SubCmd for Stack {
             .ok_or_else(|| format_err!("unknown stack size: {}", target))?;
         let target_stack_size = target_stack_size as f64;
         target_settings.add_target(target.to_string(), target_stack_size);
-        target_settings.add_source("iron-ore".to_string());
-        target_settings.add_source("copper-ore".to_string());
-        target_settings.add_source("coal".to_string());
-        target_settings.add_source("stone".to_string());
+        target_settings.add_sources(vec![
+            "coal".to_string(),
+            "copper-plate".to_string(),
+            "iron-plate".to_string(),
+            "plastic-bar".to_string(),
+            "solid-fuel".to_string(),
+            "steel".to_string(),
+            "stone".to_string(),
+            "water".to_string(),
+            "crude-oil".to_string(),
+            "heavy-oil".to_string(),
+            "light-oil".to_string(),
+            "petroleum-gas".to_string(),
+            "lubricant".to_string(),
+            "sulfuric-acid".to_string(),
+        ]);
 
         let processer_choice = ProcesserChoice::new().productivity_module(use_prod);
         let processer_set = ProcSet::open_set()?;
@@ -106,7 +119,12 @@ impl SubCmd for Stack {
 
             println!("Liquids:");
             for (n, a) in liquids {
-                println!("    {}: {:.2} ", n, a);
+                println!(
+                    "    {}: {:.1} (eq {:.1} st)",
+                    n,
+                    a,
+                    a / LIQUID_EQ_STACK_SIZE
+                );
             }
         }
 
