@@ -110,6 +110,7 @@ impl SubCmd for Stack {
                 }
                 Throughput::Liquid(n, t) => {
                     liquids.insert(n.to_string(), *t);
+                    total_stacks += *t / LIQUID_EQ_STACK_SIZE;
                 }
             }
         }
@@ -119,15 +120,10 @@ impl SubCmd for Stack {
             for (n, s) in source_stacks {
                 println!("    {}: {:.2} st", n, s);
             }
-            println!();
-
-            println!("Total: {:.2} st", total_stacks);
-            println!("Efficiency: {:.1}%", 100.0 * total_stacks);
         }
 
         if !liquids.is_empty() {
             println!();
-
             println!("Liquids:");
             for (n, a) in liquids {
                 println!(
@@ -138,6 +134,10 @@ impl SubCmd for Stack {
                 );
             }
         }
+
+        println!();
+        println!("Total: {:.2} st", total_stacks);
+        println!("Efficiency: {:.0}%", 100.0 * total_stacks);
 
         Ok(())
     }
