@@ -12,6 +12,10 @@ impl StackDict {
     pub fn get(&self, name: &str) -> Option<u64> {
         self.0.get(name).cloned()
     }
+
+    pub fn names(&self) -> impl Iterator<Item=&str> {
+        self.0.iter().map(|(k, _)| k.as_str())
+    }
 }
 
 pub fn load_stack_dict(file_path: &str) -> Result<StackDict, Error> {

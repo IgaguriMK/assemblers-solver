@@ -4,6 +4,7 @@ use clap::{App, Arg, ArgMatches, SubCommand};
 use failure::{format_err, Error};
 
 use crate::consts::LIQUID_EQ_STACK_SIZE;
+use crate::near_name::NameSet;
 use crate::processer::ProcSet;
 use crate::recipe::load_recipes;
 use crate::solution::Throughput;
@@ -38,12 +39,22 @@ impl SubCmd for Stack {
         let target = matches.value_of("target-name").unwrap();
 
         let stack_dict = load_stack_dict("./data/stack-size.yaml")?;
+        let recipe_set = load_recipes("./data/recipes")?;
+
+        let mut name_set = NameSet::new();
+        name_set.add_names(stack_dict.names());
+        name_set.add_names(recipe_set.all_results());
 
         let mut target_settings = TargetSettings::new();
 
-        let target_stack_size = stack_dict
-            .get(target)
-            .ok_or_else(|| format_err!("unknown stack size: {}", target))?;
+        let target_stack_size = stack_dict.get(target).ok_or_else(|| {
+            let candidates = name_set.find_nearest_names(target, 3);
+            format_err!(
+                "unknown stack size: {}, Did you mean: {:?}?",
+                target,
+                candidates
+            )
+        })?;
         let target_stack_size = target_stack_size as f64;
         target_settings.add_target(target.to_string(), target_stack_size);
         target_settings.add_sources(vec![
@@ -67,7 +78,7 @@ impl SubCmd for Stack {
         let processer_set = ProcSet::open_set()?;
 
         let mut solver = Solver::new(
-            load_recipes("./data/recipes")?,
+            recipe_set,
             &target_settings,
             processer_set,
             processer_choice,

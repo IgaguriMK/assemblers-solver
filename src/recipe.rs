@@ -3,11 +3,10 @@ use std::collections::{BTreeMap, BTreeSet, HashSet};
 use std::fs;
 use std::io::BufReader;
 
-use edit_distance::edit_distance;
 use failure::Error;
 use serde::{Deserialize, Serialize};
 
-const MAX_FIND_DIST: usize = 2;
+use crate::near_name::NameSet;
 
 #[cfg(test)]
 mod tests;
@@ -158,30 +157,9 @@ impl RecipeSet {
     }
 
     pub fn find_did_you_mean(&self, name: &str) -> Vec<String> {
-        let mut res = Vec::new();
-
-        let mut min_dist = usize::max_value();
-
-        for r in self.all_results() {
-            let dist = edit_distance(name, &r);
-
-            if dist > MAX_FIND_DIST {
-                continue;
-            }
-
-            if dist < min_dist {
-                min_dist = dist;
-                res.clear();
-                res.push(r.to_string());
-                continue;
-            }
-
-            if dist == min_dist {
-                res.push(r.to_string());
-            }
-        }
-
-        res
+        let mut name_set = NameSet::new();
+        name_set.add_names(self.all_results());
+        name_set.find_nearest_names(name, 3)
     }
 }
 

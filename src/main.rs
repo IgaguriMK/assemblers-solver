@@ -3,6 +3,7 @@ use failure::{format_err, Error};
 
 mod consts;
 mod formatter;
+mod near_name;
 mod processer;
 mod recipe;
 mod solution;
