@@ -162,6 +162,7 @@ fn sources_set(name: &str) -> Result<Vec<String>, Error> {
             "petroleum-gas".to_string(),
             "lubricant".to_string(),
             "sulfuric-acid".to_string(),
+            "uranium-235".to_string(),
         ]),
         _ => Err(format_err!("unknown source set: {}", name)),
     }

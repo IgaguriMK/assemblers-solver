@@ -6,3 +6,12 @@
   ingredients:
     uranium-ore: 10
   version: "0.17.17"
+-
+  type: centrifuge
+  cost: 90
+  results:
+    nuclear-fuel: 1
+  ingredients:
+    uranium-235: 1
+    rocket-fuel: 1
+  version: "0.17.17"
