@@ -13,7 +13,7 @@ impl StackDict {
         self.0.get(name).cloned()
     }
 
-    pub fn names(&self) -> impl Iterator<Item=&str> {
+    pub fn names(&self) -> impl Iterator<Item = &str> {
         self.0.iter().map(|(k, _)| k.as_str())
     }
 }

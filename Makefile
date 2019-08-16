@@ -1,5 +1,8 @@
 CRATE_NAME:=assemblers-solver
 
+.PHONY: default
+default: check
+
 .PHONY: all
 all: soft-clean build check
 
@@ -9,11 +12,13 @@ build:
 
 .PHONY: check
 check: soft-clean
-	cargo clippy -- -D warnings
 	cargo test
+	cargo fmt -- --check
+	cargo clippy -- -D warnings
 
 .PHONY: release
-release: clean build check r
+release: check
+	cargo build --release
 
 .PHONY: soft-clean
 soft-clean:

@@ -1,5 +1,5 @@
-use std::collections::BTreeSet;
 use std::cmp::Ordering;
+use std::collections::BTreeSet;
 
 use edit_distance::edit_distance;
 
@@ -15,7 +15,7 @@ impl NameSet {
         }
     }
 
-    pub fn add_names<S: Into<String>, I: IntoIterator<Item=S>>(&mut self, names: I) {
+    pub fn add_names<S: Into<String>, I: IntoIterator<Item = S>>(&mut self, names: I) {
         for n in names.into_iter() {
             self.set.insert(n.into());
         }
@@ -37,7 +37,10 @@ impl NameSet {
     }
 
     pub fn find_nearest_names(&self, name: &str, n: usize) -> Vec<String> {
-        self.find_nearest(name, n).into_iter().map(|c| c.name).collect()
+        self.find_nearest(name, n)
+            .into_iter()
+            .map(|c| c.name)
+            .collect()
     }
 }
 

@@ -45,7 +45,6 @@ impl Formatter for GraphFormatter {
             name_escape(solution.trees[0].process.throughput.name()),
         );
 
-
         println!("}}");
 
         Ok(())
