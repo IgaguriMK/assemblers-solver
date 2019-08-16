@@ -15,7 +15,7 @@ fn with_assembler() {
     ];
 
     for (mods, conf, prod_tobe, speed_tobe) in samples {
-        let p = build_proc("assembler", 1.25, &mods, conf);
+        let p = build_proc("assembler3", "assembler", 1.25, 3, &mods, conf);
 
         assert_eq!(
             p.productivity(),
@@ -46,7 +46,7 @@ fn with_furnace() {
     ];
 
     for (mods, conf, prod_tobe, speed_tobe) in samples {
-        let p = build_proc("furnace", 2.0, &mods, conf);
+        let p = build_proc("furnace", "furnace", 2.0, 0, &mods, conf);
 
         assert_eq!(
             p.productivity(),

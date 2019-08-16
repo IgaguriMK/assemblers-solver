@@ -11,6 +11,7 @@ pub struct Processer {
     productivity: f64,
     speed: f64,
     io: usize,
+    tier: usize,
     speed_module: usize,
     productivity_module: usize,
     beacon: usize,
@@ -79,6 +80,7 @@ impl ProcSet {
                     || p.use_prod_module()
                     || !(p.use_speed_module() && p.use_beacon())
             })
+            .filter(|p| p.tier <= processer_choice.max_tier)
             .filter(|p| p.io > ingredients_count)
             .collect();
 
@@ -124,6 +126,7 @@ pub struct ProcesserChoice {
     allow_speed_module: bool,
     allow_productivity_module: bool,
     allow_speed_only_beacon: bool,
+    max_tier: usize,
 }
 
 impl ProcesserChoice {
@@ -158,6 +161,13 @@ impl ProcesserChoice {
             ..self.clone()
         }
     }
+
+    pub fn max_tier(&self, tier: usize) -> ProcesserChoice {
+        ProcesserChoice {
+            max_tier: tier,
+            ..self.clone()
+        }
+    }
 }
 
 impl Default for ProcesserChoice {
@@ -167,6 +177,7 @@ impl Default for ProcesserChoice {
             allow_speed_module: true,
             allow_productivity_module: true,
             allow_speed_only_beacon: true,
+            max_tier: std::usize::MAX,
         }
     }
 }

@@ -63,6 +63,12 @@ impl SubCmd for Solve {
                     .number_of_values(1)
                     .takes_value(true),
             )
+            .arg(
+                Arg::with_name("max_tier")
+                    .short("t")
+                    .long("max-tier")
+                    .takes_value(true),
+            )
             .arg(Arg::with_name("no-beacon").long("no-beacon"))
             .arg(Arg::with_name("no-speed").long("no-speed"))
             .arg(Arg::with_name("no-prod").long("no-prod"))
@@ -114,11 +120,16 @@ impl SubCmd for Solve {
             target_settings.add_mergeds(mergeds.map(ToString::to_string).collect());
         }
 
-        let processer_choice = solver::ProcesserChoice::new()
+        let mut processer_choice = solver::ProcesserChoice::new()
             .beacon(!matches.is_present("no-beacon"))
             .speed_module(!matches.is_present("no-speed"))
             .productivity_module(!matches.is_present("no-prod"))
             .speed_only_beacon(matches.is_present("allow-speed-only-beacon"));
+
+        if let Some(tier_str) = matches.value_of("max_tier") {
+            let tier: usize = tier_str.parse()?;
+            processer_choice = processer_choice.max_tier(tier);
+        }
 
         let processer_set = processer::ProcSet::open_set()?;
 

@@ -30,7 +30,14 @@ pub fn load() -> Result<Vec<Processer>, Error> {
                     continue;
                 }
 
-                let p = build_proc(&t.name, t.base_speed, m, c);
+                let p = build_proc(
+                    &t.name,
+                    t.proc_type.as_ref().map(String::as_str).unwrap_or(&t.name),
+                    t.base_speed,
+                    t.tier,
+                    m,
+                    c,
+                );
                 res.push(p);
             }
         }
@@ -41,7 +48,9 @@ pub fn load() -> Result<Vec<Processer>, Error> {
 
 fn build_proc(
     base_name: &str,
+    proc_type: &str,
     base_speed: f64,
+    tier: usize,
     mods: &(usize, usize),
     conf: &Configulation,
 ) -> Processer {
@@ -71,10 +80,11 @@ fn build_proc(
 
     Processer {
         name,
-        proc_type: base_name.to_string(),
+        proc_type: proc_type.to_owned(),
         productivity,
         speed,
         io: conf.io,
+        tier,
         speed_module: speed_cnt,
         productivity_module: proc_cnt,
         beacon: conf.beacon,
@@ -84,8 +94,12 @@ fn build_proc(
 #[derive(Debug, Deserialize)]
 struct ProcType {
     name: String,
+    #[serde(rename = "type")]
+    proc_type: Option<String>,
     base_speed: f64,
     max_modules: usize,
+    #[serde(default)]
+    tier: usize,
     configulations: Vec<Configulation>,
 }
 

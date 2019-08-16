@@ -1,7 +1,25 @@
 -
-  name: assembler
+  name: assembler1
+  type: assembler
+  base_speed: 0.5
+  max_modules: 0
+  tier: 1
+  configulations:
+    - {beacon: 0, io: 8}
+-
+  name: assembler2
+  type: assembler
+  base_speed: 0.75
+  max_modules: 0
+  tier: 2
+  configulations:
+    - {beacon: 0, io: 8}
+-
+  name: assembler3
+  type: assembler
   base_speed: 1.25
   max_modules: 4
+  tier: 3
   configulations:
     - {beacon: 0, io: 8}
     - {beacon: 4, io: 6}
