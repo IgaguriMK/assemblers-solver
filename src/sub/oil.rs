@@ -1,13 +1,10 @@
+use std::fmt;
+use std::ops::Add;
+
 use clap::{App, Arg, ArgMatches, SubCommand};
 use failure::Error;
 
 use super::SubCmd;
-
-const REFINERY_COUNT_PER_LINE: usize = 8;
-const REFINERY_SPEED: f64 = 5.55;
-const REFINERY_PROD: f64 = 1.3;
-const HEAVY_OIL_CRACKING_PROD: f64 = 1.1;
-const LIGHT_OIL_CRACKING_PROD: f64 = 1.3;
 
 pub struct Oil();
 
@@ -35,54 +32,93 @@ impl SubCmd for Oil {
     fn exec(&self, matches: &ArgMatches) -> Result<(), Error> {
         let count = matches.value_of("count").unwrap().parse::<usize>()?;
 
-        println!(
-            "| {:^24} | {:^10} | {:^10} | {:^10} | {:^10} | {:^15} |",
-            "process", "crude oil", "water", "heavy oil", "light oil", "petroleum gas"
-        );
-        println!("|:------------------------:|-----------:|-----------:|-----------:|-----------:|----------------:|");
+        let oil_out = OIL_PROCESS.flow(count as f64);
+        println!("Oil Process [{}]: {}", count, oil_out);
 
-        // refinary
-        let refinery_craft_per_sec =
-            (REFINERY_COUNT_PER_LINE as f64) * (count as f64) * REFINERY_SPEED / 5.0;
-        let refinary = LiquidFlow {
-            name: "refinary",
-            crude_oil: -100.0 * refinery_craft_per_sec,
-            water: -50.0 * refinery_craft_per_sec,
-            heavy_oil: 10.0 * REFINERY_PROD * refinery_craft_per_sec,
-            light_oil: 45.0 * REFINERY_PROD * refinery_craft_per_sec,
-            petroleum_gas: 55.0 * REFINERY_PROD * refinery_craft_per_sec,
-        };
-        println!("{}", refinary);
+        let (hc_cnt, hc_out) = HEAVY_CRACK.match_count(oil_out, |l| l.heavy_oil);
+        println!("Heavy Cracking [{:.1}]: {}", hc_cnt, hc_out);
+        let after_hc = oil_out + hc_out;
 
-        let heavy_oil_cracking_per_sec = refinary.heavy_oil / 40.0;
-        let heavy_oil_cracking_max = LiquidFlow {
-            name: "heavy oil cracking (max)",
-            heavy_oil: 0.0,
-            light_oil: refinary.light_oil
-                + 30.0 * HEAVY_OIL_CRACKING_PROD * heavy_oil_cracking_per_sec,
-            water: refinary.water + 30.0 * heavy_oil_cracking_per_sec,
-            ..refinary
-        };
-        println!("{}", heavy_oil_cracking_max);
+        let (lc_cnt, lc_out) = LIGHT_CRACK.match_count(after_hc, |l| l.light_oil);
+        println!("Light Cracking [{:.1}]: {}", lc_cnt, lc_out);
+        let after_lc = after_hc + lc_out;
 
-        let light_oil_cracking_per_sec = heavy_oil_cracking_max.light_oil / 30.0;
-        let light_oil_cracking_max = LiquidFlow {
-            name: "light oil cracking (max)",
-            light_oil: 0.0,
-            petroleum_gas: heavy_oil_cracking_max.petroleum_gas
-                + 20.0 * LIGHT_OIL_CRACKING_PROD * light_oil_cracking_per_sec,
-            water: heavy_oil_cracking_max.water + 30.0 * light_oil_cracking_per_sec,
-            ..heavy_oil_cracking_max
-        };
-        println!("{}", light_oil_cracking_max);
+        println!();
+        println!("Oil Out:   {}", oil_out);
+        println!("HC Out:    {}", after_hc);
+        println!("Total Out: {}", after_lc);
 
         Ok(())
     }
 }
 
-#[derive(Debug, Clone)]
-struct LiquidFlow<'a> {
-    name: &'a str,
+const OIL_PROCESS: Process = Process {
+    speed: 5.55 / 5.0,
+    prod: 1.3,
+    recipe: Liquid {
+        crude_oil: -100.0,
+        water: -50.0,
+        heavy_oil: 25.0,
+        light_oil: 45.0,
+        petroleum_gas: 55.0,
+    },
+};
+
+const HEAVY_CRACK: Process = Process {
+    speed: 6.5 / 2.0,
+    prod: 1.0,
+    recipe: Liquid {
+        water: -30.0,
+        heavy_oil: -40.0,
+        light_oil: 30.0,
+        ..LIQUID_ZERO
+    },
+};
+
+const LIGHT_CRACK: Process = Process {
+    speed: 4.55 / 2.0,
+    prod: 1.3,
+    recipe: Liquid {
+        water: -30.0,
+        light_oil: -30.0,
+        petroleum_gas: 20.0,
+        ..LIQUID_ZERO
+    },
+};
+
+#[derive(Debug, Default, Clone, Copy)]
+struct Process {
+    speed: f64,
+    prod: f64,
+    recipe: Liquid,
+}
+
+impl Process {
+    fn flow(&self, count: f64) -> Liquid {
+        self.recipe.mult(self.speed * count, self.prod)
+    }
+
+    fn match_count(&self, input: Liquid, key: impl Fn(Liquid) -> f64) -> (f64, Liquid) {
+        let target_in = key(input);
+        let consume = self.speed * key(self.recipe);
+        let count = -target_in / consume;
+
+        let out = self.recipe.mult(self.speed * count, self.prod);
+
+        (count, out)
+    }
+}
+
+const LIQUID_ZERO: Liquid = Liquid {
+    crude_oil: 0.0,
+    water: 0.0,
+    heavy_oil: 0.0,
+    light_oil: 0.0,
+    petroleum_gas: 0.0,
+};
+
+#[derive(Debug, Default, Clone, Copy)]
+struct Liquid {
     crude_oil: f64,
     water: f64,
     heavy_oil: f64,
@@ -90,17 +126,79 @@ struct LiquidFlow<'a> {
     petroleum_gas: f64,
 }
 
-impl<'a> std::fmt::Display for LiquidFlow<'a> {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(
-            f,
-            "| {:<24} | {:>10.1} | {:>10.1} | {:>10.1} | {:>10.1} | {:>15.1} |",
-            self.name,
-            self.crude_oil,
-            self.water,
-            self.heavy_oil,
-            self.light_oil,
-            self.petroleum_gas
-        )
+impl Liquid {
+    fn mult(self, k: f64, prod: f64) -> Liquid {
+        Liquid {
+            crude_oil: mult_prod(self.crude_oil, k, prod),
+            water: mult_prod(self.water, k, prod),
+            heavy_oil: mult_prod(self.heavy_oil, k, prod),
+            light_oil: mult_prod(self.light_oil, k, prod),
+            petroleum_gas: mult_prod(self.petroleum_gas, k, prod),
+        }
+    }
+}
+
+fn mult_prod(x: f64, k: f64, prod: f64) -> f64 {
+    if x < 0.0 {
+        x * k
+    } else {
+        x * k * prod
+    }
+}
+
+impl Add for Liquid {
+    type Output = Liquid;
+
+    fn add(self, rhs: Liquid) -> Liquid {
+        Liquid {
+            crude_oil: self.crude_oil + rhs.crude_oil,
+            water: self.water + rhs.water,
+            heavy_oil: self.heavy_oil + rhs.heavy_oil,
+            light_oil: self.light_oil + rhs.light_oil,
+            petroleum_gas: self.petroleum_gas + rhs.petroleum_gas,
+        }
+    }
+}
+
+impl fmt::Display for Liquid {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let mut printed = if self.crude_oil.abs() > 0.005 {
+            write!(f, "crude_oil {:.2}", self.crude_oil)?;
+            true
+        } else {
+            false
+        };
+
+        if self.water.abs() > 0.005 {
+            if printed {
+                write!(f, ", ")?;
+            }
+            write!(f, "water {:.2}", self.water)?;
+            printed = true;
+        }
+
+        if self.heavy_oil.abs() > 0.005 {
+            if printed {
+                write!(f, ", ")?;
+            }
+            write!(f, "heavy_oil {:.2}", self.heavy_oil)?;
+            printed = true;
+        }
+
+        if self.light_oil.abs() > 0.005 {
+            if printed {
+                write!(f, ", ")?;
+            }
+            write!(f, "light_oil {:.2}", self.light_oil)?;
+            printed = true;
+        }
+
+        if self.petroleum_gas.abs() > 0.005 {
+            if printed {
+                write!(f, ", ")?;
+            }
+            write!(f, "petroleum_gas {:.2}", self.petroleum_gas)?;
+        }
+        Ok(())
     }
 }
