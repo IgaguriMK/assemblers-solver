@@ -46,9 +46,19 @@
     - {beacon: 0, io: 4}
     - {beacon: 8, io: 4}
 -
+  name: fuel-mining-drill
+  type: mining-drill
+  base_speed: 0.25
+  max_modules: 0
+  tier: 0
+  configulations:
+    - {beacon: 0, io: 1}
+-
   name: mining-drill
+  type: mining-drill
   base_speed: 0.5
   max_modules: 0
+  tier: 1
   configulations:
     - {beacon: 0, io: 1}
 -

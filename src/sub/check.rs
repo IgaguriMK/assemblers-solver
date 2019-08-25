@@ -28,7 +28,7 @@ impl SubCmd for Check {
                     .long("version")
                     .short("V")
                     .takes_value(true)
-                    .default_value(">=0.17.0,<0.18.0"),
+                    .default_value(">=0.17.66,<0.18.0"),
             )
             .arg(
                 Arg::with_name("error-limit")
