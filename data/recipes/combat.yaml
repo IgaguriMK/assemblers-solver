@@ -7,7 +7,7 @@
     iron-plate: 10
     electronic-circuit: 5
     iron-gear-wheel: 5
-  version: "0.17.17"
+  version: "0.17.66"
 -
   type: assembler
   cost: 8
@@ -16,7 +16,7 @@
   ingredients:
     coal: 10
     iron-plate: 5
-  version: "0.17.17"
+  version: "0.17.66"
 -
   type: assembler
   cost: 8
@@ -26,7 +26,7 @@
     iron-plate: 20
     copper-plate: 10
     iron-gear-wheel: 10
-  version: "0.17.17"
+  version: "0.17.66"
 -
   type: assembler
   cost: 3
@@ -36,7 +36,7 @@
     copper-plate: 5
     firearm-magazine: 1
     steel: 1
-  version: "0.17.17"
+  version: "0.17.66"
 -
   type: assembler
   cost: 1
@@ -44,7 +44,7 @@
     firearm-magazine: 1
   ingredients:
     iron-plate: 4
-  version: "0.17.17"
+  version: "0.17.66"
 -
   type: assembler
   cost: 0.5
@@ -52,4 +52,4 @@
     wall: 1
   ingredients:
     stone-brick: 5
-  version: "0.17.17"
+  version: "0.17.66"

@@ -7,7 +7,7 @@
     iron-ore: 1
     stone-brick: 5
     water: 100
-  version: "0.17.17"
+  version: "0.17.66"
 -
   type: assembler
   cost: 15
@@ -18,7 +18,7 @@
     iron-stick: 8
     concrete: 20
     water: 100
-  version: "0.17.17"
+  version: "0.17.66"
 -
   type: assembler
   cost: 0.5
@@ -26,4 +26,4 @@
     landfill: 1
   ingredients:
     stone: 20
-  version: "0.17.17"
+  version: "0.17.66"

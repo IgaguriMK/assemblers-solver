@@ -6,7 +6,7 @@
   ingredients:
     iron-plate: 2
     battery: 5
-  version: "0.17.17"
+  version: "0.17.66"
 - 
   type: assembler
   cost: 10
@@ -16,4 +16,4 @@
     copper-plate: 5
     steel: 5
     electronic-circuit: 15
-  version: "0.17.17"
+  version: "0.17.66"

@@ -7,7 +7,7 @@
   ingredients:
     copper-plate: 1
     iron-gear-wheel: 1
-  version: "0.17.17"
+  version: "0.17.66"
 -
   type: assembler
   cost: 6
@@ -17,7 +17,7 @@
   ingredients:
     transport-belt: 1
     inserter: 1
-  version: "0.17.17"
+  version: "0.17.66"
 -
   type: assembler
   cost: 10
@@ -25,10 +25,10 @@
   results:
     military-science-pack: 2
   ingredients:
+    piercing-rounds-magazine: 1
     grenade: 1
     wall: 2
-    piercing-rounds-magazine: 1
-  version: "0.17.17"
+  version: "0.17.66"
 -
   type: assembler
   cost: 24
@@ -36,10 +36,10 @@
   results:
     chemical-science-pack: 2
   ingredients:
+    sulfur: 1
     advanced-circuit: 3
     engine-unit: 2
-    solid-fuel: 1
-  version: "0.17.17"
+  version: "0.17.66"
 -
   type: assembler
   cost: 21
@@ -50,7 +50,7 @@
     rail: 30
     electric-furnace: 1
     productivity-module: 1
-  version: "0.17.17"
+  version: "0.17.66"
 -
   type: assembler
   cost: 21
@@ -61,4 +61,4 @@
     processing-unit: 2
     flying-robot-frame: 1
     low-density-structure: 3
-  version: "0.17.17"
+  version: "0.17.66"

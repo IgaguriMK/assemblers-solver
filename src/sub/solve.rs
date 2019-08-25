@@ -7,6 +7,7 @@ use crate::processer;
 use crate::recipe::load_recipes;
 use crate::solver;
 use crate::solver::Solver;
+use crate::sources::load_source_sets;
 use crate::target::{load_target_settings, TargetSettings};
 
 use super::SubCmd;
@@ -98,8 +99,12 @@ impl SubCmd for Solve {
         };
 
         let default_source_set = if from_file { "none" } else { "basic" };
-        let source_set = sources_set(matches.value_of("source-set").unwrap_or(default_source_set))?;
-        target_settings.add_sources(source_set);
+        let source_set_name = matches.value_of("source-set").unwrap_or(default_source_set);
+        let source_sets = load_source_sets("./data/sources.yaml")?;
+        let source_set = source_sets
+            .get(source_set_name)
+            .ok_or_else(|| format_err!("unknown source set {}", source_set_name))?;
+        target_settings.add_sources(source_set.clone());
 
         if let Some(additional_sources) = matches.values_of("source") {
             for s in additional_sources {
@@ -152,29 +157,5 @@ impl SubCmd for Solve {
         formatter.format(&solution)?;
 
         Ok(())
-    }
-}
-
-fn sources_set(name: &str) -> Result<Vec<String>, Error> {
-    match name {
-        "none" => Ok(vec![]),
-        "basic" => Ok(vec![
-            "coal".to_string(),
-            "copper-plate".to_string(),
-            "iron-plate".to_string(),
-            "plastic-bar".to_string(),
-            "solid-fuel".to_string(),
-            "steel".to_string(),
-            "stone".to_string(),
-            "water".to_string(),
-            "crude-oil".to_string(),
-            "heavy-oil".to_string(),
-            "light-oil".to_string(),
-            "petroleum-gas".to_string(),
-            "lubricant".to_string(),
-            "sulfuric-acid".to_string(),
-            "uranium-235".to_string(),
-        ]),
-        _ => Err(format_err!("unknown source set: {}", name)),
     }
 }

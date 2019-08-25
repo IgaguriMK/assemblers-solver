@@ -8,20 +8,20 @@
     low-density-structure: 714.285714
     rocket-fuel: 714.285714
     rocket-control-unit: 714.285714
-  version: "0.17.17"
+  version: "0.17.66"
 -
   type: assembler
   cost: 5
   results:
     satellite: 1
   ingredients:
-    accumulator: 100
-    low-density-structure: 100
     processing-unit: 100
-    rader: 5
+    low-density-structure: 100
     rocket-fuel: 50
     solar-panel: 100
-  version: "0.17.17"
+    accumulator: 100
+    rader: 5
+  version: "0.17.66"
 -
   type: assembler
   cost: 20
@@ -32,7 +32,7 @@
     copper-plate: 20
     steel: 2
     plastic-bar: 5
-  version: "0.17.17"
+  version: "0.17.66"
 -
   type: assembler
   cost: 30
@@ -42,4 +42,4 @@
   ingredients:
     processing-unit: 1
     speed-module: 1
-  version: "0.17.17"
+  version: "0.17.66"

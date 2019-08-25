@@ -1,0 +1,40 @@
+none: []
+basic:
+  - coal
+  - copper-plate
+  - iron-plate
+  - plastic-bar
+  - solid-fuel
+  - steel
+  - stone
+  - water
+  - crude-oil
+  - heavy-oil
+  - light-oil
+  - petroleum-gas
+  - lubricant
+  - sulfuric-acid
+  - uranium-235
+all:
+  - coal
+  - copper-plate
+  - iron-plate
+  - plastic-bar
+  - solid-fuel
+  - steel
+  - stone
+  - water
+  - crude-oil
+  - heavy-oil
+  - light-oil
+  - petroleum-gas
+  - lubricant
+  - sulfuric-acid
+  - uranium-235
+root:
+  - crude-oil
+  - heavy-oil
+  - light-oil
+  - petroleum-gas
+  - uranium-235
+  - uranium-238

@@ -1,8 +1,11 @@
+use std::collections::HashSet;
+
 use clap::{App, Arg, ArgMatches, SubCommand};
 use failure::{format_err, Error};
 use semver::{Version, VersionReq};
 
 use crate::recipe::load_recipes;
+use crate::sources::load_source_sets;
 use crate::stack::load_stack_dict;
 
 use super::SubCmd;
@@ -72,6 +75,13 @@ fn recipe_check(matches: &ArgMatches) -> Result<(), Error> {
     let recipes = load_recipes(&recipe_dir)?;
     let all_results = recipes.all_results();
 
+    let root_source = load_source_sets("./data/sources.yaml")?
+        .get("root")
+        .unwrap()
+        .iter()
+        .cloned()
+        .collect::<HashSet<String>>();
+
     for (n, r) in recipes.recipes().enumerate() {
         if error_count >= error_limit {
             return Err(format_err!("Too many errors."));
@@ -108,6 +118,10 @@ fn recipe_check(matches: &ArgMatches) -> Result<(), Error> {
 
         for i in r.ingredients() {
             if !all_results.contains(i.0) {
+                if root_source.contains(i.0) {
+                    continue;
+                }
+
                 error_count += 1;
 
                 println!("{}[{}]: \"{}\" is missing.", r.file_path("unknown"), n, i.0);

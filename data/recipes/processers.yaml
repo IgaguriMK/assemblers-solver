@@ -4,7 +4,7 @@
   results:
     electric-furnace: 1
   ingredients:
-    advanced-circuit: 5
     steel: 10
+    advanced-circuit: 5
     stone-brick: 10
-  version: "0.17.17"
+  version: "0.17.66"

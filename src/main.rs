@@ -8,6 +8,7 @@ mod processer;
 mod recipe;
 mod solution;
 mod solver;
+mod sources;
 mod stack;
 mod sub;
 mod target;

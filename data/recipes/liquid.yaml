@@ -4,11 +4,11 @@
   results:
     water: 1
   ingredients: {}
-  version: "0.17.17"
+  version: "0.17.66"
 - 
   type: pumpjack
   cost: 2
   results:
     crude-oil: 1
   ingredients: {}
-  version: "0.17.17"
+  version: "0.17.66"
