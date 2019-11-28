@@ -9,12 +9,15 @@ sources:
   - coal
   - copper-plate
   - iron-plate
+  - heavy-oil
+  - light-oil
   - lubricant
   - plastic-bar
   - solid-fuel
-  - steel
+  - steel-plate
   - stone
   - sulfuric-acid
+  - sulfur
   - electronic-circuit
 merged:
   - advanced-circuit

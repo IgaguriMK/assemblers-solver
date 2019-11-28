@@ -4,8 +4,8 @@ sources:
   - iron-plate
   - copper-plate
   - plastic-bar
-  - solid-fuel
-  - steel
+  - steel-plate
+  - sulfur
 merged:
   - advanced-circuit
   - engine-unit

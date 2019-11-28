@@ -2,6 +2,6 @@ targets:
   refined-concrete: 1
 sources:
   - iron-ore
-  - steel
+  - steel-plate
   - stone
   - water

@@ -1,17 +1,10 @@
 use clap::{App, ArgMatches};
 use failure::Error;
 
-pub mod check;
-pub mod mining;
-pub mod oil;
-pub mod solve;
-pub mod stack;
-
-use check::Check;
-use mining::Mining;
-use oil::Oil;
-use solve::Solve;
-use stack::Stack;
+mod mining;
+mod oil;
+mod solve;
+mod stack;
 
 pub trait SubCmd {
     fn name(&self) -> &'static str;
@@ -21,10 +14,9 @@ pub trait SubCmd {
 
 pub fn sub_commands() -> Vec<Box<dyn SubCmd>> {
     vec![
-        Box::new(Check::new()),
-        Box::new(Mining::new()),
-        Box::new(Oil::new()),
-        Box::new(Stack::new()),
-        Box::new(Solve::new()),
+        Box::new(mining::Mining::new()),
+        Box::new(oil::Oil::new()),
+        Box::new(solve::Solve::new()),
+        Box::new(stack::Stack::new()),
     ]
 }

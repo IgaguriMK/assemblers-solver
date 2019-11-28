@@ -3,11 +3,13 @@ targets:
 sources:
   - iron-plate
   - copper-plate
+  - electronic-circuit
+  - heaby-oil
+  - light-oil
   - plastic-bar
-  - steel
+  - steel-plate
   - sulfuric-acid
   - solid-fuel
-  - electronic-circuit
 merged:
   - satellite
   - advanced-circuit

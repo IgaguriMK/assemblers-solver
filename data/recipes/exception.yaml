@@ -1,0 +1,19 @@
+drop_names:
+  - "kovarex-enrichment-process"
+  - "solid-fuel-from-heavy-oil"
+  - "solid-fuel-from-petroleum-gas"
+drop_groups: []
+drop_subgroups:
+  - "empty-barrel"
+extra_recipes:
+  -
+    name: space-science-pack
+    type: rocket-silo
+    cost: 1
+    results:
+      space-science-pack: 1000
+    ingredients:
+      satellite: 1
+      low-density-structure: 714.285714
+      rocket-fuel: 714.285714
+      rocket-control-unit: 714.285714

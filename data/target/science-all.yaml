@@ -9,11 +9,14 @@ targets:
 sources:
   - coal
   - copper-plate
+  - electronic-circuit
   - iron-plate
+  - heavy-oil
+  - light-oil
   - lubricant
   - plastic-bar
   - solid-fuel
-  - steel
+  - steel-plate
   - stone
+  - sulfur
   - sulfuric-acid
-  - electronic-circuit

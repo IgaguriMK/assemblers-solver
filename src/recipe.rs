@@ -1,19 +1,18 @@
+mod load;
+
+pub use load::load_recipes;
+
 use std::cmp::Ordering;
 use std::collections::{BTreeMap, BTreeSet, HashSet};
-use std::fs;
-use std::io::BufReader;
 
-use failure::Error;
 use serde::{Deserialize, Serialize};
 
 use crate::near_name::NameSet;
 
-#[cfg(test)]
-mod tests;
-
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Recipe {
+    name: String,
     #[serde(rename = "type")]
     recipe_type: String,
     cost: f64,
@@ -21,9 +20,6 @@ pub struct Recipe {
     material: bool,
     results: BTreeMap<String, f64>,
     ingredients: BTreeMap<String, f64>,
-    // metadata
-    version: Option<String>,
-    file_path: Option<String>,
 }
 
 impl Recipe {
@@ -61,18 +57,6 @@ impl Recipe {
     pub fn ingredients_count(&self) -> usize {
         self.ingredients.len()
     }
-
-    pub fn file_path(&self, if_none: &str) -> String {
-        self.file_path
-            .as_ref()
-            .map(String::as_str)
-            .unwrap_or(if_none)
-            .to_string()
-    }
-
-    pub fn version(&self) -> Option<&str> {
-        self.version.as_ref().map(String::as_str)
-    }
 }
 
 #[derive(Debug)]
@@ -81,26 +65,12 @@ pub struct RecipeSet {
 }
 
 impl RecipeSet {
-    pub fn new() -> RecipeSet {
-        RecipeSet {
-            recipes: Vec::new(),
-        }
-    }
-
-    pub fn append_recipes(&mut self, mut recipes: Vec<Recipe>) {
-        self.recipes.append(&mut recipes);
-    }
-
     pub fn find_recipes(&self, result: &str) -> Vec<&Recipe> {
         self.recipes
             .as_slice()
             .iter()
             .filter(|r| r.has_result(result))
             .collect()
-    }
-
-    pub fn recipes(&self) -> impl Iterator<Item = &Recipe> {
-        self.recipes.iter()
     }
 
     pub fn all_results(&self) -> BTreeSet<String> {
@@ -182,33 +152,4 @@ impl Ord for Depth {
     fn cmp(&self, other: &Self) -> Ordering {
         self.partial_cmp(other).unwrap()
     }
-}
-
-pub fn load_recipes(dir: &str) -> Result<RecipeSet, Error> {
-    let pathes = fs::read_dir(dir)?;
-
-    let mut recipe_set = RecipeSet::new();
-
-    for p in pathes {
-        let path = p?.path();
-
-        if let Some(ext) = path.extension() {
-            if ext != "yaml" {
-                continue;
-            }
-        }
-
-        let file = fs::File::open(&path)?;
-        let reader = BufReader::new(file);
-
-        let mut recipes: Vec<Recipe> = serde_yaml::from_reader(reader)?;
-
-        for r in &mut recipes {
-            r.file_path = Some(path.to_string_lossy().into_owned());
-        }
-
-        recipe_set.append_recipes(recipes);
-    }
-
-    Ok(recipe_set)
 }
