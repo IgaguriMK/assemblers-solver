@@ -10,11 +10,11 @@ use serde_yaml::from_reader;
 use super::{Recipe, RecipeSet};
 
 pub fn load_recipes<P: AsRef<Path>>(dir: P) -> Result<RecipeSet, Error> {
-    let file_path = dir.as_ref().join("recipe.json");
+    let file_path = dir.as_ref().join("dumps/recipe.json");
     let f = BufReader::new(File::open(file_path)?);
     let recipe_source: BTreeMap<String, RecipeSource> = from_reader(f)?;
 
-    let file_path = dir.as_ref().join("exception.yaml");
+    let file_path = dir.as_ref().join("recipe/exception.yaml");
     let f = BufReader::new(File::open(file_path)?);
     let exception: Exception = from_reader(f)?;
 

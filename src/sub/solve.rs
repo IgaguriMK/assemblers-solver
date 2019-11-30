@@ -139,7 +139,7 @@ impl SubCmd for Solve {
         let processer_set = processer::ProcSet::open_set()?;
 
         let mut solver = Solver::new(
-            load_recipes("./data/recipes")?,
+            load_recipes("./data")?,
             &target_settings,
             processer_set,
             processer_choice,

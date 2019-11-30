@@ -1,0 +1,89 @@
+{
+  "burner-inserter" : {
+    "name" : "burner-inserter",
+    "localised_name" : [
+      "entity-name.burner-inserter"
+    ],
+    "max_energy_usage" : 94200,
+    "inserter_extension_speed" : 0.0214,
+    "inserter_rotation_speed" : 0.01,
+    "burner_effectivity" : 1,
+    "fuel_categories" : {
+      "chemical" : true
+    },
+    "emissions" : 0,
+    "pollution" : 0
+  },
+  "inserter" : {
+    "name" : "inserter",
+    "localised_name" : [
+      "entity-name.inserter"
+    ],
+    "max_energy_usage" : 13200,
+    "inserter_extension_speed" : 0.03,
+    "inserter_rotation_speed" : 0.014,
+    "drain" : 400,
+    "emissions" : 0,
+    "pollution" : 0
+  },
+  "long-handed-inserter" : {
+    "name" : "long-handed-inserter",
+    "localised_name" : [
+      "entity-name.long-handed-inserter"
+    ],
+    "max_energy_usage" : 19710,
+    "inserter_extension_speed" : 0.0457,
+    "inserter_rotation_speed" : 0.02,
+    "drain" : 400,
+    "emissions" : 0,
+    "pollution" : 0
+  },
+  "fast-inserter" : {
+    "name" : "fast-inserter",
+    "localised_name" : [
+      "entity-name.fast-inserter"
+    ],
+    "max_energy_usage" : 46200,
+    "inserter_extension_speed" : 0.07,
+    "inserter_rotation_speed" : 0.04,
+    "drain" : 500,
+    "emissions" : 0,
+    "pollution" : 0
+  },
+  "filter-inserter" : {
+    "name" : "filter-inserter",
+    "localised_name" : [
+      "entity-name.filter-inserter"
+    ],
+    "max_energy_usage" : 52800,
+    "inserter_extension_speed" : 0.07,
+    "inserter_rotation_speed" : 0.04,
+    "drain" : 500,
+    "emissions" : 0,
+    "pollution" : 0
+  },
+  "stack-inserter" : {
+    "name" : "stack-inserter",
+    "localised_name" : [
+      "entity-name.stack-inserter"
+    ],
+    "max_energy_usage" : 132000,
+    "inserter_extension_speed" : 0.07,
+    "inserter_rotation_speed" : 0.04,
+    "drain" : 1000,
+    "emissions" : 0,
+    "pollution" : 0
+  },
+  "stack-filter-inserter" : {
+    "name" : "stack-filter-inserter",
+    "localised_name" : [
+      "entity-name.stack-filter-inserter"
+    ],
+    "max_energy_usage" : 132000,
+    "inserter_extension_speed" : 0.07,
+    "inserter_rotation_speed" : 0.04,
+    "drain" : 1000,
+    "emissions" : 0,
+    "pollution" : 0
+  }
+}

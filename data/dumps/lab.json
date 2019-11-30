@@ -1,0 +1,36 @@
+{
+  "lab" : {
+    "name" : "lab",
+    "localised_name" : [
+      "entity-name.lab"
+    ],
+    "energy_usage" : 60000,
+    "lab_inputs" : [
+      "automation-science-pack",
+      "logistic-science-pack",
+      "military-science-pack",
+      "chemical-science-pack",
+      "production-science-pack",
+      "utility-science-pack",
+      "space-science-pack"
+    ],
+    "researching_speed" : 1,
+    "drain" : 0,
+    "emissions" : 0,
+    "pollution" : 0
+  },
+  "crash-site-lab-repaired" : {
+    "name" : "crash-site-lab-repaired",
+    "localised_name" : [
+      "entity-name.crash-site-lab-repaired"
+    ],
+    "energy_usage" : 60000,
+    "lab_inputs" : [
+      "automation-science-pack"
+    ],
+    "researching_speed" : 1,
+    "drain" : 0,
+    "emissions" : 1.1111111111111e-06,
+    "pollution" : 4
+  }
+}

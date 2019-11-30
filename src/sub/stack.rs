@@ -39,7 +39,7 @@ impl SubCmd for Stack {
         let target = matches.value_of("target-name").unwrap();
 
         let stack_dict = load_stack_dict("./data/stack-size.yaml")?;
-        let recipe_set = load_recipes("./data/recipes")?;
+        let recipe_set = load_recipes("./data")?;
 
         let mut name_set = NameSet::new();
         name_set.add_names(stack_dict.names());
