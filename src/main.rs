@@ -1,6 +1,8 @@
 use clap::App;
 use failure::{format_err, Error};
 
+mod cfg_file;
+mod config;
 mod consts;
 mod formatter;
 mod near_name;
@@ -12,6 +14,7 @@ mod sources;
 mod stack;
 mod sub;
 mod target;
+mod technology;
 mod util;
 
 use sub::{sub_commands, SubCmd};

@@ -5,6 +5,7 @@ mod mining;
 mod oil;
 mod solve;
 mod stack;
+mod tech_tree;
 
 pub trait SubCmd {
     fn name(&self) -> &'static str;
@@ -18,5 +19,7 @@ pub fn sub_commands() -> Vec<Box<dyn SubCmd>> {
         Box::new(oil::Oil::new()),
         Box::new(solve::Solve::new()),
         Box::new(stack::Stack::new()),
+        Box::new(stack::Stack::new()),
+        Box::new(tech_tree::TechTree::new()),
     ]
 }
