@@ -27,6 +27,7 @@ impl SubCmd for Solve {
 
     fn command_args(&self) -> App<'static, 'static> {
         SubCommand::with_name(self.name())
+            .about("Solve crafting tree.")
             .arg(
                 Arg::with_name("mult")
                     .long("mult")
