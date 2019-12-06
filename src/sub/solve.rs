@@ -71,9 +71,12 @@ impl SubCmd for Solve {
                     .long("max-tier")
                     .takes_value(true),
             )
-            .arg(Arg::with_name("no-beacon").long("no-beacon"))
-            .arg(Arg::with_name("no-speed").long("no-speed"))
-            .arg(Arg::with_name("no-prod").long("no-prod"))
+            .arg(
+                Arg::with_name("mods")
+                    .long("mods")
+                    .default_value("spb")
+                    .help("assembler modifications (s: speed, p: productivity, b: beacon)"),
+            )
             .arg(Arg::with_name("allow-speed-only-beacon").long("allow-speed-only-beacon"))
             .arg(
                 Arg::with_name("format")
@@ -126,10 +129,11 @@ impl SubCmd for Solve {
             target_settings.add_mergeds(mergeds.map(ToString::to_string).collect());
         }
 
+        let mods = matches.value_of("mods").unwrap();
         let mut processer_choice = solver::ProcesserChoice::new()
-            .beacon(!matches.is_present("no-beacon"))
-            .speed_module(!matches.is_present("no-speed"))
-            .productivity_module(!matches.is_present("no-prod"))
+            .beacon(mods.contains('b'))
+            .speed_module(mods.contains('s'))
+            .productivity_module(mods.contains('p'))
             .speed_only_beacon(matches.is_present("allow-speed-only-beacon"));
 
         if let Some(tier_str) = matches.value_of("max_tier") {
