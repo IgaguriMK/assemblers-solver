@@ -1,4 +1,4 @@
-use anyhow::{Context, Error, Result};
+use anyhow::{Context, Result};
 use clap::{App, Arg, ArgMatches, SubCommand};
 
 use crate::consts::BELT_THROUGHPUT;
@@ -103,9 +103,7 @@ impl SubCmd for Solve {
         let default_source_set = if from_file { "none" } else { "basic" };
         let source_set_name = matches.value_of("source-set").unwrap_or(default_source_set);
         let source_sets = load_source_sets("./data/sources.yaml")?;
-        let source_set = source_sets
-            .get(source_set_name)
-            .ok_or_else(|| Error::msg(format!("unknown source set {}", source_set_name)))?;
+        let source_set = source_sets.get(source_set_name)?;
         target_settings.add_sources(source_set.clone());
 
         if let Some(additional_sources) = matches.values_of("source") {
