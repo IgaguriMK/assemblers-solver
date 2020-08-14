@@ -25,9 +25,27 @@
     - {beacon: 4, io: 6}
     - {beacon: 8, io: 4}
 -
+  name: stone-furnace
+  type: furnace
+  base_speed: 1.0
+  max_modules: 0
+  tier: 1
+  configulations:
+    - {beacon: 0, io: 2}
+-
+  name: steel-furnace
+  type: furnace
+  base_speed: 2.0
+  max_modules: 0
+  tier: 2
+  configulations:
+    - {beacon: 0, io: 2}
+-
   name: furnace
+  type: furnace
   base_speed: 2.0
   max_modules: 2
+  tier: 3
   configulations:
     - {beacon: 0, io: 4}
     - {beacon: 8, io: 4}

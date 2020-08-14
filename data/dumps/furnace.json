@@ -18,6 +18,18 @@
       "productivity" : false,
       "pollution" : false
     },
+    "friendly_map_color" : {
+      "r" : 0,
+      "g" : 96,
+      "b" : 145,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 255,
+      "g" : 25,
+      "b" : 25,
+      "a" : 255
+    },
     "burner_effectivity" : 1,
     "fuel_categories" : {
       "chemical" : true
@@ -44,6 +56,18 @@
       "productivity" : false,
       "pollution" : false
     },
+    "friendly_map_color" : {
+      "r" : 0,
+      "g" : 96,
+      "b" : 145,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 255,
+      "g" : 25,
+      "b" : 25,
+      "a" : 255
+    },
     "burner_effectivity" : 1,
     "fuel_categories" : {
       "chemical" : true
@@ -69,6 +93,18 @@
       "speed" : true,
       "productivity" : true,
       "pollution" : true
+    },
+    "friendly_map_color" : {
+      "r" : 0,
+      "g" : 96,
+      "b" : 145,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 255,
+      "g" : 25,
+      "b" : 25,
+      "a" : 255
     },
     "drain" : 6000,
     "emissions" : 9.2592592592593e-08,

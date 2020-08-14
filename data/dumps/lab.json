@@ -15,6 +15,18 @@
       "space-science-pack"
     ],
     "researching_speed" : 1,
+    "friendly_map_color" : {
+      "r" : 0,
+      "g" : 96,
+      "b" : 145,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 255,
+      "g" : 25,
+      "b" : 25,
+      "a" : 255
+    },
     "drain" : 0,
     "emissions" : 0,
     "pollution" : 0
@@ -29,6 +41,24 @@
       "automation-science-pack"
     ],
     "researching_speed" : 1,
+    "map_color" : {
+      "r" : 0,
+      "g" : 93,
+      "b" : 147,
+      "a" : 255
+    },
+    "friendly_map_color" : {
+      "r" : 0,
+      "g" : 93,
+      "b" : 147,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 0,
+      "g" : 93,
+      "b" : 147,
+      "a" : 255
+    },
     "drain" : 0,
     "emissions" : 1.1111111111111e-06,
     "pollution" : 4

@@ -7,6 +7,7 @@
     "type" : "item",
     "order" : "a[items]-a[wooden-chest]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "wooden-chest"
   },
   "iron-chest" : {
@@ -17,6 +18,7 @@
     "type" : "item",
     "order" : "a[items]-b[iron-chest]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "iron-chest"
   },
   "steel-chest" : {
@@ -27,17 +29,8 @@
     "type" : "item",
     "order" : "a[items]-c[steel-chest]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "steel-chest"
-  },
-  "compilatron-chest" : {
-    "name" : "compilatron-chest",
-    "localised_name" : [
-      "entity-name.compilatron-chest"
-    ],
-    "type" : "item",
-    "order" : "a[items]-d[compilatron-chest]",
-    "fuel_value" : 0,
-    "place_result" : "compilatron-chest"
   },
   "storage-tank" : {
     "name" : "storage-tank",
@@ -47,6 +40,7 @@
     "type" : "item",
     "order" : "b[fluid]-a[storage-tank]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "storage-tank"
   },
   "transport-belt" : {
@@ -57,6 +51,7 @@
     "type" : "item",
     "order" : "a[transport-belt]-a[transport-belt]",
     "fuel_value" : 0,
+    "stack_size" : 100,
     "place_result" : "transport-belt"
   },
   "fast-transport-belt" : {
@@ -67,6 +62,7 @@
     "type" : "item",
     "order" : "a[transport-belt]-b[fast-transport-belt]",
     "fuel_value" : 0,
+    "stack_size" : 100,
     "place_result" : "fast-transport-belt"
   },
   "express-transport-belt" : {
@@ -77,6 +73,7 @@
     "type" : "item",
     "order" : "a[transport-belt]-c[express-transport-belt]",
     "fuel_value" : 0,
+    "stack_size" : 100,
     "place_result" : "express-transport-belt"
   },
   "underground-belt" : {
@@ -87,6 +84,7 @@
     "type" : "item",
     "order" : "b[underground-belt]-a[underground-belt]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "underground-belt"
   },
   "fast-underground-belt" : {
@@ -97,6 +95,7 @@
     "type" : "item",
     "order" : "b[underground-belt]-b[fast-underground-belt]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "fast-underground-belt"
   },
   "express-underground-belt" : {
@@ -107,6 +106,7 @@
     "type" : "item",
     "order" : "b[underground-belt]-c[express-underground-belt]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "express-underground-belt"
   },
   "splitter" : {
@@ -117,6 +117,7 @@
     "type" : "item",
     "order" : "c[splitter]-a[splitter]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "splitter"
   },
   "fast-splitter" : {
@@ -127,6 +128,7 @@
     "type" : "item",
     "order" : "c[splitter]-b[fast-splitter]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "fast-splitter"
   },
   "express-splitter" : {
@@ -137,6 +139,7 @@
     "type" : "item",
     "order" : "c[splitter]-c[express-splitter]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "express-splitter"
   },
   "loader" : {
@@ -147,6 +150,7 @@
     "type" : "item",
     "order" : "d[loader]-a[basic-loader]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "loader"
   },
   "fast-loader" : {
@@ -157,6 +161,7 @@
     "type" : "item",
     "order" : "d[loader]-b[fast-loader]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "fast-loader"
   },
   "express-loader" : {
@@ -167,6 +172,7 @@
     "type" : "item",
     "order" : "d[loader]-c[express-loader]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "express-loader"
   },
   "burner-inserter" : {
@@ -177,6 +183,7 @@
     "type" : "item",
     "order" : "a[burner-inserter]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "burner-inserter"
   },
   "inserter" : {
@@ -187,6 +194,7 @@
     "type" : "item",
     "order" : "b[inserter]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "inserter"
   },
   "long-handed-inserter" : {
@@ -197,6 +205,7 @@
     "type" : "item",
     "order" : "c[long-handed-inserter]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "long-handed-inserter"
   },
   "fast-inserter" : {
@@ -207,6 +216,7 @@
     "type" : "item",
     "order" : "d[fast-inserter]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "fast-inserter"
   },
   "filter-inserter" : {
@@ -217,6 +227,7 @@
     "type" : "item",
     "order" : "e[filter-inserter]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "filter-inserter"
   },
   "stack-inserter" : {
@@ -227,6 +238,7 @@
     "type" : "item",
     "order" : "f[stack-inserter]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "stack-inserter"
   },
   "stack-filter-inserter" : {
@@ -237,6 +249,7 @@
     "type" : "item",
     "order" : "g[stack-filter-inserter]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "stack-filter-inserter"
   },
   "small-electric-pole" : {
@@ -247,6 +260,7 @@
     "type" : "item",
     "order" : "a[energy]-a[small-electric-pole]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "small-electric-pole"
   },
   "medium-electric-pole" : {
@@ -257,6 +271,7 @@
     "type" : "item",
     "order" : "a[energy]-b[medium-electric-pole]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "medium-electric-pole"
   },
   "big-electric-pole" : {
@@ -267,6 +282,7 @@
     "type" : "item",
     "order" : "a[energy]-c[big-electric-pole]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "big-electric-pole"
   },
   "substation" : {
@@ -277,6 +293,7 @@
     "type" : "item",
     "order" : "a[energy]-d[substation]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "substation"
   },
   "pipe" : {
@@ -287,6 +304,7 @@
     "type" : "item",
     "order" : "a[pipe]-a[pipe]",
     "fuel_value" : 0,
+    "stack_size" : 100,
     "place_result" : "pipe"
   },
   "pipe-to-ground" : {
@@ -297,6 +315,7 @@
     "type" : "item",
     "order" : "a[pipe]-b[pipe-to-ground]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "pipe-to-ground"
   },
   "pump" : {
@@ -307,6 +326,7 @@
     "type" : "item",
     "order" : "b[pipe]-c[pump]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "pump"
   },
   "rail" : {
@@ -317,6 +337,7 @@
     "type" : "rail-planner",
     "order" : "a[train-system]-a[rail]",
     "fuel_value" : 0,
+    "stack_size" : 100,
     "place_result" : "straight-rail"
   },
   "train-stop" : {
@@ -327,6 +348,7 @@
     "type" : "item",
     "order" : "a[train-system]-c[train-stop]",
     "fuel_value" : 0,
+    "stack_size" : 10,
     "place_result" : "train-stop"
   },
   "rail-signal" : {
@@ -337,6 +359,7 @@
     "type" : "item",
     "order" : "a[train-system]-d[rail-signal]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "rail-signal"
   },
   "rail-chain-signal" : {
@@ -347,6 +370,7 @@
     "type" : "item",
     "order" : "a[train-system]-e[rail-signal-chain]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "rail-chain-signal"
   },
   "locomotive" : {
@@ -355,8 +379,9 @@
       "entity-name.locomotive"
     ],
     "type" : "item-with-entity-data",
-    "order" : "a[train-system]-f[diesel-locomotive]",
+    "order" : "a[train-system]-f[locomotive]",
     "fuel_value" : 0,
+    "stack_size" : 5,
     "place_result" : "locomotive"
   },
   "cargo-wagon" : {
@@ -367,6 +392,7 @@
     "type" : "item-with-entity-data",
     "order" : "a[train-system]-g[cargo-wagon]",
     "fuel_value" : 0,
+    "stack_size" : 5,
     "place_result" : "cargo-wagon"
   },
   "fluid-wagon" : {
@@ -377,6 +403,7 @@
     "type" : "item-with-entity-data",
     "order" : "a[train-system]-h[fluid-wagon]",
     "fuel_value" : 0,
+    "stack_size" : 5,
     "place_result" : "fluid-wagon"
   },
   "artillery-wagon" : {
@@ -387,6 +414,7 @@
     "type" : "item-with-entity-data",
     "order" : "a[train-system]-i[artillery-wagon]",
     "fuel_value" : 0,
+    "stack_size" : 5,
     "place_result" : "artillery-wagon"
   },
   "car" : {
@@ -397,6 +425,7 @@
     "type" : "item-with-entity-data",
     "order" : "b[personal-transport]-a[car]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "place_result" : "car"
   },
   "tank" : {
@@ -407,6 +436,7 @@
     "type" : "item-with-entity-data",
     "order" : "b[personal-transport]-b[tank]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "place_result" : "tank"
   },
   "small-plane" : {
@@ -416,7 +446,8 @@
     ],
     "type" : "item",
     "order" : "b[personal-transport]-c[small-plane]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "logistic-robot" : {
     "name" : "logistic-robot",
@@ -426,6 +457,7 @@
     "type" : "item",
     "order" : "a[robot]-a[logistic-robot]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "logistic-robot"
   },
   "construction-robot" : {
@@ -436,6 +468,7 @@
     "type" : "item",
     "order" : "a[robot]-b[construction-robot]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "construction-robot"
   },
   "logistic-chest-active-provider" : {
@@ -446,6 +479,7 @@
     "type" : "item",
     "order" : "b[storage]-c[logistic-chest-active-provider]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "logistic-chest-active-provider"
   },
   "logistic-chest-passive-provider" : {
@@ -456,6 +490,7 @@
     "type" : "item",
     "order" : "b[storage]-c[logistic-chest-passive-provider]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "logistic-chest-passive-provider"
   },
   "logistic-chest-storage" : {
@@ -466,6 +501,7 @@
     "type" : "item",
     "order" : "b[storage]-c[logistic-chest-storage]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "logistic-chest-storage"
   },
   "logistic-chest-buffer" : {
@@ -476,6 +512,7 @@
     "type" : "item",
     "order" : "b[storage]-d[logistic-chest-buffer]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "logistic-chest-buffer"
   },
   "logistic-chest-requester" : {
@@ -486,6 +523,7 @@
     "type" : "item",
     "order" : "b[storage]-e[logistic-chest-requester]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "logistic-chest-requester"
   },
   "roboport" : {
@@ -496,6 +534,7 @@
     "type" : "item",
     "order" : "c[signal]-a[roboport]",
     "fuel_value" : 0,
+    "stack_size" : 10,
     "place_result" : "roboport"
   },
   "small-lamp" : {
@@ -506,6 +545,7 @@
     "type" : "item",
     "order" : "a[light]-a[small-lamp]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "small-lamp"
   },
   "red-wire" : {
@@ -515,7 +555,8 @@
     ],
     "type" : "item",
     "order" : "b[wires]-a[red-wire]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "green-wire" : {
     "name" : "green-wire",
@@ -524,7 +565,8 @@
     ],
     "type" : "item",
     "order" : "b[wires]-b[green-wire]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "arithmetic-combinator" : {
     "name" : "arithmetic-combinator",
@@ -534,6 +576,7 @@
     "type" : "item",
     "order" : "c[combinators]-a[arithmetic-combinator]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "arithmetic-combinator"
   },
   "decider-combinator" : {
@@ -544,6 +587,7 @@
     "type" : "item",
     "order" : "c[combinators]-b[decider-combinator]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "decider-combinator"
   },
   "constant-combinator" : {
@@ -554,6 +598,7 @@
     "type" : "item",
     "order" : "c[combinators]-c[constant-combinator]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "constant-combinator"
   },
   "power-switch" : {
@@ -564,6 +609,7 @@
     "type" : "item",
     "order" : "d[other]-a[power-switch]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "power-switch"
   },
   "programmable-speaker" : {
@@ -574,6 +620,7 @@
     "type" : "item",
     "order" : "d[other]-b[programmable-speaker]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "programmable-speaker"
   },
   "stone-brick" : {
@@ -583,7 +630,8 @@
     ],
     "type" : "item",
     "order" : "a[stone-brick]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "concrete" : {
     "name" : "concrete",
@@ -592,7 +640,8 @@
     ],
     "type" : "item",
     "order" : "b[concrete]-a[plain]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "hazard-concrete" : {
     "name" : "hazard-concrete",
@@ -601,7 +650,8 @@
     ],
     "type" : "item",
     "order" : "b[concrete]-b[hazard]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "refined-concrete" : {
     "name" : "refined-concrete",
@@ -610,7 +660,8 @@
     ],
     "type" : "item",
     "order" : "b[concrete]-c[refined]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "refined-hazard-concrete" : {
     "name" : "refined-hazard-concrete",
@@ -619,7 +670,8 @@
     ],
     "type" : "item",
     "order" : "b[concrete]-d[refined-hazard]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "landfill" : {
     "name" : "landfill",
@@ -628,7 +680,8 @@
     ],
     "type" : "item",
     "order" : "c[landfill]-a[dirt]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "cliff-explosives" : {
     "name" : "cliff-explosives",
@@ -637,7 +690,8 @@
     ],
     "type" : "capsule",
     "order" : "d[cliff-explosives]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 20
   },
   "dummy-steel-axe" : {
     "name" : "dummy-steel-axe",
@@ -646,7 +700,8 @@
     ],
     "type" : "mining-tool",
     "order" : "a[mining]-b[steel-axe]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "repair-pack" : {
     "name" : "repair-pack",
@@ -655,7 +710,8 @@
     ],
     "type" : "repair-tool",
     "order" : "b[repair]-a[repair-pack]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "blueprint" : {
     "name" : "blueprint",
@@ -664,7 +720,8 @@
     ],
     "type" : "blueprint",
     "order" : "c[automated-construction]-a[blueprint]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "deconstruction-planner" : {
     "name" : "deconstruction-planner",
@@ -673,7 +730,8 @@
     ],
     "type" : "deconstruction-item",
     "order" : "c[automated-construction]-b[deconstruction-planner]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "upgrade-planner" : {
     "name" : "upgrade-planner",
@@ -682,7 +740,8 @@
     ],
     "type" : "upgrade-item",
     "order" : "c[automated-construction]-c[upgrade-planner]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "blueprint-book" : {
     "name" : "blueprint-book",
@@ -691,7 +750,8 @@
     ],
     "type" : "blueprint-book",
     "order" : "c[automated-construction]-d[blueprint-book]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "copy-paste-tool" : {
     "name" : "copy-paste-tool",
@@ -700,7 +760,8 @@
     ],
     "type" : "copy-paste-tool",
     "order" : "c[automated-construction]-x",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "cut-paste-tool" : {
     "name" : "cut-paste-tool",
@@ -709,7 +770,8 @@
     ],
     "type" : "copy-paste-tool",
     "order" : "c[automated-construction]-x",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "boiler" : {
     "name" : "boiler",
@@ -719,6 +781,7 @@
     "type" : "item",
     "order" : "b[steam-power]-a[boiler]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "boiler"
   },
   "steam-engine" : {
@@ -729,6 +792,7 @@
     "type" : "item",
     "order" : "b[steam-power]-b[steam-engine]",
     "fuel_value" : 0,
+    "stack_size" : 10,
     "place_result" : "steam-engine"
   },
   "solar-panel" : {
@@ -739,6 +803,7 @@
     "type" : "item",
     "order" : "d[solar-panel]-a[solar-panel]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "solar-panel"
   },
   "accumulator" : {
@@ -749,27 +814,8 @@
     "type" : "item",
     "order" : "e[accumulator]-a[accumulator]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "accumulator"
-  },
-  "electric-energy-interface" : {
-    "name" : "electric-energy-interface",
-    "localised_name" : [
-      "entity-name.electric-energy-interface"
-    ],
-    "type" : "item",
-    "order" : "e[electric-energy-interface]-b[electric-energy-interface]",
-    "fuel_value" : 0,
-    "place_result" : "electric-energy-interface"
-  },
-  "heat-interface" : {
-    "name" : "heat-interface",
-    "localised_name" : [
-      "entity-name.heat-interface"
-    ],
-    "type" : "item",
-    "order" : "f[heat-interface]",
-    "fuel_value" : 0,
-    "place_result" : "heat-interface"
   },
   "nuclear-reactor" : {
     "name" : "nuclear-reactor",
@@ -779,6 +825,7 @@
     "type" : "item",
     "order" : "f[nuclear-energy]-a[reactor]",
     "fuel_value" : 0,
+    "stack_size" : 10,
     "place_result" : "nuclear-reactor"
   },
   "heat-pipe" : {
@@ -789,6 +836,7 @@
     "type" : "item",
     "order" : "f[nuclear-energy]-b[heat-pipe]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "heat-pipe"
   },
   "heat-exchanger" : {
@@ -799,6 +847,7 @@
     "type" : "item",
     "order" : "f[nuclear-energy]-c[heat-exchanger]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "heat-exchanger"
   },
   "steam-turbine" : {
@@ -809,6 +858,7 @@
     "type" : "item",
     "order" : "f[nuclear-energy]-d[steam-turbine]",
     "fuel_value" : 0,
+    "stack_size" : 10,
     "place_result" : "steam-turbine"
   },
   "burner-mining-drill" : {
@@ -819,6 +869,7 @@
     "type" : "item",
     "order" : "a[items]-a[burner-mining-drill]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "burner-mining-drill"
   },
   "electric-mining-drill" : {
@@ -829,6 +880,7 @@
     "type" : "item",
     "order" : "a[items]-b[electric-mining-drill]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "electric-mining-drill"
   },
   "offshore-pump" : {
@@ -839,6 +891,7 @@
     "type" : "item",
     "order" : "b[fluids]-a[offshore-pump]",
     "fuel_value" : 0,
+    "stack_size" : 20,
     "place_result" : "offshore-pump"
   },
   "pumpjack" : {
@@ -849,6 +902,7 @@
     "type" : "item",
     "order" : "b[fluids]-b[pumpjack]",
     "fuel_value" : 0,
+    "stack_size" : 20,
     "place_result" : "pumpjack"
   },
   "stone-furnace" : {
@@ -859,6 +913,7 @@
     "type" : "item",
     "order" : "a[stone-furnace]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "stone-furnace"
   },
   "steel-furnace" : {
@@ -869,6 +924,7 @@
     "type" : "item",
     "order" : "b[steel-furnace]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "steel-furnace"
   },
   "electric-furnace" : {
@@ -879,6 +935,7 @@
     "type" : "item",
     "order" : "c[electric-furnace]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "electric-furnace"
   },
   "assembling-machine-1" : {
@@ -889,6 +946,7 @@
     "type" : "item",
     "order" : "a[assembling-machine-1]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "assembling-machine-1"
   },
   "assembling-machine-2" : {
@@ -899,6 +957,7 @@
     "type" : "item",
     "order" : "b[assembling-machine-2]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "assembling-machine-2"
   },
   "assembling-machine-3" : {
@@ -909,6 +968,7 @@
     "type" : "item",
     "order" : "c[assembling-machine-3]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "assembling-machine-3"
   },
   "oil-refinery" : {
@@ -919,6 +979,7 @@
     "type" : "item",
     "order" : "d[refinery]",
     "fuel_value" : 0,
+    "stack_size" : 10,
     "place_result" : "oil-refinery"
   },
   "chemical-plant" : {
@@ -929,6 +990,7 @@
     "type" : "item",
     "order" : "e[chemical-plant]",
     "fuel_value" : 0,
+    "stack_size" : 10,
     "place_result" : "chemical-plant"
   },
   "centrifuge" : {
@@ -939,6 +1001,7 @@
     "type" : "item",
     "order" : "g[centrifuge]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "centrifuge"
   },
   "lab" : {
@@ -949,6 +1012,7 @@
     "type" : "item",
     "order" : "g[lab]",
     "fuel_value" : 0,
+    "stack_size" : 10,
     "place_result" : "lab"
   },
   "beacon" : {
@@ -959,6 +1023,7 @@
     "type" : "item",
     "order" : "a[beacon]",
     "fuel_value" : 0,
+    "stack_size" : 10,
     "place_result" : "beacon"
   },
   "speed-module" : {
@@ -970,6 +1035,7 @@
     "order" : "a[speed]-a[speed-module-1]",
     "fuel_value" : 0,
     "category" : "speed",
+    "stack_size" : 50,
     "tier" : 1,
     "module_effects" : {
       "consumption" : {
@@ -992,6 +1058,7 @@
     "order" : "a[speed]-b[speed-module-2]",
     "fuel_value" : 0,
     "category" : "speed",
+    "stack_size" : 50,
     "tier" : 2,
     "module_effects" : {
       "consumption" : {
@@ -1014,6 +1081,7 @@
     "order" : "a[speed]-c[speed-module-3]",
     "fuel_value" : 0,
     "category" : "speed",
+    "stack_size" : 50,
     "tier" : 3,
     "module_effects" : {
       "consumption" : {
@@ -1036,6 +1104,7 @@
     "order" : "c[effectivity]-a[effectivity-module-1]",
     "fuel_value" : 0,
     "category" : "effectivity",
+    "stack_size" : 50,
     "tier" : 1,
     "module_effects" : {
       "consumption" : {
@@ -1055,6 +1124,7 @@
     "order" : "c[effectivity]-b[effectivity-module-2]",
     "fuel_value" : 0,
     "category" : "effectivity",
+    "stack_size" : 50,
     "tier" : 2,
     "module_effects" : {
       "consumption" : {
@@ -1074,6 +1144,7 @@
     "order" : "c[effectivity]-c[effectivity-module-3]",
     "fuel_value" : 0,
     "category" : "effectivity",
+    "stack_size" : 50,
     "tier" : 3,
     "module_effects" : {
       "consumption" : {
@@ -1093,6 +1164,7 @@
     "order" : "c[productivity]-a[productivity-module-1]",
     "fuel_value" : 0,
     "category" : "productivity",
+    "stack_size" : 50,
     "tier" : 1,
     "module_effects" : {
       "consumption" : {
@@ -1161,6 +1233,7 @@
     "order" : "c[productivity]-b[productivity-module-2]",
     "fuel_value" : 0,
     "category" : "productivity",
+    "stack_size" : 50,
     "tier" : 2,
     "module_effects" : {
       "consumption" : {
@@ -1229,6 +1302,7 @@
     "order" : "c[productivity]-c[productivity-module-3]",
     "fuel_value" : 0,
     "category" : "productivity",
+    "stack_size" : 50,
     "tier" : 3,
     "module_effects" : {
       "consumption" : {
@@ -1296,6 +1370,7 @@
     "type" : "item",
     "order" : "x[crash-site-assembling-machine-1-broken]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "place_result" : "crash-site-assembling-machine-1-broken"
   },
   "crash-site-assembling-machine-1-repaired" : {
@@ -1306,6 +1381,7 @@
     "type" : "item",
     "order" : "x[crash-site-assembling-machine-1-repaired]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "place_result" : "crash-site-assembling-machine-1-repaired"
   },
   "crash-site-assembling-machine-2-broken" : {
@@ -1316,6 +1392,7 @@
     "type" : "item",
     "order" : "x[crash-site-assembling-machine-2-broken]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "place_result" : "crash-site-assembling-machine-2-broken"
   },
   "crash-site-assembling-machine-2-repaired" : {
@@ -1326,6 +1403,7 @@
     "type" : "item",
     "order" : "x[crash-site-assembling-machine-2-repaired]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "place_result" : "crash-site-assembling-machine-2-repaired"
   },
   "crash-site-chest-1" : {
@@ -1336,6 +1414,7 @@
     "type" : "item",
     "order" : "x[crash-site-chest]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "place_result" : "crash-site-chest-1"
   },
   "crash-site-chest-2" : {
@@ -1346,6 +1425,7 @@
     "type" : "item",
     "order" : "x[crash-site-chest]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "place_result" : "crash-site-chest-2"
   },
   "crash-site-electric-pole" : {
@@ -1356,6 +1436,7 @@
     "type" : "item",
     "order" : "x[crash-site-electric-pole]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "place_result" : "crash-site-electric-pole"
   },
   "crash-site-generator" : {
@@ -1366,6 +1447,7 @@
     "type" : "item",
     "order" : "x[crash-site-generator]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "place_result" : "crash-site-generator"
   },
   "crash-site-lab-broken" : {
@@ -1376,6 +1458,7 @@
     "type" : "item",
     "order" : "x[crash-site-lab-broken]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "place_result" : "crash-site-lab-broken"
   },
   "crash-site-lab-repaired" : {
@@ -1386,6 +1469,7 @@
     "type" : "item",
     "order" : "x[crash-site-lab-repaired]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "place_result" : "crash-site-lab-repaired"
   },
   "wood" : {
@@ -1396,6 +1480,7 @@
     "type" : "item",
     "order" : "a[wood]",
     "fuel_value" : 2000000,
+    "stack_size" : 100,
     "fuel_category" : "chemical",
     "fuel_acceleration_multiplier" : 1,
     "fuel_top_speed_multiplier" : 1
@@ -1408,6 +1493,7 @@
     "type" : "item",
     "order" : "b[coal]",
     "fuel_value" : 4000000,
+    "stack_size" : 50,
     "fuel_category" : "chemical",
     "fuel_acceleration_multiplier" : 1,
     "fuel_top_speed_multiplier" : 1
@@ -1419,7 +1505,8 @@
     ],
     "type" : "item",
     "order" : "d[stone]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 50
   },
   "iron-ore" : {
     "name" : "iron-ore",
@@ -1428,7 +1515,8 @@
     ],
     "type" : "item",
     "order" : "e[iron-ore]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 50
   },
   "copper-ore" : {
     "name" : "copper-ore",
@@ -1437,7 +1525,8 @@
     ],
     "type" : "item",
     "order" : "f[copper-ore]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 50
   },
   "uranium-ore" : {
     "name" : "uranium-ore",
@@ -1446,7 +1535,8 @@
     ],
     "type" : "item",
     "order" : "g[uranium-ore]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 50
   },
   "raw-fish" : {
     "name" : "raw-fish",
@@ -1455,7 +1545,8 @@
     ],
     "type" : "capsule",
     "order" : "h[raw-fish]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "iron-plate" : {
     "name" : "iron-plate",
@@ -1464,7 +1555,8 @@
     ],
     "type" : "item",
     "order" : "b[iron-plate]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "copper-plate" : {
     "name" : "copper-plate",
@@ -1473,7 +1565,8 @@
     ],
     "type" : "item",
     "order" : "c[copper-plate]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "solid-fuel" : {
     "name" : "solid-fuel",
@@ -1483,6 +1576,7 @@
     "type" : "item",
     "order" : "c[solid-fuel]",
     "fuel_value" : 12000000,
+    "stack_size" : 50,
     "fuel_category" : "chemical",
     "fuel_acceleration_multiplier" : 1.2,
     "fuel_top_speed_multiplier" : 1.05
@@ -1494,7 +1588,8 @@
     ],
     "type" : "item",
     "order" : "d[steel-plate]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "plastic-bar" : {
     "name" : "plastic-bar",
@@ -1503,7 +1598,8 @@
     ],
     "type" : "item",
     "order" : "f[plastic-bar]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "sulfur" : {
     "name" : "sulfur",
@@ -1512,7 +1608,8 @@
     ],
     "type" : "item",
     "order" : "g[sulfur]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 50
   },
   "battery" : {
     "name" : "battery",
@@ -1521,7 +1618,8 @@
     ],
     "type" : "item",
     "order" : "h[battery]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "explosives" : {
     "name" : "explosives",
@@ -1530,7 +1628,8 @@
     ],
     "type" : "item",
     "order" : "j[explosives]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 50
   },
   "crude-oil-barrel" : {
     "name" : "crude-oil-barrel",
@@ -1542,7 +1641,8 @@
     ],
     "type" : "item",
     "order" : "b[crude-oil-barrel]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 10
   },
   "heavy-oil-barrel" : {
     "name" : "heavy-oil-barrel",
@@ -1554,7 +1654,8 @@
     ],
     "type" : "item",
     "order" : "b[heavy-oil-barrel]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 10
   },
   "light-oil-barrel" : {
     "name" : "light-oil-barrel",
@@ -1566,7 +1667,8 @@
     ],
     "type" : "item",
     "order" : "b[light-oil-barrel]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 10
   },
   "lubricant-barrel" : {
     "name" : "lubricant-barrel",
@@ -1578,7 +1680,8 @@
     ],
     "type" : "item",
     "order" : "b[lubricant-barrel]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 10
   },
   "petroleum-gas-barrel" : {
     "name" : "petroleum-gas-barrel",
@@ -1590,7 +1693,8 @@
     ],
     "type" : "item",
     "order" : "b[petroleum-gas-barrel]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 10
   },
   "sulfuric-acid-barrel" : {
     "name" : "sulfuric-acid-barrel",
@@ -1602,7 +1706,8 @@
     ],
     "type" : "item",
     "order" : "b[sulfuric-acid-barrel]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 10
   },
   "water-barrel" : {
     "name" : "water-barrel",
@@ -1614,7 +1719,8 @@
     ],
     "type" : "item",
     "order" : "b[water-barrel]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 10
   },
   "copper-cable" : {
     "name" : "copper-cable",
@@ -1623,7 +1729,8 @@
     ],
     "type" : "item",
     "order" : "a[copper-cable]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "iron-stick" : {
     "name" : "iron-stick",
@@ -1632,7 +1739,8 @@
     ],
     "type" : "item",
     "order" : "b[iron-stick]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "iron-gear-wheel" : {
     "name" : "iron-gear-wheel",
@@ -1641,7 +1749,8 @@
     ],
     "type" : "item",
     "order" : "c[iron-gear-wheel]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "empty-barrel" : {
     "name" : "empty-barrel",
@@ -1650,7 +1759,8 @@
     ],
     "type" : "item",
     "order" : "d[empty-barrel]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 10
   },
   "electronic-circuit" : {
     "name" : "electronic-circuit",
@@ -1659,7 +1769,8 @@
     ],
     "type" : "item",
     "order" : "e[electronic-circuit]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "advanced-circuit" : {
     "name" : "advanced-circuit",
@@ -1668,7 +1779,8 @@
     ],
     "type" : "item",
     "order" : "f[advanced-circuit]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "processing-unit" : {
     "name" : "processing-unit",
@@ -1677,7 +1789,8 @@
     ],
     "type" : "item",
     "order" : "g[processing-unit]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "engine-unit" : {
     "name" : "engine-unit",
@@ -1686,7 +1799,8 @@
     ],
     "type" : "item",
     "order" : "h[engine-unit]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 50
   },
   "electric-engine-unit" : {
     "name" : "electric-engine-unit",
@@ -1695,7 +1809,8 @@
     ],
     "type" : "item",
     "order" : "i[electric-engine-unit]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 50
   },
   "flying-robot-frame" : {
     "name" : "flying-robot-frame",
@@ -1704,7 +1819,8 @@
     ],
     "type" : "item",
     "order" : "l[flying-robot-frame]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 50
   },
   "satellite" : {
     "name" : "satellite",
@@ -1714,6 +1830,7 @@
     "type" : "item",
     "order" : "m[satellite]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "rocket_launch_products" : [
       {
         "type" : "item",
@@ -1730,7 +1847,8 @@
     ],
     "type" : "item",
     "order" : "n[rocket-control-unit]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 10
   },
   "low-density-structure" : {
     "name" : "low-density-structure",
@@ -1738,8 +1856,9 @@
       "item-name.low-density-structure"
     ],
     "type" : "item",
-    "order" : "o[rocket-structure]",
-    "fuel_value" : 0
+    "order" : "o[low-density-structure]",
+    "fuel_value" : 0,
+    "stack_size" : 10
   },
   "rocket-fuel" : {
     "name" : "rocket-fuel",
@@ -1749,6 +1868,7 @@
     "type" : "item",
     "order" : "p[rocket-fuel]",
     "fuel_value" : 100000000,
+    "stack_size" : 10,
     "fuel_category" : "chemical",
     "fuel_acceleration_multiplier" : 1.8,
     "fuel_top_speed_multiplier" : 1.15
@@ -1760,7 +1880,8 @@
     ],
     "type" : "item",
     "order" : "q[rocket-part]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 5
   },
   "nuclear-fuel" : {
     "name" : "nuclear-fuel",
@@ -1770,6 +1891,7 @@
     "type" : "item",
     "order" : "q[uranium-rocket-fuel]",
     "fuel_value" : 1210000000,
+    "stack_size" : 1,
     "fuel_category" : "chemical",
     "fuel_acceleration_multiplier" : 2.5,
     "fuel_top_speed_multiplier" : 1.15
@@ -1781,7 +1903,8 @@
     ],
     "type" : "item",
     "order" : "r[uranium-235]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "uranium-238" : {
     "name" : "uranium-238",
@@ -1790,7 +1913,8 @@
     ],
     "type" : "item",
     "order" : "r[uranium-238]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "uranium-fuel-cell" : {
     "name" : "uranium-fuel-cell",
@@ -1800,6 +1924,7 @@
     "type" : "item",
     "order" : "r[uranium-processing]-a[uranium-fuel-cell]",
     "fuel_value" : 8000000000,
+    "stack_size" : 50,
     "fuel_category" : "nuclear",
     "fuel_acceleration_multiplier" : 1,
     "fuel_top_speed_multiplier" : 1,
@@ -1812,7 +1937,8 @@
     ],
     "type" : "item",
     "order" : "r[used-up-uranium-fuel-cell]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 50
   },
   "automation-science-pack" : {
     "name" : "automation-science-pack",
@@ -1821,7 +1947,8 @@
     ],
     "type" : "tool",
     "order" : "a[automation-science-pack]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "logistic-science-pack" : {
     "name" : "logistic-science-pack",
@@ -1830,7 +1957,8 @@
     ],
     "type" : "tool",
     "order" : "b[logistic-science-pack]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "military-science-pack" : {
     "name" : "military-science-pack",
@@ -1839,7 +1967,8 @@
     ],
     "type" : "tool",
     "order" : "c[military-science-pack]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "chemical-science-pack" : {
     "name" : "chemical-science-pack",
@@ -1848,7 +1977,8 @@
     ],
     "type" : "tool",
     "order" : "d[chemical-science-pack]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "production-science-pack" : {
     "name" : "production-science-pack",
@@ -1857,7 +1987,8 @@
     ],
     "type" : "tool",
     "order" : "e[production-science-pack]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "utility-science-pack" : {
     "name" : "utility-science-pack",
@@ -1866,7 +1997,8 @@
     ],
     "type" : "tool",
     "order" : "f[utility-science-pack]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "space-science-pack" : {
     "name" : "space-science-pack",
@@ -1875,7 +2007,8 @@
     ],
     "type" : "tool",
     "order" : "g[space-science-pack]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 2000
   },
   "coin" : {
     "name" : "coin",
@@ -1884,7 +2017,8 @@
     ],
     "type" : "item",
     "order" : "y",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100000
   },
   "pistol" : {
     "name" : "pistol",
@@ -1894,12 +2028,15 @@
     "type" : "gun",
     "order" : "a[basic-clips]-a[pistol]",
     "fuel_value" : 0,
+    "stack_size" : 5,
     "attack_parameters" : {
       "type" : "projectile",
       "range" : 15,
       "min_range" : 0,
       "turn_range" : 1,
       "fire_penalty" : 0,
+      "rotate_penalty" : 0,
+      "health_penalty" : 0,
       "min_attack_distance" : 15,
       "damage_modifier" : 1,
       "ammo_consumption_modifier" : 1,
@@ -1907,7 +2044,9 @@
       "warmup" : 0,
       "movement_slow_down_factor" : 0.20000000298023,
       "movement_slow_down_cooldown" : 15,
-      "ammo_category" : "bullet",
+      "ammo_categories" : [
+        "bullet"
+      ],
       "projectile_center" : {
         "x" : 0,
         "y" : 0
@@ -1921,11 +2060,17 @@
         "speed_deviation" : 0.029999999329448,
         "starting_frame_speed" : 0.40000000596046,
         "starting_frame_speed_deviation" : 0.10000000149012,
+        "height" : 1,
+        "height_deviation" : 0,
+        "vertical_speed" : 0,
+        "vertical_speed_deviation" : 0,
         "center" : {
           "x" : 0,
           "y" : 0.1
         },
-        "creation_distance" : -0.5
+        "creation_distance" : -0.5,
+        "creation_distance_orientation" : 0,
+        "use_source_position" : false
       }
     }
   },
@@ -1937,12 +2082,15 @@
     "type" : "gun",
     "order" : "a[basic-clips]-b[submachine-gun]",
     "fuel_value" : 0,
+    "stack_size" : 5,
     "attack_parameters" : {
       "type" : "projectile",
       "range" : 18,
       "min_range" : 0,
       "turn_range" : 1,
       "fire_penalty" : 0,
+      "rotate_penalty" : 0,
+      "health_penalty" : 0,
       "min_attack_distance" : 18,
       "damage_modifier" : 1,
       "ammo_consumption_modifier" : 1,
@@ -1950,7 +2098,9 @@
       "warmup" : 0,
       "movement_slow_down_factor" : 0.69999998807907,
       "movement_slow_down_cooldown" : 6,
-      "ammo_category" : "bullet",
+      "ammo_categories" : [
+        "bullet"
+      ],
       "projectile_center" : {
         "x" : 0,
         "y" : 0
@@ -1964,11 +2114,17 @@
         "speed_deviation" : 0.029999999329448,
         "starting_frame_speed" : 0.40000000596046,
         "starting_frame_speed_deviation" : 0.10000000149012,
+        "height" : 1,
+        "height_deviation" : 0,
+        "vertical_speed" : 0,
+        "vertical_speed_deviation" : 0,
         "center" : {
           "x" : 0,
           "y" : 0.1
         },
-        "creation_distance" : -0.5
+        "creation_distance" : -0.5,
+        "creation_distance_orientation" : 0,
+        "use_source_position" : false
       }
     }
   },
@@ -1980,12 +2136,15 @@
     "type" : "gun",
     "order" : "a[basic-clips]-b[tank-machine-gun]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "attack_parameters" : {
       "type" : "projectile",
       "range" : 20,
       "min_range" : 0,
       "turn_range" : 1,
       "fire_penalty" : 0,
+      "rotate_penalty" : 0,
+      "health_penalty" : 0,
       "min_attack_distance" : 20,
       "damage_modifier" : 1,
       "ammo_consumption_modifier" : 1,
@@ -1993,7 +2152,9 @@
       "warmup" : 0,
       "movement_slow_down_factor" : 0.69999998807907,
       "movement_slow_down_cooldown" : 4,
-      "ammo_category" : "bullet",
+      "ammo_categories" : [
+        "bullet"
+      ],
       "projectile_center" : {
         "x" : -0.15625,
         "y" : -0.07812
@@ -2007,11 +2168,17 @@
         "speed_deviation" : 0.029999999329448,
         "starting_frame_speed" : 0.40000000596046,
         "starting_frame_speed_deviation" : 0.10000000149012,
+        "height" : 1,
+        "height_deviation" : 0,
+        "vertical_speed" : 0,
+        "vertical_speed_deviation" : 0,
         "center" : {
           "x" : 0,
           "y" : 0
         },
-        "creation_distance" : -0.6875
+        "creation_distance" : -0.6875,
+        "creation_distance_orientation" : 0,
+        "use_source_position" : false
       }
     }
   },
@@ -2023,12 +2190,15 @@
     "type" : "gun",
     "order" : "a[basic-clips]-b[vehicle-machine-gun]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "attack_parameters" : {
       "type" : "projectile",
       "range" : 20,
       "min_range" : 0,
       "turn_range" : 1,
       "fire_penalty" : 0,
+      "rotate_penalty" : 0,
+      "health_penalty" : 0,
       "min_attack_distance" : 20,
       "damage_modifier" : 1,
       "ammo_consumption_modifier" : 1,
@@ -2036,7 +2206,9 @@
       "warmup" : 0,
       "movement_slow_down_factor" : 0.69999998807907,
       "movement_slow_down_cooldown" : 4,
-      "ammo_category" : "bullet",
+      "ammo_categories" : [
+        "bullet"
+      ],
       "projectile_center" : {
         "x" : 0,
         "y" : 0
@@ -2050,11 +2222,17 @@
         "speed_deviation" : 0.029999999329448,
         "starting_frame_speed" : 0.40000000596046,
         "starting_frame_speed_deviation" : 0.10000000149012,
+        "height" : 1,
+        "height_deviation" : 0,
+        "vertical_speed" : 0,
+        "vertical_speed_deviation" : 0,
         "center" : {
           "x" : 0,
           "y" : 0
         },
-        "creation_distance" : -0.6875
+        "creation_distance" : -0.6875,
+        "creation_distance_orientation" : 0,
+        "use_source_position" : false
       }
     }
   },
@@ -2066,12 +2244,15 @@
     "type" : "gun",
     "order" : "b[flamethrower]-b[tank-flamethrower]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "attack_parameters" : {
       "type" : "stream",
       "range" : 9,
       "min_range" : 3,
       "turn_range" : 1,
       "fire_penalty" : 0,
+      "rotate_penalty" : 0,
+      "health_penalty" : 0,
       "min_attack_distance" : 9,
       "damage_modifier" : 1,
       "ammo_consumption_modifier" : 1,
@@ -2079,7 +2260,9 @@
       "warmup" : 0,
       "movement_slow_down_factor" : 1,
       "movement_slow_down_cooldown" : 1,
-      "ammo_category" : "flamethrower",
+      "ammo_categories" : [
+        "flamethrower"
+      ],
       "fluid_consumption" : 0,
       "gun_barrel_length" : 1.3999999761581,
       "gun_center_shift" : {
@@ -2110,20 +2293,25 @@
     "type" : "gun",
     "order" : "b[shotgun]-a[basic]",
     "fuel_value" : 0,
+    "stack_size" : 5,
     "attack_parameters" : {
       "type" : "projectile",
-      "range" : 20,
+      "range" : 15,
       "min_range" : 1,
       "turn_range" : 1,
       "fire_penalty" : 0,
-      "min_attack_distance" : 20,
+      "rotate_penalty" : 0,
+      "health_penalty" : 0,
+      "min_attack_distance" : 15,
       "damage_modifier" : 1,
       "ammo_consumption_modifier" : 1,
       "cooldown" : 60,
       "warmup" : 0,
       "movement_slow_down_factor" : 0.60000002384186,
       "movement_slow_down_cooldown" : 60,
-      "ammo_category" : "shotgun-shell",
+      "ammo_categories" : [
+        "shotgun-shell"
+      ],
       "projectile_center" : {
         "x" : 0,
         "y" : 0
@@ -2139,20 +2327,25 @@
     "type" : "gun",
     "order" : "b[shotgun]-a[combat]",
     "fuel_value" : 0,
+    "stack_size" : 5,
     "attack_parameters" : {
       "type" : "projectile",
-      "range" : 20,
+      "range" : 15,
       "min_range" : 0,
       "turn_range" : 1,
       "fire_penalty" : 0,
-      "min_attack_distance" : 20,
+      "rotate_penalty" : 0,
+      "health_penalty" : 0,
+      "min_attack_distance" : 15,
       "damage_modifier" : 1.2000000476837,
       "ammo_consumption_modifier" : 1,
       "cooldown" : 30,
       "warmup" : 0,
       "movement_slow_down_factor" : 0.5,
       "movement_slow_down_cooldown" : 30,
-      "ammo_category" : "shotgun-shell",
+      "ammo_categories" : [
+        "shotgun-shell"
+      ],
       "projectile_center" : {
         "x" : 0,
         "y" : 0
@@ -2168,12 +2361,15 @@
     "type" : "gun",
     "order" : "c[railgun]",
     "fuel_value" : 0,
+    "stack_size" : 5,
     "attack_parameters" : {
       "type" : "projectile",
       "range" : 20,
       "min_range" : 0,
       "turn_range" : 1,
       "fire_penalty" : 0,
+      "rotate_penalty" : 0,
+      "health_penalty" : 0,
       "min_attack_distance" : 20,
       "damage_modifier" : 1,
       "ammo_consumption_modifier" : 1,
@@ -2181,7 +2377,9 @@
       "warmup" : 0,
       "movement_slow_down_factor" : 0.60000002384186,
       "movement_slow_down_cooldown" : 180,
-      "ammo_category" : "railgun",
+      "ammo_categories" : [
+        "railgun"
+      ],
       "projectile_center" : {
         "x" : 0,
         "y" : 0
@@ -2197,12 +2395,15 @@
     "type" : "gun",
     "order" : "d[rocket-launcher]",
     "fuel_value" : 0,
+    "stack_size" : 5,
     "attack_parameters" : {
       "type" : "projectile",
       "range" : 36,
       "min_range" : 0,
       "turn_range" : 1,
       "fire_penalty" : 0,
+      "rotate_penalty" : 0,
+      "health_penalty" : 0,
       "min_attack_distance" : 36,
       "damage_modifier" : 1,
       "ammo_consumption_modifier" : 1,
@@ -2210,7 +2411,9 @@
       "warmup" : 0,
       "movement_slow_down_factor" : 0.80000001192093,
       "movement_slow_down_cooldown" : 60,
-      "ammo_category" : "rocket",
+      "ammo_categories" : [
+        "rocket"
+      ],
       "projectile_center" : {
         "x" : -0.17,
         "y" : 0
@@ -2226,12 +2429,15 @@
     "type" : "gun",
     "order" : "e[flamethrower]",
     "fuel_value" : 0,
+    "stack_size" : 5,
     "attack_parameters" : {
       "type" : "stream",
       "range" : 15,
       "min_range" : 3,
       "turn_range" : 1,
       "fire_penalty" : 0,
+      "rotate_penalty" : 0,
+      "health_penalty" : 0,
       "min_attack_distance" : 15,
       "damage_modifier" : 1,
       "ammo_consumption_modifier" : 1,
@@ -2239,7 +2445,9 @@
       "warmup" : 0,
       "movement_slow_down_factor" : 0.40000000596046,
       "movement_slow_down_cooldown" : 1,
-      "ammo_category" : "flamethrower",
+      "ammo_categories" : [
+        "flamethrower"
+      ],
       "fluid_consumption" : 0,
       "gun_barrel_length" : 0.80000001192093,
       "gun_center_shift" : {
@@ -2270,6 +2478,7 @@
     "type" : "item",
     "order" : "f[land-mine]",
     "fuel_value" : 0,
+    "stack_size" : 100,
     "place_result" : "land-mine"
   },
   "artillery-wagon-cannon" : {
@@ -2280,12 +2489,15 @@
     "type" : "gun",
     "order" : "z[artillery]-a[cannon]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "attack_parameters" : {
       "type" : "projectile",
       "range" : 224,
       "min_range" : 32,
       "turn_range" : 1,
       "fire_penalty" : 0,
+      "rotate_penalty" : 0,
+      "health_penalty" : 0,
       "min_attack_distance" : 224,
       "damage_modifier" : 1,
       "ammo_consumption_modifier" : 1,
@@ -2293,12 +2505,34 @@
       "warmup" : 0,
       "movement_slow_down_factor" : 0,
       "movement_slow_down_cooldown" : 200,
-      "ammo_category" : "artillery-shell",
+      "ammo_categories" : [
+        "artillery-shell"
+      ],
       "projectile_center" : {
         "x" : -0.15625,
         "y" : -0.07812
       },
       "projectile_creation_distance" : 1.6000000238419,
+      "shell_particle" : {
+        "name" : "artillery-shell-particle",
+        "direction" : 0.40000000596046,
+        "direction_deviation" : 0.050000000745058,
+        "speed" : 0.10000000149012,
+        "speed_deviation" : 0.10000000149012,
+        "starting_frame_speed" : 0.5,
+        "starting_frame_speed_deviation" : 0.5,
+        "height" : 1,
+        "height_deviation" : 0,
+        "vertical_speed" : 0.050000000745058,
+        "vertical_speed_deviation" : 0.0099999997764826,
+        "center" : {
+          "x" : 0,
+          "y" : -0.5
+        },
+        "creation_distance" : 0.5,
+        "creation_distance_orientation" : 0.4,
+        "use_source_position" : true
+      },
       "projectile_creation_parameters" : [
         [
           0,
@@ -4103,12 +4337,15 @@
     "type" : "gun",
     "order" : "z[tank]-a[cannon]",
     "fuel_value" : 0,
+    "stack_size" : 5,
     "attack_parameters" : {
       "type" : "projectile",
       "range" : 25,
       "min_range" : 0,
       "turn_range" : 1,
       "fire_penalty" : 0,
+      "rotate_penalty" : 0,
+      "health_penalty" : 0,
       "min_attack_distance" : 25,
       "damage_modifier" : 1,
       "ammo_consumption_modifier" : 1,
@@ -4116,7 +4353,9 @@
       "warmup" : 0,
       "movement_slow_down_factor" : 0,
       "movement_slow_down_cooldown" : 90,
-      "ammo_category" : "cannon-shell",
+      "ammo_categories" : [
+        "cannon-shell"
+      ],
       "projectile_center" : {
         "x" : -0.15625,
         "y" : -0.07812
@@ -4131,7 +4370,8 @@
     ],
     "type" : "ammo",
     "order" : "a[basic-clips]-a[firearm-magazine]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "piercing-rounds-magazine" : {
     "name" : "piercing-rounds-magazine",
@@ -4140,7 +4380,8 @@
     ],
     "type" : "ammo",
     "order" : "a[basic-clips]-b[piercing-rounds-magazine]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "uranium-rounds-magazine" : {
     "name" : "uranium-rounds-magazine",
@@ -4149,7 +4390,8 @@
     ],
     "type" : "ammo",
     "order" : "a[basic-clips]-c[uranium-rounds-magazine]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "shotgun-shell" : {
     "name" : "shotgun-shell",
@@ -4158,7 +4400,8 @@
     ],
     "type" : "ammo",
     "order" : "b[shotgun]-a[basic]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "piercing-shotgun-shell" : {
     "name" : "piercing-shotgun-shell",
@@ -4167,7 +4410,8 @@
     ],
     "type" : "ammo",
     "order" : "b[shotgun]-b[piercing]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "railgun-dart" : {
     "name" : "railgun-dart",
@@ -4176,7 +4420,8 @@
     ],
     "type" : "ammo",
     "order" : "c[railgun]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "cannon-shell" : {
     "name" : "cannon-shell",
@@ -4185,7 +4430,8 @@
     ],
     "type" : "ammo",
     "order" : "d[cannon-shell]-a[basic]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "explosive-cannon-shell" : {
     "name" : "explosive-cannon-shell",
@@ -4194,7 +4440,8 @@
     ],
     "type" : "ammo",
     "order" : "d[cannon-shell]-c[explosive]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "uranium-cannon-shell" : {
     "name" : "uranium-cannon-shell",
@@ -4203,7 +4450,8 @@
     ],
     "type" : "ammo",
     "order" : "d[cannon-shell]-c[uranium]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "explosive-uranium-cannon-shell" : {
     "name" : "explosive-uranium-cannon-shell",
@@ -4212,7 +4460,8 @@
     ],
     "type" : "ammo",
     "order" : "d[explosive-cannon-shell]-c[uranium]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "artillery-shell" : {
     "name" : "artillery-shell",
@@ -4221,7 +4470,8 @@
     ],
     "type" : "ammo",
     "order" : "d[explosive-cannon-shell]-d[artillery]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "rocket" : {
     "name" : "rocket",
@@ -4230,7 +4480,8 @@
     ],
     "type" : "ammo",
     "order" : "d[rocket-launcher]-a[basic]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "explosive-rocket" : {
     "name" : "explosive-rocket",
@@ -4239,7 +4490,8 @@
     ],
     "type" : "ammo",
     "order" : "d[rocket-launcher]-b[explosive]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 200
   },
   "atomic-bomb" : {
     "name" : "atomic-bomb",
@@ -4248,7 +4500,8 @@
     ],
     "type" : "ammo",
     "order" : "d[rocket-launcher]-c[atomic-bomb]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 10
   },
   "flamethrower-ammo" : {
     "name" : "flamethrower-ammo",
@@ -4257,7 +4510,8 @@
     ],
     "type" : "ammo",
     "order" : "e[flamethrower]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "grenade" : {
     "name" : "grenade",
@@ -4266,7 +4520,8 @@
     ],
     "type" : "capsule",
     "order" : "a[grenade]-a[normal]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "cluster-grenade" : {
     "name" : "cluster-grenade",
@@ -4275,7 +4530,8 @@
     ],
     "type" : "capsule",
     "order" : "a[grenade]-b[cluster]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "poison-capsule" : {
     "name" : "poison-capsule",
@@ -4284,7 +4540,8 @@
     ],
     "type" : "capsule",
     "order" : "b[poison-capsule]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "slowdown-capsule" : {
     "name" : "slowdown-capsule",
@@ -4293,7 +4550,8 @@
     ],
     "type" : "capsule",
     "order" : "c[slowdown-capsule]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "defender-capsule" : {
     "name" : "defender-capsule",
@@ -4302,7 +4560,8 @@
     ],
     "type" : "capsule",
     "order" : "d[defender-capsule]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "distractor-capsule" : {
     "name" : "distractor-capsule",
@@ -4311,7 +4570,8 @@
     ],
     "type" : "capsule",
     "order" : "e[defender-capsule]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "destroyer-capsule" : {
     "name" : "destroyer-capsule",
@@ -4320,7 +4580,8 @@
     ],
     "type" : "capsule",
     "order" : "f[destroyer-capsule]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 100
   },
   "discharge-defense-remote" : {
     "name" : "discharge-defense-remote",
@@ -4329,7 +4590,8 @@
     ],
     "type" : "capsule",
     "order" : "z",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "artillery-targeting-remote" : {
     "name" : "artillery-targeting-remote",
@@ -4338,7 +4600,8 @@
     ],
     "type" : "capsule",
     "order" : "zz",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "light-armor" : {
     "name" : "light-armor",
@@ -4347,7 +4610,8 @@
     ],
     "type" : "armor",
     "order" : "a[light-armor]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "heavy-armor" : {
     "name" : "heavy-armor",
@@ -4356,7 +4620,8 @@
     ],
     "type" : "armor",
     "order" : "b[heavy-armor]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "modular-armor" : {
     "name" : "modular-armor",
@@ -4366,6 +4631,7 @@
     "type" : "armor",
     "order" : "c[modular-armor]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "equipment_grid" : "small-equipment-grid"
   },
   "power-armor" : {
@@ -4376,6 +4642,7 @@
     "type" : "armor",
     "order" : "d[power-armor]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "equipment_grid" : "medium-equipment-grid"
   },
   "power-armor-mk2" : {
@@ -4386,6 +4653,7 @@
     "type" : "armor",
     "order" : "e[power-armor-mk2]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "equipment_grid" : "large-equipment-grid"
   },
   "solar-panel-equipment" : {
@@ -4395,7 +4663,9 @@
     ],
     "type" : "item",
     "order" : "a[energy-source]-a[solar-panel]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_as_equipment_result" : "solar-panel-equipment"
   },
   "fusion-reactor-equipment" : {
     "name" : "fusion-reactor-equipment",
@@ -4404,7 +4674,9 @@
     ],
     "type" : "item",
     "order" : "a[energy-source]-b[fusion-reactor]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_as_equipment_result" : "fusion-reactor-equipment"
   },
   "energy-shield-equipment" : {
     "name" : "energy-shield-equipment",
@@ -4413,7 +4685,9 @@
     ],
     "type" : "item",
     "order" : "b[shield]-a[energy-shield-equipment]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_as_equipment_result" : "energy-shield-equipment"
   },
   "energy-shield-mk2-equipment" : {
     "name" : "energy-shield-mk2-equipment",
@@ -4422,7 +4696,9 @@
     ],
     "type" : "item",
     "order" : "b[shield]-b[energy-shield-equipment-mk2]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_as_equipment_result" : "energy-shield-mk2-equipment"
   },
   "battery-equipment" : {
     "name" : "battery-equipment",
@@ -4431,7 +4707,9 @@
     ],
     "type" : "item",
     "order" : "c[battery]-a[battery-equipment]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_as_equipment_result" : "battery-equipment"
   },
   "battery-mk2-equipment" : {
     "name" : "battery-mk2-equipment",
@@ -4440,7 +4718,9 @@
     ],
     "type" : "item",
     "order" : "c[battery]-b[battery-equipment-mk2]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_as_equipment_result" : "battery-mk2-equipment"
   },
   "personal-laser-defense-equipment" : {
     "name" : "personal-laser-defense-equipment",
@@ -4449,7 +4729,9 @@
     ],
     "type" : "item",
     "order" : "d[active-defense]-a[personal-laser-defense-equipment]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_as_equipment_result" : "personal-laser-defense-equipment"
   },
   "discharge-defense-equipment" : {
     "name" : "discharge-defense-equipment",
@@ -4458,7 +4740,9 @@
     ],
     "type" : "item",
     "order" : "d[active-defense]-b[discharge-defense-equipment]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_as_equipment_result" : "discharge-defense-equipment"
   },
   "belt-immunity-equipment" : {
     "name" : "belt-immunity-equipment",
@@ -4467,7 +4751,9 @@
     ],
     "type" : "item",
     "order" : "e[belt-immunity]-a[belt-immunity]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_as_equipment_result" : "belt-immunity-equipment"
   },
   "exoskeleton-equipment" : {
     "name" : "exoskeleton-equipment",
@@ -4476,7 +4762,9 @@
     ],
     "type" : "item",
     "order" : "e[exoskeleton]-a[exoskeleton-equipment]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_as_equipment_result" : "exoskeleton-equipment"
   },
   "personal-roboport-equipment" : {
     "name" : "personal-roboport-equipment",
@@ -4485,7 +4773,9 @@
     ],
     "type" : "item",
     "order" : "e[robotics]-a[personal-roboport-equipment]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_as_equipment_result" : "personal-roboport-equipment"
   },
   "personal-roboport-mk2-equipment" : {
     "name" : "personal-roboport-mk2-equipment",
@@ -4494,7 +4784,9 @@
     ],
     "type" : "item",
     "order" : "e[robotics]-b[personal-roboport-mk2-equipment]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_as_equipment_result" : "personal-roboport-mk2-equipment"
   },
   "night-vision-equipment" : {
     "name" : "night-vision-equipment",
@@ -4503,7 +4795,9 @@
     ],
     "type" : "item",
     "order" : "f[night-vision]-a[night-vision-equipment]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_as_equipment_result" : "night-vision-equipment"
   },
   "stone-wall" : {
     "name" : "stone-wall",
@@ -4513,6 +4807,7 @@
     "type" : "item",
     "order" : "a[stone-wall]-a[stone-wall]",
     "fuel_value" : 0,
+    "stack_size" : 100,
     "place_result" : "stone-wall"
   },
   "gate" : {
@@ -4523,6 +4818,7 @@
     "type" : "item",
     "order" : "a[wall]-b[gate]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "gate"
   },
   "gun-turret" : {
@@ -4533,6 +4829,7 @@
     "type" : "item",
     "order" : "b[turret]-a[gun-turret]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "gun-turret"
   },
   "laser-turret" : {
@@ -4543,6 +4840,7 @@
     "type" : "item",
     "order" : "b[turret]-b[laser-turret]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "laser-turret"
   },
   "flamethrower-turret" : {
@@ -4553,6 +4851,7 @@
     "type" : "item",
     "order" : "b[turret]-c[flamethrower-turret]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "flamethrower-turret"
   },
   "artillery-turret" : {
@@ -4563,6 +4862,7 @@
     "type" : "item",
     "order" : "b[turret]-d[artillery-turret]",
     "fuel_value" : 0,
+    "stack_size" : 10,
     "place_result" : "artillery-turret"
   },
   "radar" : {
@@ -4573,6 +4873,7 @@
     "type" : "item",
     "order" : "d[radar]-a[radar]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "radar"
   },
   "rocket-silo" : {
@@ -4583,6 +4884,7 @@
     "type" : "item",
     "order" : "e[rocket-silo]",
     "fuel_value" : 0,
+    "stack_size" : 1,
     "place_result" : "rocket-silo"
   },
   "computer" : {
@@ -4592,7 +4894,8 @@
     ],
     "type" : "item",
     "order" : "g[computer]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "player-port" : {
     "name" : "player-port",
@@ -4602,7 +4905,62 @@
     "type" : "item",
     "order" : "z[not-used]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "player-port"
+  },
+  "item-unknown" : {
+    "name" : "item-unknown",
+    "localised_name" : [
+      "item-name.item-unknown"
+    ],
+    "type" : "item",
+    "order" : "",
+    "fuel_value" : 0,
+    "stack_size" : 1
+  },
+  "electric-energy-interface" : {
+    "name" : "electric-energy-interface",
+    "localised_name" : [
+      "entity-name.electric-energy-interface"
+    ],
+    "type" : "item",
+    "order" : "a[electric-energy-interface]-b[electric-energy-interface]",
+    "fuel_value" : 0,
+    "stack_size" : 50,
+    "place_result" : "electric-energy-interface"
+  },
+  "heat-interface" : {
+    "name" : "heat-interface",
+    "localised_name" : [
+      "entity-name.heat-interface"
+    ],
+    "type" : "item",
+    "order" : "b[heat-interface]",
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_result" : "heat-interface"
+  },
+  "infinity-chest" : {
+    "name" : "infinity-chest",
+    "localised_name" : [
+      "entity-name.infinity-chest"
+    ],
+    "type" : "item",
+    "order" : "c[item]-o[infinity-chest]",
+    "fuel_value" : 0,
+    "stack_size" : 10,
+    "place_result" : "infinity-chest"
+  },
+  "infinity-pipe" : {
+    "name" : "infinity-pipe",
+    "localised_name" : [
+      "entity-name.infinity-pipe"
+    ],
+    "type" : "item",
+    "order" : "d[item]-o[infinity-pipe]",
+    "fuel_value" : 0,
+    "stack_size" : 10,
+    "place_result" : "infinity-pipe"
   },
   "selection-tool" : {
     "name" : "selection-tool",
@@ -4610,8 +4968,9 @@
       "item-name.selection-tool"
     ],
     "type" : "selection-tool",
-    "order" : "c[automated-construction]-a[blueprint]",
-    "fuel_value" : 0
+    "order" : "e[automated-construction]-a[blueprint]",
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "item-with-inventory" : {
     "name" : "item-with-inventory",
@@ -4620,7 +4979,8 @@
     ],
     "type" : "item-with-inventory",
     "order" : "s[item-with-inventory]-o[item-with-inventory]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "item-with-label" : {
     "name" : "item-with-label",
@@ -4629,7 +4989,8 @@
     ],
     "type" : "item-with-label",
     "order" : "s[item-with-label]-o[item-with-label]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "item-with-tags" : {
     "name" : "item-with-tags",
@@ -4638,7 +4999,8 @@
     ],
     "type" : "item-with-tags",
     "order" : "s[item-with-tags]-o[item-with-tags]",
-    "fuel_value" : 0
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "simple-entity-with-force" : {
     "name" : "simple-entity-with-force",
@@ -4648,6 +5010,7 @@
     "type" : "item",
     "order" : "s[simple-entity-with-force]-f[simple-entity-with-force]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "simple-entity-with-force"
   },
   "simple-entity-with-owner" : {
@@ -4658,26 +5021,18 @@
     "type" : "item",
     "order" : "s[simple-entity-with-owner]-o[simple-entity-with-owner]",
     "fuel_value" : 0,
+    "stack_size" : 50,
     "place_result" : "simple-entity-with-owner"
   },
-  "infinity-chest" : {
-    "name" : "infinity-chest",
+  "burner-generator" : {
+    "name" : "burner-generator",
     "localised_name" : [
-      "entity-name.infinity-chest"
+      "entity-name.burner-generator"
     ],
     "type" : "item",
-    "order" : "t[item]-o[infinity-chest]",
+    "order" : "t[item]-o[burner-generator]",
     "fuel_value" : 0,
-    "place_result" : "infinity-chest"
-  },
-  "infinity-pipe" : {
-    "name" : "infinity-pipe",
-    "localised_name" : [
-      "entity-name.infinity-pipe"
-    ],
-    "type" : "item",
-    "order" : "t[item]-o[infinity-pipe]",
-    "fuel_value" : 0,
-    "place_result" : "infinity-pipe"
+    "stack_size" : 10,
+    "place_result" : "burner-generator"
   }
 }

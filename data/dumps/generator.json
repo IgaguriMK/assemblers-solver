@@ -7,6 +7,18 @@
     "maximum_temperature" : 165,
     "effectivity" : 1,
     "fluid_usage_per_tick" : 0.5,
+    "friendly_map_color" : {
+      "r" : 0,
+      "g" : 127,
+      "b" : 160,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 255,
+      "g" : 25,
+      "b" : 25,
+      "a" : 255
+    },
     "drain" : 0,
     "emissions" : 0,
     "pollution" : 0,
@@ -20,6 +32,18 @@
     "maximum_temperature" : 500,
     "effectivity" : 1,
     "fluid_usage_per_tick" : 1,
+    "friendly_map_color" : {
+      "r" : 0,
+      "g" : 127,
+      "b" : 160,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 255,
+      "g" : 25,
+      "b" : 25,
+      "a" : 255
+    },
     "drain" : 0,
     "emissions" : 0,
     "pollution" : 0,

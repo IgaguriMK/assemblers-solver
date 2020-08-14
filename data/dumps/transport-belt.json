@@ -5,6 +5,18 @@
       "entity-name.transport-belt"
     ],
     "belt_speed" : 1.875,
+    "friendly_map_color" : {
+      "r" : 204,
+      "g" : 160,
+      "b" : 71,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 255,
+      "g" : 25,
+      "b" : 25,
+      "a" : 255
+    },
     "pollution" : 0
   },
   "fast-transport-belt" : {
@@ -13,6 +25,18 @@
       "entity-name.fast-transport-belt"
     ],
     "belt_speed" : 3.75,
+    "friendly_map_color" : {
+      "r" : 204,
+      "g" : 160,
+      "b" : 71,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 255,
+      "g" : 25,
+      "b" : 25,
+      "a" : 255
+    },
     "pollution" : 0
   },
   "express-transport-belt" : {
@@ -21,6 +45,18 @@
       "entity-name.express-transport-belt"
     ],
     "belt_speed" : 5.625,
+    "friendly_map_color" : {
+      "r" : 204,
+      "g" : 160,
+      "b" : 71,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 255,
+      "g" : 25,
+      "b" : 25,
+      "a" : 255
+    },
     "pollution" : 0
   }
 }

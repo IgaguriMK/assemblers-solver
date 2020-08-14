@@ -20,6 +20,18 @@
       "productivity" : false,
       "pollution" : false
     },
+    "friendly_map_color" : {
+      "r" : 0,
+      "g" : 96,
+      "b" : 145,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 255,
+      "g" : 25,
+      "b" : 25,
+      "a" : 255
+    },
     "drain" : 2500,
     "emissions" : 8.8888888888889e-07,
     "pollution" : 4
@@ -45,6 +57,18 @@
       "speed" : true,
       "productivity" : true,
       "pollution" : true
+    },
+    "friendly_map_color" : {
+      "r" : 0,
+      "g" : 96,
+      "b" : 145,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 255,
+      "g" : 25,
+      "b" : 25,
+      "a" : 255
     },
     "drain" : 5000,
     "emissions" : 3.3333333333333e-07,
@@ -72,6 +96,18 @@
       "productivity" : true,
       "pollution" : true
     },
+    "friendly_map_color" : {
+      "r" : 0,
+      "g" : 96,
+      "b" : 145,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 255,
+      "g" : 25,
+      "b" : 25,
+      "a" : 255
+    },
     "drain" : 12500,
     "emissions" : 8.8888888888889e-08,
     "pollution" : 2
@@ -94,6 +130,18 @@
       "speed" : true,
       "productivity" : true,
       "pollution" : true
+    },
+    "friendly_map_color" : {
+      "r" : 0,
+      "g" : 96,
+      "b" : 145,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 255,
+      "g" : 25,
+      "b" : 25,
+      "a" : 255
     },
     "drain" : 14000,
     "emissions" : 2.3809523809524e-07,
@@ -118,6 +166,18 @@
       "productivity" : true,
       "pollution" : true
     },
+    "friendly_map_color" : {
+      "r" : 0,
+      "g" : 96,
+      "b" : 145,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 255,
+      "g" : 25,
+      "b" : 25,
+      "a" : 255
+    },
     "drain" : 7000,
     "emissions" : 3.1746031746032e-07,
     "pollution" : 4
@@ -140,6 +200,18 @@
       "speed" : true,
       "productivity" : true,
       "pollution" : true
+    },
+    "friendly_map_color" : {
+      "r" : 0,
+      "g" : 96,
+      "b" : 145,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 255,
+      "g" : 25,
+      "b" : 25,
+      "a" : 255
     },
     "drain" : 11666.666666667,
     "emissions" : 1.9047619047619e-07,
@@ -166,6 +238,24 @@
       "productivity" : false,
       "pollution" : false
     },
+    "map_color" : {
+      "r" : 0,
+      "g" : 93,
+      "b" : 147,
+      "a" : 255
+    },
+    "friendly_map_color" : {
+      "r" : 0,
+      "g" : 93,
+      "b" : 147,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 0,
+      "g" : 93,
+      "b" : 147,
+      "a" : 255
+    },
     "drain" : 3000,
     "emissions" : 7.4074074074074e-07,
     "pollution" : 4
@@ -190,6 +280,24 @@
       "speed" : false,
       "productivity" : false,
       "pollution" : false
+    },
+    "map_color" : {
+      "r" : 0,
+      "g" : 93,
+      "b" : 147,
+      "a" : 255
+    },
+    "friendly_map_color" : {
+      "r" : 0,
+      "g" : 93,
+      "b" : 147,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 0,
+      "g" : 93,
+      "b" : 147,
+      "a" : 255
     },
     "drain" : 3000,
     "emissions" : 7.4074074074074e-07,

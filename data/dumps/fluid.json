@@ -1,4 +1,15 @@
 {
+  "fluid-unknown" : {
+    "name" : "fluid-unknown",
+    "localised_name" : [
+      "fluid-name.fluid-unknown"
+    ],
+    "order" : "",
+    "default_temperature" : 0,
+    "max_temperature" : 0,
+    "fuel_value" : 0,
+    "emissions_multiplier" : 1
+  },
   "water" : {
     "name" : "water",
     "localised_name" : [

@@ -6,6 +6,18 @@
     ],
     "max_energy_usage" : 40000000,
     "neighbour_bonus" : 1,
+    "friendly_map_color" : {
+      "r" : 0,
+      "g" : 96,
+      "b" : 145,
+      "a" : 255
+    },
+    "enemy_map_color" : {
+      "r" : 255,
+      "g" : 25,
+      "b" : 25,
+      "a" : 255
+    },
     "burner_effectivity" : 1,
     "fuel_categories" : {
       "nuclear" : true
