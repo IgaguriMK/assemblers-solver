@@ -3,13 +3,13 @@ use std::fs::File;
 use std::io::BufReader;
 use std::path::Path;
 
-use failure::Error;
+use anyhow::Result;
 use serde::Deserialize;
 use serde_yaml::from_reader;
 
 use super::{Recipe, RecipeSet};
 
-pub fn load_recipes<P: AsRef<Path>>(dir: P) -> Result<RecipeSet, Error> {
+pub fn load_recipes<P: AsRef<Path>>(dir: P) -> Result<RecipeSet> {
     let file_path = dir.as_ref().join("dumps/recipe.json");
     let f = BufReader::new(File::open(file_path)?);
     let recipe_source: BTreeMap<String, RecipeSource> = from_reader(f)?;

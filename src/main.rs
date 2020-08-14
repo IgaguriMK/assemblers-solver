@@ -1,5 +1,5 @@
+use anyhow::{Error, Result};
 use clap::App;
-use failure::{format_err, Error};
 
 mod cfg_file;
 mod config;
@@ -18,8 +18,6 @@ mod technology;
 mod util;
 
 use sub::{sub_commands, SubCmd};
-
-type Result<T> = std::result::Result<T, Error>;
 
 fn main() {
     match w_main() {
@@ -52,5 +50,5 @@ fn w_main() -> Result<()> {
         }
     }
 
-    Err(format_err!("no subcommand"))
+    Err(Error::msg("no subcommand"))
 }

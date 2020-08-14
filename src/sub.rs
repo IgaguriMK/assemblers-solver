@@ -1,5 +1,5 @@
+use anyhow::Result;
 use clap::{App, ArgMatches};
-use failure::Error;
 
 mod mining;
 mod oil;
@@ -10,7 +10,7 @@ mod tech_tree;
 pub trait SubCmd {
     fn name(&self) -> &'static str;
     fn command_args(&self) -> App<'static, 'static>;
-    fn exec(&self, matches: &ArgMatches) -> Result<(), Error>;
+    fn exec(&self, matches: &ArgMatches) -> Result<()>;
 }
 
 pub fn sub_commands() -> Vec<Box<dyn SubCmd>> {

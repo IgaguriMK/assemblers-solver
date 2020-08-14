@@ -2,15 +2,13 @@ use std::cmp::Ordering;
 use std::collections::btree_map::Iter;
 use std::collections::{BTreeMap, BTreeSet, HashSet};
 
-use failure::Error;
+use anyhow::Result;
 
 use crate::recipe::RecipeSet;
 use crate::solution::*;
 use crate::target::{Flow, TargetSettings};
 
 pub use crate::processer::{ProcSet, ProcesserChoice};
-
-pub type Result<T> = std::result::Result<T, Error>;
 
 #[derive(Debug)]
 pub struct Solver {

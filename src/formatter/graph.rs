@@ -1,10 +1,10 @@
-use failure::format_err;
+use anyhow::{Error, Result};
 
 use crate::consts::BELT_THROUGHPUT;
 use crate::solution::*;
 use crate::util::F64Extra;
 
-use super::{Formatter, Result};
+use super::Formatter;
 
 pub struct GraphFormatter {
     counter: Counter,
@@ -13,7 +13,10 @@ pub struct GraphFormatter {
 impl Formatter for GraphFormatter {
     fn format(&mut self, solution: &Solution) -> Result<()> {
         if !solution.missings.is_empty() {
-            return Err(format_err!("missing sources: {:?}", solution.missings));
+            return Err(Error::msg(format!(
+                "missing sources: {:?}",
+                solution.missings
+            )));
         }
 
         println!("digraph solutinon {{");

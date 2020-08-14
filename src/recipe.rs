@@ -85,12 +85,9 @@ impl RecipeSet {
         let ld = self.depth(left, sources);
         let rd = self.depth(right, sources);
 
-        if ld > rd {
-            Ordering::Less
-        } else if ld < rd {
-            Ordering::Greater
-        } else {
-            Ord::cmp(left, right)
+        match ld.cmp(&rd) {
+            Ordering::Equal => Ord::cmp(left, right),
+            ord => ord,
         }
     }
 

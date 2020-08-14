@@ -1,5 +1,5 @@
+use anyhow::Result;
 use clap::{App, Arg, ArgMatches, SubCommand};
-use failure::Error;
 
 use crate::cfg_file::Cfg;
 use crate::config::Config;
@@ -32,7 +32,7 @@ impl SubCmd for TechTree {
             )
     }
 
-    fn exec(&self, _matches: &ArgMatches) -> Result<(), Error> {
+    fn exec(&self, _matches: &ArgMatches) -> Result<()> {
         let cfg = Config::load("./config.toml")?;
 
         let technologies = load_technologies("./data")?;

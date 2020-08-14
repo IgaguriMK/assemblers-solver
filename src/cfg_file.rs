@@ -3,7 +3,7 @@ use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::path::Path;
 
-use failure::Error;
+use anyhow::Result;
 
 #[derive(Debug, Clone)]
 pub struct Cfg {
@@ -11,7 +11,7 @@ pub struct Cfg {
 }
 
 impl Cfg {
-    pub fn load<P: AsRef<Path>>(path: P) -> Result<Cfg, Error> {
+    pub fn load<P: AsRef<Path>>(path: P) -> Result<Cfg> {
         let mut r = BufReader::new(File::open(path)?);
 
         let mut line = String::new();

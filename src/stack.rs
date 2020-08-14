@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use std::fs;
 use std::io::BufReader;
 
-use failure::Error;
+use anyhow::Result;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -18,7 +18,7 @@ impl StackDict {
     }
 }
 
-pub fn load_stack_dict(file_path: &str) -> Result<StackDict, Error> {
+pub fn load_stack_dict(file_path: &str) -> Result<StackDict> {
     let file = fs::File::open(file_path)?;
     let reader = BufReader::new(file);
 

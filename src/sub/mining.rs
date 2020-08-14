@@ -1,5 +1,5 @@
+use anyhow::Result;
 use clap::{App, Arg, ArgMatches, SubCommand};
-use failure::Error;
 
 use super::SubCmd;
 use crate::consts::BELT_THROUGHPUT;
@@ -36,7 +36,7 @@ impl SubCmd for Mining {
             )
     }
 
-    fn exec(&self, matches: &ArgMatches) -> Result<(), Error> {
+    fn exec(&self, matches: &ArgMatches) -> Result<()> {
         let bonus: u64 = matches.value_of("bonus").unwrap().parse()?;
         let count: u64 = matches.value_of("count").unwrap().parse()?;
 

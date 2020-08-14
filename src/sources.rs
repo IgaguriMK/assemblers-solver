@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use std::fs;
 use std::io::BufReader;
 
-use failure::{format_err, Error};
+use anyhow::{Error, Result};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -14,8 +14,9 @@ impl SourceSets {
     }
 }
 
-pub fn load_source_sets(file_path: &str) -> Result<SourceSets, Error> {
-    let file = fs::File::open(file_path).map_err(|e| format_err!("{}: {}", e, file_path))?;
+pub fn load_source_sets(file_path: &str) -> Result<SourceSets> {
+    let file =
+        fs::File::open(file_path).map_err(|e| Error::msg(format!("{}: {}", e, file_path)))?;
     let reader = BufReader::new(file);
 
     let dict: SourceSets = serde_yaml::from_reader(reader)?;

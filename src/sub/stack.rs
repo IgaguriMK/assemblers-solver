@@ -1,7 +1,7 @@
 use std::collections::BTreeMap;
 
+use anyhow::{Context, Result};
 use clap::{App, Arg, ArgMatches, SubCommand};
-use failure::{format_err, Error};
 
 use crate::consts::LIQUID_EQ_STACK_SIZE;
 use crate::near_name::NameSet;
@@ -34,7 +34,7 @@ impl SubCmd for Stack {
             .arg(Arg::with_name("target-name").required(true))
     }
 
-    fn exec(&self, matches: &ArgMatches) -> Result<(), Error> {
+    fn exec(&self, matches: &ArgMatches) -> Result<()> {
         let use_prod = !matches.is_present("no-prod");
         let target = matches.value_of("target-name").unwrap();
 
@@ -47,12 +47,11 @@ impl SubCmd for Stack {
 
         let mut target_settings = TargetSettings::new();
 
-        let target_stack_size = stack_dict.get(target).ok_or_else(|| {
+        let target_stack_size = stack_dict.get(target).with_context(|| {
             let candidates = name_set.find_nearest_names(target, 3);
-            format_err!(
+            format!(
                 "unknown stack size: {}, Did you mean: {:?}?",
-                target,
-                candidates
+                target, candidates
             )
         })?;
         let target_stack_size = target_stack_size as f64;
@@ -102,15 +101,15 @@ impl SubCmd for Stack {
             match src {
                 Throughput::Item(n, t) => {
                     let stack_size = stack_dict
-                        .get(n)
-                        .ok_or_else(|| format_err!("unknown stack size: {}", n))?;
+                        .get(n.as_str())
+                        .with_context(|| format!("unknown stack size: {}", n))?;
                     let stacks = t / (stack_size as f64);
                     total_stacks += stacks;
                     source_stacks.insert(n.to_string(), stacks);
                 }
                 Throughput::Liquid(n, t) => {
-                    liquids.insert(n.to_string(), *t);
-                    total_stacks += *t / LIQUID_EQ_STACK_SIZE;
+                    liquids.insert(n.to_string(), t);
+                    total_stacks += t / LIQUID_EQ_STACK_SIZE;
                 }
             }
         }

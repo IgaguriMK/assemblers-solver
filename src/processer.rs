@@ -1,8 +1,6 @@
 mod loader;
 
-use failure::{format_err, Error};
-
-pub type Result<T> = std::result::Result<T, Error>;
+use anyhow::{Error, Result};
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct Processer {
@@ -85,7 +83,7 @@ impl ProcSet {
             .collect();
 
         if candidates.is_empty() {
-            return Err(format_err!("no processer candidates"));
+            return Err(Error::msg("no processer candidates"));
         }
 
         let max_prod = candidates
@@ -110,8 +108,7 @@ impl ProcSet {
         if max_speed > crafting_power {
             let p = candidates
                 .iter()
-                .skip_while(|p| p.speed <= crafting_power)
-                .nth(0)
+                .find(|p| p.speed > crafting_power)
                 .unwrap();
             return Ok(p);
         }

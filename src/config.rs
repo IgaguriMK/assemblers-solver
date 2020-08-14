@@ -2,7 +2,7 @@ use std::fs::File;
 use std::io::Read;
 use std::path::{Path, PathBuf};
 
-use failure::Error;
+use anyhow::Result;
 use serde::Deserialize;
 use toml::from_slice;
 
@@ -13,7 +13,7 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn load<P: AsRef<Path>>(path: P) -> Result<Config, Error> {
+    pub fn load<P: AsRef<Path>>(path: P) -> Result<Config> {
         let mut f = File::open(path)?;
 
         let mut bs = Vec::new();

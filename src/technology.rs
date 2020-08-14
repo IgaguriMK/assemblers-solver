@@ -3,13 +3,13 @@ use std::fs::File;
 use std::io::BufReader;
 use std::path::Path;
 
-use failure::Error;
+use anyhow::Result;
 use serde::Deserialize;
 use serde_yaml::from_reader;
 
 use crate::cfg_file::Cfg;
 
-pub fn load_technologies<P: AsRef<Path>>(dir: P) -> Result<Technologies, Error> {
+pub fn load_technologies<P: AsRef<Path>>(dir: P) -> Result<Technologies> {
     let file_path = dir.as_ref().join("dumps/technology.json");
     let f = BufReader::new(File::open(file_path)?);
     let techs: BTreeMap<String, Technology> = from_reader(f)?;

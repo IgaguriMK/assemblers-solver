@@ -1,5 +1,5 @@
+use anyhow::{Context, Error, Result};
 use clap::{App, Arg, ArgMatches, SubCommand};
-use failure::{format_err, Error};
 
 use crate::consts::BELT_THROUGHPUT;
 use crate::formatter::formatter_by_name;
@@ -87,10 +87,8 @@ impl SubCmd for Solve {
             .arg(Arg::with_name("target"))
     }
 
-    fn exec(&self, matches: &ArgMatches) -> Result<(), Error> {
-        let target_str = matches
-            .value_of("target")
-            .ok_or_else(|| format_err!("target required."))?;
+    fn exec(&self, matches: &ArgMatches) -> Result<()> {
+        let target_str = matches.value_of("target").context("target required.")?;
 
         let from_file = target_str.ends_with(".yaml") || target_str.ends_with(".yml");
 
@@ -107,7 +105,7 @@ impl SubCmd for Solve {
         let source_sets = load_source_sets("./data/sources.yaml")?;
         let source_set = source_sets
             .get(source_set_name)
-            .ok_or_else(|| format_err!("unknown source set {}", source_set_name))?;
+            .ok_or_else(|| Error::msg(format!("unknown source set {}", source_set_name)))?;
         target_settings.add_sources(source_set.clone());
 
         if let Some(additional_sources) = matches.values_of("source") {

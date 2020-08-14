@@ -3,7 +3,7 @@ mod test;
 
 use std::fs::File;
 
-use failure::Error;
+use anyhow::Result;
 use serde::Deserialize;
 use serde_yaml::from_reader;
 
@@ -14,7 +14,7 @@ const PROC_MOD_SPEED: f64 = -0.15;
 const SPEED_MOD_SPPEED: f64 = 0.5;
 const BEACON_SPEED: f64 = SPEED_MOD_SPPEED;
 
-pub fn load() -> Result<Vec<Processer>, Error> {
+pub fn load() -> Result<Vec<Processer>> {
     let f = File::open("./data/processers.yaml")?;
 
     let proc_types: Vec<ProcType> = from_reader(f)?;
@@ -32,7 +32,7 @@ pub fn load() -> Result<Vec<Processer>, Error> {
 
                 let p = build_proc(
                     &t.name,
-                    t.proc_type.as_ref().map(String::as_str).unwrap_or(&t.name),
+                    t.proc_type.as_deref().unwrap_or(&t.name),
                     t.base_speed,
                     t.tier,
                     m,

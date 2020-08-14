@@ -1,8 +1,8 @@
 use std::fmt;
 use std::ops::Add;
 
+use anyhow::Result;
 use clap::{App, Arg, ArgMatches, SubCommand};
-use failure::Error;
 
 use super::SubCmd;
 
@@ -29,7 +29,7 @@ impl SubCmd for Oil {
         )
     }
 
-    fn exec(&self, matches: &ArgMatches) -> Result<(), Error> {
+    fn exec(&self, matches: &ArgMatches) -> Result<()> {
         let count = matches.value_of("count").unwrap().parse::<usize>()?;
 
         let oil_out = OIL_PROCESS.flow(count as f64);
