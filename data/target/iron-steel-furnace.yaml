@@ -1,6 +1,0 @@
-targets:
-  steel-plate: 1
-sources:
-  - iron-ore
-merged:
-  - iron-plate

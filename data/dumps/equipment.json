@@ -174,7 +174,8 @@
             "radius" : 8,
             "trigger_from_target" : false,
             "target_entities" : true,
-            "collision_mode" : "distance-from-collision-box"
+            "collision_mode" : "distance-from-collision-box",
+            "show_in_tooltip" : true
           }
         ],
         "target_type" : "entity",
@@ -186,7 +187,8 @@
         "x" : 0,
         "y" : 0
       },
-      "projectile_creation_distance" : 0.60000002384186
+      "projectile_creation_distance" : 0.60000002384186,
+      "projectile_orientation_offset" : 0
     },
     "background_color" : {
       "r" : 0.2352941185236,

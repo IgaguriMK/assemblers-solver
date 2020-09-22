@@ -3550,6 +3550,65 @@
       "tanks"
     ]
   },
+  "spidertron" : {
+    "name" : "spidertron",
+    "localised_name" : [
+      "technology-name.spidertron"
+    ],
+    "effects" : [
+      {
+        "type" : "unlock-recipe",
+        "recipe" : "spidertron"
+      },
+      {
+        "type" : "unlock-recipe",
+        "recipe" : "spidertron-remote"
+      }
+    ],
+    "research_unit_ingredients" : [
+      {
+        "type" : "item",
+        "name" : "automation-science-pack",
+        "amount" : 1
+      },
+      {
+        "type" : "item",
+        "name" : "logistic-science-pack",
+        "amount" : 1
+      },
+      {
+        "type" : "item",
+        "name" : "military-science-pack",
+        "amount" : 1
+      },
+      {
+        "type" : "item",
+        "name" : "chemical-science-pack",
+        "amount" : 1
+      },
+      {
+        "type" : "item",
+        "name" : "production-science-pack",
+        "amount" : 1
+      },
+      {
+        "type" : "item",
+        "name" : "utility-science-pack",
+        "amount" : 1
+      }
+    ],
+    "research_unit_count" : 2500,
+    "research_unit_energy" : 1800,
+    "max_level" : 1,
+    "prerequisites" : [
+      "military-4",
+      "exoskeleton-equipment",
+      "fusion-reactor-equipment",
+      "rocketry",
+      "rocket-control-unit",
+      "effectivity-module-3"
+    ]
+  },
   "military" : {
     "name" : "military",
     "localised_name" : [

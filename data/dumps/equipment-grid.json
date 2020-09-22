@@ -31,5 +31,16 @@
     ],
     "width" : 5,
     "height" : 5
+  },
+  "spidertron-equipment-grid" : {
+    "name" : "spidertron-equipment-grid",
+    "localised_name" : [
+      "equipment-grid-name.spidertron-equipment-grid"
+    ],
+    "equipment_categories" : [
+      "armor"
+    ],
+    "width" : 10,
+    "height" : 6
   }
 }

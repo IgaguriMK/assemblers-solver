@@ -3,4 +3,5 @@
 
 *.exe
 *.txt
+/targets
 /config.toml

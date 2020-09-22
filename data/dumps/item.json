@@ -439,13 +439,34 @@
     "stack_size" : 1,
     "place_result" : "tank"
   },
+  "spidertron" : {
+    "name" : "spidertron",
+    "localised_name" : [
+      "entity-name.spidertron"
+    ],
+    "type" : "item-with-entity-data",
+    "order" : "b[personal-transport]-c[spidertron]-a[spider]",
+    "fuel_value" : 0,
+    "stack_size" : 1,
+    "place_result" : "spidertron"
+  },
+  "spidertron-remote" : {
+    "name" : "spidertron-remote",
+    "localised_name" : [
+      "item-name.spidertron-remote"
+    ],
+    "type" : "spidertron-remote",
+    "order" : "b[personal-transport]-c[spidertron]-b[remote]",
+    "fuel_value" : 0,
+    "stack_size" : 1
+  },
   "small-plane" : {
     "name" : "small-plane",
     "localised_name" : [
       "item-name.small-plane"
     ],
     "type" : "item",
-    "order" : "b[personal-transport]-c[small-plane]",
+    "order" : "b[personal-transport]-x[small-plane]",
     "fuel_value" : 0,
     "stack_size" : 1
   },
@@ -2008,7 +2029,15 @@
     "type" : "tool",
     "order" : "g[space-science-pack]",
     "fuel_value" : 0,
-    "stack_size" : 2000
+    "stack_size" : 2000,
+    "rocket_launch_products" : [
+      {
+        "type" : "item",
+        "name" : "raw-fish",
+        "probability" : 1,
+        "amount" : 1
+      }
+    ]
   },
   "coin" : {
     "name" : "coin",
@@ -2071,7 +2100,8 @@
         "creation_distance" : -0.5,
         "creation_distance_orientation" : 0,
         "use_source_position" : false
-      }
+      },
+      "projectile_orientation_offset" : 0
     }
   },
   "submachine-gun" : {
@@ -2125,7 +2155,8 @@
         "creation_distance" : -0.5,
         "creation_distance_orientation" : 0,
         "use_source_position" : false
-      }
+      },
+      "projectile_orientation_offset" : 0
     }
   },
   "tank-machine-gun" : {
@@ -2179,7 +2210,8 @@
         "creation_distance" : -0.6875,
         "creation_distance_orientation" : 0,
         "use_source_position" : false
-      }
+      },
+      "projectile_orientation_offset" : 0
     }
   },
   "vehicle-machine-gun" : {
@@ -2233,7 +2265,8 @@
         "creation_distance" : -0.6875,
         "creation_distance_orientation" : 0,
         "use_source_position" : false
-      }
+      },
+      "projectile_orientation_offset" : 0
     }
   },
   "tank-flamethrower" : {
@@ -2316,7 +2349,8 @@
         "x" : 0,
         "y" : 0
       },
-      "projectile_creation_distance" : 1.125
+      "projectile_creation_distance" : 1.125,
+      "projectile_orientation_offset" : 0
     }
   },
   "combat-shotgun" : {
@@ -2350,7 +2384,8 @@
         "x" : 0,
         "y" : 0
       },
-      "projectile_creation_distance" : 1.125
+      "projectile_creation_distance" : 1.125,
+      "projectile_orientation_offset" : 0
     }
   },
   "railgun" : {
@@ -2384,7 +2419,8 @@
         "x" : 0,
         "y" : 0
       },
-      "projectile_creation_distance" : 0.60000002384186
+      "projectile_creation_distance" : 0.60000002384186,
+      "projectile_orientation_offset" : 0
     }
   },
   "rocket-launcher" : {
@@ -2418,7 +2454,8 @@
         "x" : -0.17,
         "y" : 0
       },
-      "projectile_creation_distance" : 0.60000002384186
+      "projectile_creation_distance" : 0.60000002384186,
+      "projectile_orientation_offset" : 0
     }
   },
   "flamethrower" : {
@@ -4326,7 +4363,148 @@
             "y" : -4.53125
           }
         ]
-      ]
+      ],
+      "projectile_orientation_offset" : 0
+    }
+  },
+  "spidertron-rocket-launcher-1" : {
+    "name" : "spidertron-rocket-launcher-1",
+    "localised_name" : [
+      "item-name.spidertron-rocket-launcher"
+    ],
+    "type" : "gun",
+    "order" : "z[spider]-a[rocket-launcher]",
+    "fuel_value" : 0,
+    "stack_size" : 1,
+    "attack_parameters" : {
+      "type" : "projectile",
+      "range" : 36,
+      "min_range" : 0,
+      "turn_range" : 1,
+      "fire_penalty" : 0,
+      "rotate_penalty" : 0,
+      "health_penalty" : 0,
+      "min_attack_distance" : 36,
+      "damage_modifier" : 1,
+      "ammo_consumption_modifier" : 1,
+      "cooldown" : 60,
+      "warmup" : 0,
+      "movement_slow_down_factor" : 1,
+      "movement_slow_down_cooldown" : 60,
+      "ammo_categories" : [
+        "rocket"
+      ],
+      "projectile_center" : {
+        "x" : 0,
+        "y" : 0.3
+      },
+      "projectile_creation_distance" : -0.5,
+      "projectile_orientation_offset" : 0.9375
+    }
+  },
+  "spidertron-rocket-launcher-2" : {
+    "name" : "spidertron-rocket-launcher-2",
+    "localised_name" : [
+      "item-name.spidertron-rocket-launcher"
+    ],
+    "type" : "gun",
+    "order" : "z[spider]-a[rocket-launcher]",
+    "fuel_value" : 0,
+    "stack_size" : 1,
+    "attack_parameters" : {
+      "type" : "projectile",
+      "range" : 36,
+      "min_range" : 0,
+      "turn_range" : 1,
+      "fire_penalty" : 0,
+      "rotate_penalty" : 0,
+      "health_penalty" : 0,
+      "min_attack_distance" : 36,
+      "damage_modifier" : 1,
+      "ammo_consumption_modifier" : 1,
+      "cooldown" : 60,
+      "warmup" : 0,
+      "movement_slow_down_factor" : 1,
+      "movement_slow_down_cooldown" : 60,
+      "ammo_categories" : [
+        "rocket"
+      ],
+      "projectile_center" : {
+        "x" : 0,
+        "y" : 0.3
+      },
+      "projectile_creation_distance" : -0.5,
+      "projectile_orientation_offset" : 0.96875
+    }
+  },
+  "spidertron-rocket-launcher-3" : {
+    "name" : "spidertron-rocket-launcher-3",
+    "localised_name" : [
+      "item-name.spidertron-rocket-launcher"
+    ],
+    "type" : "gun",
+    "order" : "z[spider]-a[rocket-launcher]",
+    "fuel_value" : 0,
+    "stack_size" : 1,
+    "attack_parameters" : {
+      "type" : "projectile",
+      "range" : 36,
+      "min_range" : 0,
+      "turn_range" : 1,
+      "fire_penalty" : 0,
+      "rotate_penalty" : 0,
+      "health_penalty" : 0,
+      "min_attack_distance" : 36,
+      "damage_modifier" : 1,
+      "ammo_consumption_modifier" : 1,
+      "cooldown" : 60,
+      "warmup" : 0,
+      "movement_slow_down_factor" : 1,
+      "movement_slow_down_cooldown" : 60,
+      "ammo_categories" : [
+        "rocket"
+      ],
+      "projectile_center" : {
+        "x" : 0,
+        "y" : 0.3
+      },
+      "projectile_creation_distance" : -0.5,
+      "projectile_orientation_offset" : 0.03125
+    }
+  },
+  "spidertron-rocket-launcher-4" : {
+    "name" : "spidertron-rocket-launcher-4",
+    "localised_name" : [
+      "item-name.spidertron-rocket-launcher"
+    ],
+    "type" : "gun",
+    "order" : "z[spider]-a[rocket-launcher]",
+    "fuel_value" : 0,
+    "stack_size" : 1,
+    "attack_parameters" : {
+      "type" : "projectile",
+      "range" : 36,
+      "min_range" : 0,
+      "turn_range" : 1,
+      "fire_penalty" : 0,
+      "rotate_penalty" : 0,
+      "health_penalty" : 0,
+      "min_attack_distance" : 36,
+      "damage_modifier" : 1,
+      "ammo_consumption_modifier" : 1,
+      "cooldown" : 60,
+      "warmup" : 0,
+      "movement_slow_down_factor" : 1,
+      "movement_slow_down_cooldown" : 60,
+      "ammo_categories" : [
+        "rocket"
+      ],
+      "projectile_center" : {
+        "x" : 0,
+        "y" : 0.3
+      },
+      "projectile_creation_distance" : -0.5,
+      "projectile_orientation_offset" : 0.0625
     }
   },
   "tank-cannon" : {
@@ -4360,7 +4538,8 @@
         "x" : -0.15625,
         "y" : -0.07812
       },
-      "projectile_creation_distance" : 1.6000000238419
+      "projectile_creation_distance" : 1.6000000238419,
+      "projectile_orientation_offset" : 0
     }
   },
   "firearm-magazine" : {
@@ -4583,26 +4762,6 @@
     "fuel_value" : 0,
     "stack_size" : 100
   },
-  "discharge-defense-remote" : {
-    "name" : "discharge-defense-remote",
-    "localised_name" : [
-      "item-name.discharge-defense-remote"
-    ],
-    "type" : "capsule",
-    "order" : "z",
-    "fuel_value" : 0,
-    "stack_size" : 1
-  },
-  "artillery-targeting-remote" : {
-    "name" : "artillery-targeting-remote",
-    "localised_name" : [
-      "item-name.artillery-targeting-remote"
-    ],
-    "type" : "capsule",
-    "order" : "zz",
-    "fuel_value" : 0,
-    "stack_size" : 1
-  },
   "light-armor" : {
     "name" : "light-armor",
     "localised_name" : [
@@ -4678,35 +4837,13 @@
     "stack_size" : 20,
     "place_as_equipment_result" : "fusion-reactor-equipment"
   },
-  "energy-shield-equipment" : {
-    "name" : "energy-shield-equipment",
-    "localised_name" : [
-      "equipment-name.energy-shield-equipment"
-    ],
-    "type" : "item",
-    "order" : "b[shield]-a[energy-shield-equipment]",
-    "fuel_value" : 0,
-    "stack_size" : 20,
-    "place_as_equipment_result" : "energy-shield-equipment"
-  },
-  "energy-shield-mk2-equipment" : {
-    "name" : "energy-shield-mk2-equipment",
-    "localised_name" : [
-      "equipment-name.energy-shield-mk2-equipment"
-    ],
-    "type" : "item",
-    "order" : "b[shield]-b[energy-shield-equipment-mk2]",
-    "fuel_value" : 0,
-    "stack_size" : 20,
-    "place_as_equipment_result" : "energy-shield-mk2-equipment"
-  },
   "battery-equipment" : {
     "name" : "battery-equipment",
     "localised_name" : [
       "equipment-name.battery-equipment"
     ],
     "type" : "item",
-    "order" : "c[battery]-a[battery-equipment]",
+    "order" : "b[battery]-a[battery-equipment]",
     "fuel_value" : 0,
     "stack_size" : 20,
     "place_as_equipment_result" : "battery-equipment"
@@ -4717,32 +4854,10 @@
       "equipment-name.battery-mk2-equipment"
     ],
     "type" : "item",
-    "order" : "c[battery]-b[battery-equipment-mk2]",
+    "order" : "b[battery]-b[battery-equipment-mk2]",
     "fuel_value" : 0,
     "stack_size" : 20,
     "place_as_equipment_result" : "battery-mk2-equipment"
-  },
-  "personal-laser-defense-equipment" : {
-    "name" : "personal-laser-defense-equipment",
-    "localised_name" : [
-      "equipment-name.personal-laser-defense-equipment"
-    ],
-    "type" : "item",
-    "order" : "d[active-defense]-a[personal-laser-defense-equipment]",
-    "fuel_value" : 0,
-    "stack_size" : 20,
-    "place_as_equipment_result" : "personal-laser-defense-equipment"
-  },
-  "discharge-defense-equipment" : {
-    "name" : "discharge-defense-equipment",
-    "localised_name" : [
-      "equipment-name.discharge-defense-equipment"
-    ],
-    "type" : "item",
-    "order" : "d[active-defense]-b[discharge-defense-equipment]",
-    "fuel_value" : 0,
-    "stack_size" : 20,
-    "place_as_equipment_result" : "discharge-defense-equipment"
   },
   "belt-immunity-equipment" : {
     "name" : "belt-immunity-equipment",
@@ -4750,7 +4865,7 @@
       "equipment-name.belt-immunity-equipment"
     ],
     "type" : "item",
-    "order" : "e[belt-immunity]-a[belt-immunity]",
+    "order" : "c[belt-immunity]-a[belt-immunity]",
     "fuel_value" : 0,
     "stack_size" : 20,
     "place_as_equipment_result" : "belt-immunity-equipment"
@@ -4761,7 +4876,7 @@
       "equipment-name.exoskeleton-equipment"
     ],
     "type" : "item",
-    "order" : "e[exoskeleton]-a[exoskeleton-equipment]",
+    "order" : "d[exoskeleton]-a[exoskeleton-equipment]",
     "fuel_value" : 0,
     "stack_size" : 20,
     "place_as_equipment_result" : "exoskeleton-equipment"
@@ -4798,6 +4913,60 @@
     "fuel_value" : 0,
     "stack_size" : 20,
     "place_as_equipment_result" : "night-vision-equipment"
+  },
+  "energy-shield-equipment" : {
+    "name" : "energy-shield-equipment",
+    "localised_name" : [
+      "equipment-name.energy-shield-equipment"
+    ],
+    "type" : "item",
+    "order" : "a[shield]-a[energy-shield-equipment]",
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_as_equipment_result" : "energy-shield-equipment"
+  },
+  "energy-shield-mk2-equipment" : {
+    "name" : "energy-shield-mk2-equipment",
+    "localised_name" : [
+      "equipment-name.energy-shield-mk2-equipment"
+    ],
+    "type" : "item",
+    "order" : "a[shield]-b[energy-shield-equipment-mk2]",
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_as_equipment_result" : "energy-shield-mk2-equipment"
+  },
+  "personal-laser-defense-equipment" : {
+    "name" : "personal-laser-defense-equipment",
+    "localised_name" : [
+      "equipment-name.personal-laser-defense-equipment"
+    ],
+    "type" : "item",
+    "order" : "b[active-defense]-a[personal-laser-defense-equipment]",
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_as_equipment_result" : "personal-laser-defense-equipment"
+  },
+  "discharge-defense-equipment" : {
+    "name" : "discharge-defense-equipment",
+    "localised_name" : [
+      "equipment-name.discharge-defense-equipment"
+    ],
+    "type" : "item",
+    "order" : "b[active-defense]-b[discharge-defense-equipment]-a[equipment]",
+    "fuel_value" : 0,
+    "stack_size" : 20,
+    "place_as_equipment_result" : "discharge-defense-equipment"
+  },
+  "discharge-defense-remote" : {
+    "name" : "discharge-defense-remote",
+    "localised_name" : [
+      "item-name.discharge-defense-remote"
+    ],
+    "type" : "capsule",
+    "order" : "b[active-defense]-b[discharge-defense-equipment]-b[remote]",
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "stone-wall" : {
     "name" : "stone-wall",
@@ -4860,10 +5029,20 @@
       "entity-name.artillery-turret"
     ],
     "type" : "item",
-    "order" : "b[turret]-d[artillery-turret]",
+    "order" : "b[turret]-d[artillery-turret]-a[turret]",
     "fuel_value" : 0,
     "stack_size" : 10,
     "place_result" : "artillery-turret"
+  },
+  "artillery-targeting-remote" : {
+    "name" : "artillery-targeting-remote",
+    "localised_name" : [
+      "item-name.artillery-targeting-remote"
+    ],
+    "type" : "capsule",
+    "order" : "b[turret]-d[artillery-turret]-b[remote]",
+    "fuel_value" : 0,
+    "stack_size" : 1
   },
   "radar" : {
     "name" : "radar",

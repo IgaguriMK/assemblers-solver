@@ -1,7 +1,0 @@
-targets:
-  logistic-science-pack: 1
-sources:
-  - iron-plate
-  - copper-plate
-merged:
-  - iron-gear-wheel

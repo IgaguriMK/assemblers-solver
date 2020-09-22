@@ -1,8 +1,0 @@
-targets:
-  military-science-pack: 1
-sources:
-  - iron-plate
-  - copper-plate
-  - coal
-  - steel-plate
-  - stone
