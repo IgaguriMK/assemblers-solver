@@ -42,6 +42,10 @@ impl NameSet {
             .map(|c| c.name)
             .collect()
     }
+
+    pub fn iter(&self) -> impl Iterator<Item = &str> {
+        self.set.iter().map(|s| s.as_str())
+    }
 }
 
 #[derive(Debug, PartialEq, Eq)]

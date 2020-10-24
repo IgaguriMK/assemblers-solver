@@ -3,6 +3,7 @@ use clap::{App, ArgMatches};
 
 mod mining;
 mod oil;
+mod search;
 mod solve;
 mod stack;
 mod tech_tree;
@@ -17,8 +18,8 @@ pub fn sub_commands() -> Vec<Box<dyn SubCmd>> {
     vec![
         Box::new(mining::Mining::new()),
         Box::new(oil::Oil::new()),
+        Box::new(search::Search::new()),
         Box::new(solve::Solve::new()),
-        Box::new(stack::Stack::new()),
         Box::new(stack::Stack::new()),
         Box::new(tech_tree::TechTree::new()),
     ]
