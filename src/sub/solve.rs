@@ -77,6 +77,11 @@ impl SubCmd for Solve {
                     .default_value("spb")
                     .help("assembler modifications (s: speed, p: productivity, b: beacon)"),
             )
+            .arg(
+                Arg::with_name("no_mods")
+                    .long("no-mods")
+                    .help("Disable modules"),
+            )
             .arg(Arg::with_name("allow-speed-only-beacon").long("allow-speed-only-beacon"))
             .arg(
                 Arg::with_name("format")
@@ -125,7 +130,11 @@ impl SubCmd for Solve {
             target_settings.add_mergeds(mergeds.map(ToString::to_string).collect());
         }
 
-        let mods = matches.value_of("mods").unwrap();
+        let mods = if !matches.is_present("no_mods") {
+            matches.value_of("mods").unwrap()
+        } else {
+            ""
+        };
         let mut processer_choice = solver::ProcesserChoice::new()
             .beacon(mods.contains('b'))
             .speed_module(mods.contains('s'))
