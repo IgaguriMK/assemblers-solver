@@ -3,7 +3,7 @@ mod load;
 pub use load::load_recipes;
 
 use std::cmp::Ordering;
-use std::collections::{BTreeMap, BTreeSet, HashSet};
+use std::collections::{BTreeMap, BTreeSet};
 
 use serde::{Deserialize, Serialize};
 
@@ -23,6 +23,10 @@ pub struct Recipe {
 }
 
 impl Recipe {
+    pub fn name(&self) -> &str {
+        self.name.as_str()
+    }
+
     pub fn recipe_type(&self) -> &str {
         &self.recipe_type
     }
@@ -81,52 +85,14 @@ impl RecipeSet {
             .collect()
     }
 
-    pub fn compare(&self, left: &str, right: &str, sources: &HashSet<String>) -> Ordering {
-        let ld = self.depth(left, sources);
-        let rd = self.depth(right, sources);
-
-        match ld.cmp(&rd) {
-            Ordering::Equal => Ord::cmp(left, right),
-            ord => ord,
-        }
-    }
-
-    fn depth(&self, item: &str, sources: &HashSet<String>) -> Depth {
-        if sources.contains(item) {
-            return Depth(0, 1);
-        }
-
-        let mut depth = Depth(0, 0);
-
-        let recipes = self.find_recipes(item);
-        for r in recipes {
-            let mut dd = 0;
-            let mut dc = 1;
-
-            for (n, _) in r.ingredients() {
-                let di = self.depth(n, sources);
-
-                if di.0 > dd {
-                    dd = di.0;
-                }
-
-                dc += di.1;
-            }
-
-            let d = Depth(dd + 1, dc);
-
-            if d > depth {
-                depth = d;
-            }
-        }
-
-        depth
-    }
-
     pub fn find_did_you_mean(&self, name: &str) -> Vec<String> {
         let mut name_set = NameSet::new();
         name_set.add_names(self.all_results());
         name_set.find_nearest_names(name, 3)
+    }
+
+    pub fn iter(&self) -> impl Iterator<Item = &Recipe> {
+        self.recipes.iter()
     }
 }
 

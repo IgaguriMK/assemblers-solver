@@ -4,7 +4,7 @@ use std::collections::{BTreeMap, BTreeSet, HashSet};
 
 use anyhow::Result;
 
-use crate::recipe::RecipeSet;
+use crate::recipe::{Recipe, RecipeSet};
 use crate::solution::*;
 use crate::target::{Flow, TargetSettings};
 
@@ -21,6 +21,7 @@ pub struct Solver {
     processer_set: ProcSet,
     processer_choice: ProcesserChoice,
     source_throughputs: ItemThroughputs,
+    tier_map: BTreeMap<String, u64>,
     missings: BTreeSet<String>,
 }
 
@@ -35,6 +36,27 @@ impl Solver {
 
         for t in target_settings.targets() {
             targets.add(t);
+        }
+
+        // Tier計算
+        let mut recipe_lut = BTreeMap::<String, Vec<&Recipe>>::new();
+        let mut names = BTreeSet::new();
+        for r in recipe_set.iter() {
+            recipe_lut
+                .entry(r.name().to_string())
+                .and_modify(|rs| rs.push(r))
+                .or_insert_with(|| vec![r]);
+
+            names.insert(r.name().to_string());
+            for (i, _) in r.ingredients() {
+                names.insert(i.clone());
+            }
+        }
+
+        let mut tier_map = BTreeMap::<String, u64>::new();
+        let checking = BTreeSet::new();
+        for name in names.iter() {
+            calc_tier(name, &mut tier_map, &recipe_lut, &checking);
         }
 
         Solver {
@@ -55,6 +77,7 @@ impl Solver {
             processer_set,
             processer_choice,
             source_throughputs: ItemThroughputs::new(),
+            tier_map,
             missings: BTreeSet::new(),
         }
     }
@@ -106,7 +129,9 @@ impl Solver {
                 return Ordering::Less;
             }
 
-            self.recipe_set.compare(l, r, &self.sources)
+            let l_tier = self.tier_map.get(l).copied().unwrap_or(0);
+            let r_tier = self.tier_map.get(r).copied().unwrap_or(0);
+            l_tier.cmp(&r_tier).reverse()
         }) {
             return Some(self.targets.take(name));
         }
@@ -182,6 +207,45 @@ impl Solver {
         }
         self.all_merged || self.merged.get(name).is_some()
     }
+}
+
+fn calc_tier(
+    name: &str,
+    tier_map: &mut BTreeMap<String, u64>,
+    recipe_lut: &BTreeMap<String, Vec<&Recipe>>,
+    checking: &BTreeSet<String>,
+) -> u64 {
+    if let Some(&tier) = tier_map.get(name) {
+        return tier;
+    }
+
+    let rs = if let Some(rs) = recipe_lut.get(name) {
+        rs
+    } else {
+        tier_map.insert(name.to_string(), 1);
+        return 1;
+    };
+
+    assert!(!rs.is_empty());
+    let mut tier = u64::max_value();
+    for &r in rs.iter() {
+        let mut recipe_tier = 0;
+        for (i, _) in r.ingredients() {
+            if checking.contains(i) {
+                continue;
+            }
+
+            let mut checking = checking.clone();
+            checking.insert(i.clone());
+
+            let ingredient_tier = calc_tier(&i, tier_map, recipe_lut, &checking);
+            recipe_tier = recipe_tier.max(ingredient_tier + 1);
+        }
+        tier = tier.min(recipe_tier);
+    }
+
+    tier_map.insert(name.to_string(), tier);
+    tier
 }
 
 #[derive(Debug)]
