@@ -1,15 +1,25 @@
-use std::collections::BTreeMap;
+use std::collections::btree_map::Values as BTreeMapIter;
+use std::collections::{BTreeMap, HashSet};
 use std::fs::File;
 use std::io::BufReader;
 use std::path::Path;
+use std::slice::Iter as SliceIter;
 
-use anyhow::Result;
+use anyhow::{Context, Result};
+use either::Either;
 use serde::Deserialize;
 use serde_yaml::from_reader;
 
 use super::{Recipe, RecipeSet};
 
+const PROD_3_NAME: &str = "productivity-module-3";
+
 pub fn load_recipes<P: AsRef<Path>>(dir: P) -> Result<RecipeSet> {
+    // 各種ファイルのロード
+    let file_path = dir.as_ref().join("dumps/item.json");
+    let f = BufReader::new(File::open(file_path)?);
+    let items: BTreeMap<String, Item> = from_reader(f)?;
+
     let file_path = dir.as_ref().join("dumps/recipe.json");
     let f = BufReader::new(File::open(file_path)?);
     let recipe_source: BTreeMap<String, RecipeSource> = from_reader(f)?;
@@ -18,6 +28,20 @@ pub fn load_recipes<P: AsRef<Path>>(dir: P) -> Result<RecipeSet> {
     let f = BufReader::new(File::open(file_path)?);
     let exception: Exception = from_reader(f)?;
 
+    // 生産性モジュールの対象を取得
+    let prod_3_item = items
+        .get(PROD_3_NAME)
+        .with_context(|| format!("item '{}' is not found", PROD_3_NAME))?;
+
+    let materials: HashSet<String> = prod_3_item
+        .limitations
+        .as_ref()
+        .with_context(|| format!("field 'limitations' is not found in {}", PROD_3_NAME))?
+        .iter()
+        .cloned()
+        .collect();
+
+    // レシピの変換
     let mut recipes = Vec::with_capacity(recipe_source.len());
     for (_, rs) in recipe_source.into_iter() {
         if exception.ignore(&rs) {
@@ -26,7 +50,7 @@ pub fn load_recipes<P: AsRef<Path>>(dir: P) -> Result<RecipeSet> {
 
         let recipe_type = rs.recipe_type();
         let cost = rs.energy;
-        let material = rs.is_material();
+        let material = materials.contains(&rs.name);
         let results = rs.results();
         let ingredients = rs.ingredients();
 
@@ -57,10 +81,6 @@ struct RecipeSource {
 }
 
 impl RecipeSource {
-    fn is_material(&self) -> bool {
-        &self.group.name == "intermediate-products"
-    }
-
     fn recipe_type(&self) -> String {
         match self.category.as_str() {
             "advanced-crafting" => "assembler",
@@ -113,6 +133,13 @@ struct TypedValue {
 }
 
 #[derive(Debug, Deserialize)]
+struct Item {
+    name: String,
+    stack_size: u64,
+    limitations: Option<EmptyMapList<String>>,
+}
+
+#[derive(Debug, Deserialize)]
 struct Exception {
     drop_names: Vec<String>,
     drop_groups: Vec<String>,
@@ -139,5 +166,21 @@ impl Exception {
         }
 
         false
+    }
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(untagged)]
+enum EmptyMapList<T> {
+    Normal(Vec<T>),
+    Map(BTreeMap<String, T>),
+}
+
+impl<T> EmptyMapList<T> {
+    fn iter(&self) -> Either<SliceIter<'_, T>, BTreeMapIter<'_, String, T>> {
+        match self {
+            EmptyMapList::Normal(ref x) => Either::Left(x.iter()),
+            EmptyMapList::Map(ref x) => Either::Right(x.values()),
+        }
     }
 }
